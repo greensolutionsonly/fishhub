@@ -1,0 +1,128 @@
+{
+  "name": "fish",
+  "version": "0.0.0",
+  "authors": [
+    "Rama Moorthy <ram.praximo@gmail.com>"
+  ],
+  "description": "catching fish and selling it",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material": "~0.10.1",
+    "angular-ui-router": "~0.2.15",
+    "angular-resource": "~1.4.4",
+    "angular-translate": "~2.7.2",
+    "angular-material-icons": "*",
+    "countries": "~1.0.3"
+  },
+  "overrides": {
+    "angular": {
+      "main": {
+        "development": [
+          "angular.js",
+          "angular-csp.css"
+        ],
+        "production": [
+          "angular.min.js",
+          "angular-csp.css"
+        ]
+      }
+    },
+    "angular-animate": {
+      "main": {
+        "development": [
+          "angular-animate.js"
+        ],
+        "production": [
+          "angular-animate.min.js"
+        ]
+      }
+    },
+    "angular-aria": {
+      "main": {
+        "development": [
+          "angular-aria.js"
+        ],
+        "production": [
+          "angular-aria.min.js"
+        ]
+      }
+    },
+    "angular-material": {
+      "main": {
+        "development": [
+          "angular-material.js",
+          "angular-material.css"
+        ],
+        "production": [
+          "angular-material.min.js",
+          "angular-material.min.css"
+        ]
+      }
+    },
+    "angular-resource": {
+      "main": {
+        "development": [
+          "angular-resource.js"
+        ],
+        "production": [
+          "angular-resource.min.js"
+        ]
+      }
+    },
+    "angular-translate": {
+      "main": {
+        "development": [
+          "angular-translate.js"
+        ],
+        "production": [
+          "angular-translate.min.js"
+        ]
+      }
+    },
+    "angular-ui-router": {
+      "main": {
+        "development": [
+          "release/angular-ui-router.js"
+        ],
+        "production": [
+          "release/angular-ui-router.min.js"
+        ]
+      }
+    },
+    "angular-material-icons": {
+      "main": {
+        "development": [
+          "angular-material-icons.css",
+          "angular-material-icons.js"
+        ],
+        "production": [
+          "angular-material-icons.min.css",
+          "angular-material-icons.min.js"
+        ]
+      }
+    },
+    "angular-country-select": {
+      "main": {
+        "development": [
+          "dist/angular-country-select.js"
+        ],
+        "production": [
+          "angular-country-select.min.js"
+        ]
+      }
+    }
+  },
+  "devDependencies": {
+    "countries": "~1.0.3"
+  }
+}

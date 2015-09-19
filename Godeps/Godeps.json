@@ -1,0 +1,45 @@
+{
+	"ImportPath": "github.com/alpa-vantage/fishhub",
+	"GoVersion": "go1.2.1",
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "github.com/codegangsta/inject",
+			"Comment": "v1.0-rc1-10-g33e0aa1",
+			"Rev": "33e0aa1cb7c019ccc3fbe049a8262a6403d30504"
+		},
+		{
+			"ImportPath": "github.com/go-martini/martini",
+			"Comment": "v1.0-134-g184178f",
+			"Rev": "184178ffc6b2f7b86b8b99c2a411de8771708a0a"
+		},
+		{
+			"ImportPath": "github.com/jamieomatthews/validation",
+			"Rev": "fdba2d7980640b1a6a0acea43d170b054e43130b"
+		},
+		{
+			"ImportPath": "github.com/joho/godotenv",
+			"Comment": "v1-8-g443e926",
+			"Rev": "443e926da0d793d3b3f32118b1e4ba52ada26503"
+		},
+		{
+			"ImportPath": "github.com/martini-contrib/binding",
+			"Rev": "8aaceec3b52c275477f32c95ea5c6e8ccaba04c5"
+		},
+		{
+			"ImportPath": "github.com/martini-contrib/render",
+			"Rev": "ec18f8345a1181146728238980606fb1d6f40e8c"
+		},
+		{
+			"ImportPath": "github.com/oxtoacart/bpool",
+			"Rev": "4e1c5567d7c2dd59fa4c7c83d34c2f3528b025d6"
+		},
+		{
+			"ImportPath": "gopkg.in/mgo.v2",
+			"Comment": "r2015.06.03-4-gf4923a5",
+			"Rev": "f4923a569136442e900b8cf5c1a706c0a8b0883c"
+		}
+	]
+}

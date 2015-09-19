@@ -1,0 +1,105 @@
+<div  layout="column" class="inputdemoIcons" id="userContainer">
+  <br>
+  <md-content layout-padding="" class="autoScroll">
+    <md-input-container class="md-icon-float">
+      <!-- Use floating label instead of placeholder -->
+      <label ng-bind="'Name' | translate">Name</label>
+      <ng-md-icon icon="person" size="24" style="fill:red"></ng-md-icon>
+      <input ng-model="user.name" type="text" ng-required="true">
+    </md-input-container>
+
+    <md-input-container>
+      <label ng-bind="'I am' | translate">I am </label>
+      <md-select ng-model="user.role">
+          <md-option ng-repeat="role in roles" value="{{role.code}}">{{role.name}}</md-option>
+      </md-select>
+    </md-input-container>
+
+    <md-input-container>
+      <label ng-bind="'Country' | translate">Country</label>
+      <md-select ng-model="user.country">
+          <md-option ng-repeat="country in countries" value="{{country.code}}">{{country.name}}</md-option>
+      </md-select>
+    </md-input-container>
+
+    <md-input-container md-no-float="">
+      <ng-md-icon icon="phone" size="24" style="fill:dodgerblue"></ng-md-icon>
+      <input ng-model="user.phone" type="text" placeholder="Phone Number">
+    </md-input-container>
+
+    <md-input-container>
+      <ng-md-icon icon="email" size="24" style="fill:red"></ng-md-icon>
+      <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true">
+    </md-input-container>
+
+    <md-input-container md-no-float="">
+      <ng-md-icon icon="place" size="24" style="fill:dodgerblue"></ng-md-icon>
+      <input ng-model="user.address" type="text" placeholder="Address">
+    </md-input-container>
+
+    <md-input-container>
+      <ng-md-icon icon="security" size="24" style="fill:red"></ng-md-icon>
+      <input ng-model="user.password" type="password" placeholder="Password" ng-required="true">
+    </md-input-container>
+
+    <md-input-container>
+      <!-- Use floating placeholder instead of label -->
+      <ng-md-icon icon="security" size="24" style="fill:red"></ng-md-icon>
+      <input ng-model="user.confirmpassword" type="password" placeholder="Confirm password" ng-required="true">
+    </md-input-container>
+
+    <md-input-container>
+      <md-switch ng-model="user.notification" aria-label="Receive notifications">
+        Receive notification
+      </md-switch>
+    </md-input-container>
+    <div layout="row" ng-show="loading" layout-sm="column" layout-align="space-around" class="layout layout-row layout-align-space-around layout-sm layout-sm-column">
+      <md-progress-circular md-mode="indeterminate" aria-valuemin="0" aria-valuemax="100" role="progressbar" class="ng-scope md-default-theme" style="transform: scale(0.5);"><div class="md-spinner-wrapper md-mode-indeterminate"><div class="md-inner"><div class="md-gap"></div><div class="md-left"><div class="md-half-circle"></div></div><div class="md-right"><div class="md-half-circle"></div></div></div></div></md-progress-circular>
+      <p ng-bind="'Please wait while the account creation is in progress' | translate">Please wait while the account creation is in progress</p>
+    </div>
+     <md-button md-no-ink="" class="md-raised md-primary md-button md-default-theme" ng-click="createUser()">Submit</md-button>
+  </md-content>
+</div>
+
+<script type="text/ng-template" id="signupErrors.tmpl.html">
+  <md-dialog aria-label="Signup Errors">
+    <form>
+    <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2 ng-bind="'Signup Errors' | translate"></h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="hide()">
+        <ng-md-icon icon="close" size="30" style="fill:white" aria-label="Close dialog"></ng-md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content style="max-width:800px;max-height:810px;">
+    <div ng-repeat="error in errors">
+     <div ng-bind="'{{ error.fieldNames[0] + error.message }}' | translate"></div>
+     <div ng-show="error.classification == 'UserExistError'">
+      <a ng-bind="'click here to login to your profile' | translate"></a>
+     </div>
+    </div>
+  </md-dialog-content>
+  </form>
+  </md-dialog>
+</script>
+
+<script type="text/ng-template" id="signupSuccess.tmpl.html">
+  <md-dialog aria-label="Successful Sigup">
+    <form>
+    <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2 ng-bind="'Successful Signup' | translate"></h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="hide()">
+        <ng-md-icon icon="close" size="30" style="fill:white" aria-label="Close dialog"></ng-md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content style="max-width:800px;max-height:810px;">
+    <div ng-bind="'Your account is created successfully' | translate">Your account is created successfully.</div>
+  </md-dialog-content>
+  </form>
+  </md-dialog>
+</script>

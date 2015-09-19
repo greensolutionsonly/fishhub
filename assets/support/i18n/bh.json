@@ -1,0 +1,16 @@
+{
+  "bh": [
+    {
+      "key": "HELLO_WORLD",
+      "value": "hello world"
+    },
+    {
+      "key": "PAGE_TITLE_HOME",
+      "value": "Home"
+    },
+    {
+      "key": "PAGE_TITLE_MY_PROFILE",
+      "value": "My Profile"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "en": [
+    {
+      "key": "HELLO_WORLD",
+      "value": "hello world"
+    },
+    {
+      "key": "PAGE_TITLE_HOME",
+      "value": "Home"
+    },
+    {
+      "key": "PAGE_TITLE_MY_PROFILE",
+      "value": "My Profile"
+    },
+    {
+      "key": "HEADER_MENU",
+      "value": "My Profile"
+    }
+    ,
+    {
+      "key": "nameRequired",
+      "value": "name is required"
+    }
+    ,
+    {
+      "key": "emailRequired",
+      "value": "email is required"
+    },
+    {
+      "key": "roleRequired",
+      "value": "role is required"
+    },
+    {
+      "key": "countryRequired",
+      "value": "country is required"
+    },
+    {
+      "key": "passwordMinimum Length is 8",
+      "value": "password length must be 8 or above"
+    },
+    {
+      "key": "emailMust be a valid email address",
+      "value": "email must be in valid email format."
+    }
+    ,
+    {
+      "key": "passworddoes not match",
+      "value": "password  and confirm password does not match."
+    },
+    {
+      "key": "emailis already taken",
+      "value": "This email is already taken"
+    }
+  ]
+}
