@@ -1,7 +1,7 @@
 package session
 
 import (
-	"github.com/alpa-vantage/fishhub/backend/db"
+	"github.com/greensolutionsonly/fishhub/backend/db"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"log"

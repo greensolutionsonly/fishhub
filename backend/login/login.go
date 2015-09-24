@@ -1,8 +1,8 @@
 package login
 
 import (
-	"github.com/alpa-vantage/fishhub/backend/fishhub"
-	. "github.com/alpa-vantage/fishhub/backend/user"
+	"github.com/greensolutionsonly/fishhub/backend/fishhub"
+	. "github.com/greensolutionsonly/fishhub/backend/user"
 	"github.com/martini-contrib/render"
 	"github.com/martini-contrib/sessions"
 	"gopkg.in/mgo.v2/bson"

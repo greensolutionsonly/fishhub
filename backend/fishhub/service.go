@@ -1,7 +1,7 @@
 package fishhub
 
 import (
-	"github.com/alpa-vantage/fishhub/backend/db"
+	"github.com/greensolutionsonly/fishhub/backend/db"
 )
 
 var availableLocales = [...]string{"en", "fr", "de", "es", "pt", "ko", "ja", "zh", "pl"}

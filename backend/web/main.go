@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/alpa-vantage/fishhub/backend/config"
-	"github.com/alpa-vantage/fishhub/backend/fishhub"
-	. "github.com/alpa-vantage/fishhub/backend/login"
-	"github.com/alpa-vantage/fishhub/backend/session"
-	. "github.com/alpa-vantage/fishhub/backend/user"
 	"github.com/go-martini/martini"
+	"github.com/greensolutionsonly/fishhub/backend/config"
+	"github.com/greensolutionsonly/fishhub/backend/fishhub"
+	. "github.com/greensolutionsonly/fishhub/backend/login"
+	"github.com/greensolutionsonly/fishhub/backend/session"
+	. "github.com/greensolutionsonly/fishhub/backend/user"
 	"github.com/martini-contrib/binding"
 	"github.com/martini-contrib/render"
 	"github.com/martini-contrib/sessions"

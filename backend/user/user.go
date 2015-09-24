@@ -1,8 +1,8 @@
 package user
 
 import (
-	"github.com/alpa-vantage/fishhub/backend/db"
-	"github.com/alpa-vantage/fishhub/backend/fishhub"
+	"github.com/greensolutionsonly/fishhub/backend/db"
+	"github.com/greensolutionsonly/fishhub/backend/fishhub"
 	"github.com/jamieomatthews/validation"
 	"github.com/martini-contrib/binding"
 	"github.com/martini-contrib/render"
