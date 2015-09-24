@@ -4,7 +4,5 @@ angular.module('fh.home').controller('HomeCtrl', (
   $location
   $mdDialog
   ) ->
-
-  $scope.loading=false
-
+    $scope.loading=false
 )
