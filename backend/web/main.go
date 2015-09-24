@@ -14,7 +14,8 @@ import (
 	"net/http"
 )
 
-func home(r render.Render) {
+func home(r render.Render, session sessions.Session) {
+	session.Set("hello", "world")
 	r.HTML(200, "index", "jeremy")
 }
 
@@ -35,17 +36,12 @@ func main() {
 		log.Fatal(err)
 	}
 
-	store := sessions.NewCookieStore([]byte("@!#$%^&*"))
+	store := sessions.NewCookieStore([]byte(config.SessionKey))
 
 	m := martini.Classic()
 
 	m.Map(fishhubService)
 	m.Map(sessionService)
-
-	m.Use(sessions.Sessions("go_session", store))
-
-	// Setup routes
-	m.Get("/", home)
 
 	m.Group("/users", func(r martini.Router) {
 		r.Post("", binding.Bind(UserForm{}), NewUser)
@@ -57,6 +53,8 @@ func main() {
 	m.Group("/login", func(r martini.Router) {
 		r.Post("", binding.Bind(LoginForm{}), CheckCredential)
 	})
+	// Setup routes
+	m.Get("/test", home)
 
 	m.Handlers(
 		render.Renderer(render.Options{
@@ -64,9 +62,11 @@ func main() {
 		}),
 		martini.Logger(),
 		martini.Static("public"),
+		sessions.Sessions("go_session", store),
 	)
 
-	m.NotFound(func(r render.Render) {
+	m.NotFound(func(r render.Render, s sessions.Session) {
+		s.Set("hello", "world")
 		r.HTML(404, "404", nil)
 	})
 

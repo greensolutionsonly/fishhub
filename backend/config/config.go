@@ -7,8 +7,9 @@ import (
 )
 
 type Config struct {
-	Port     string
-	MongoURL string
+	Port       string
+	MongoURL   string
+	SessionKey string
 }
 
 func Load() (*Config, error) {
@@ -24,8 +25,14 @@ func Load() (*Config, error) {
 		port = "3000"
 	}
 
+	sessionKey := os.Getenv("SESSION_KEY")
+	if sessionKey == "" {
+		sessionKey = "go_session_key"
+	}
+
 	return &Config{
 		port,
 		mongoURL,
+		sessionKey,
 	}, nil
 }
