@@ -6,16 +6,16 @@ import (
 
 var availableLocales = [...]string{"en", "fr", "de", "es", "pt", "ko", "ja", "zh", "pl"}
 
-func NewService(dbURL string) (*Service, error) {
+func NewDBService(dbURL string) (*DBService, error) {
 	db, err := db.Connect(dbURL)
 	if err != nil {
 		return nil, err
 	}
 
-	return &Service{db, false}, nil
+	return &DBService{db, false}, nil
 }
 
-type Service struct {
+type DBService struct {
 	DB          *db.DB
 	ForceUpdate bool
 }

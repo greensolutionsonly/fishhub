@@ -12,59 +12,59 @@ import (
 )
 
 type UserForm struct {
-	Name            string `form:"name" binding:"required"`
-	Email           string `form:"email" binding:"required"`
-	Role            string `form:"role" binding:"required"`
-	Country         string `form:"country" binding:"required"`
-	Address         string `form:"address"`
-	ContactNo       string `form:"contactno"`
-	Notification    bool   `form:"notification"`
-	ConfirmPassword string `form:"confirmpassword"`
-	Password        string `form:"password"`
+	UserId            string `json:"userid" form:"userid" binding:"required"`
+	Name              string `json:"name" form:"name" binding:"required"`
+	Email             string `json:"email" form:"email" binding:"required"`
+	Role              string `json:"role" form:"role" binding:"required"`
+	Country           string `json:"country" form:"country" binding:"required"`
+	Address           string `json:"address" form:"address"`
+	ContactNo         string `json:"contactno" form:"contactno"`
+	Notification      bool   `json:"notification" form:"notification"`
+	ConfirmPassword   string `json:"-" form:"confirmpassword"`
+	Password          string `json:"-" form:"password"`
+	EncryptedPassword string `json:"password" form:"-"`
 }
 
-type UserProfile struct {
-	Name         string `json:"name"`
-	Email        string `json:"email"`
-	Role         string `json:"role"`
-	Country      string `json:"country"`
-	Address      string `json:"address"`
-	ContactNo    string `json:"contactno"`
-	Notification bool   `json:"notification"`
-	Password     string `json:"password"`
+type User struct {
+	Id            string `json:"id"`
+	UserId        string `json:"userid"`
+	Name          string `json:"name"`
+	Email         string `json:"email"`
+	Role          string `json:"role"`
+	Country       string `json:"country"`
+	Address       string `json:"address"`
+	ContactNo     string `json:"contactno"`
+	Notification  bool   `json:"notification"`
+	authenticated bool   `json:"-"`
+	DB            *db.DB
 }
 
-func (userForm UserForm) Validate(errors binding.Errors, req *http.Request) binding.Errors {
-	if len(errors) >= 1 {
-		return errors
-	}
-	v := validation.NewValidation(&errors, userForm)
-	v.Validate(&userForm.Name).Classify("MinimumLengthError").Key("name").MinLength(4)
-	v.Validate(&userForm.Name).Classify("MaxLengthError").Key("name").MaxLength(400)
-	v.Validate(&userForm.Password).Classify("MinimumLengthError").Key("password").MinLength(8)
-	v.Validate(&userForm.Email).Classify("EmailFormatError").Email()
-	if userForm.Password != userForm.ConfirmPassword {
-		fields := []string{"password", "confirm_password"}
-		errors = append(errors, binding.Error{Message: "does not match", FieldNames: fields, Classification: "PasswordNotMatchError"})
-	}
-	return *v.Errors.(*binding.Errors)
+func (u *User) IsAuthenticated() bool {
+	return u.authenticated
 }
 
-func userExist(f *fishhub.Service, email string) bool {
-	db := f.DB.Copy()
+func (u *User) Logout() {
+	u.authenticated = false
+}
+
+func (u *User) Login() {
+	u.authenticated = true
+}
+
+func (u *User) UniqueId() interface{} {
+	return u.Id
+}
+
+func (u *User) GetById(id interface{}) error {
+	db := u.DB.Copy()
 	defer db.Close()
-	ui := UserProfile{}
-	query := bson.M{"email": email}
-	err := db.FindOne("users", query, &ui)
-	if err == mgo.ErrNotFound {
-		return false
-	} else {
-		return true
-	}
-	return false
+
+	query := bson.M{"id": id}
+	err := db.FindOne("users", query, &u)
+	return err
 }
 
-func NewUser(r render.Render, re *http.Request, f *fishhub.Service, userForm UserForm) {
+func Create(r render.Render, re *http.Request, f *fishhub.DBService, userForm UserForm) {
 	userExistError := binding.Error{
 		Message:        "is already taken",
 		FieldNames:     []string{"email"},
@@ -75,20 +75,11 @@ func NewUser(r render.Render, re *http.Request, f *fishhub.Service, userForm Use
 		r.JSON(400, errors)
 		return
 	}
-	user := UserProfile{}
-	user.Email = userForm.Email
-	user.Name = userForm.Name
-	user.Role = userForm.Role
-	user.Password = userForm.Password
-	user.Notification = userForm.Notification
-	user.Address = userForm.Address
-	user.ContactNo = userForm.ContactNo
-	user.Country = userForm.Country
 
 	d := f.DB.Copy()
 	defer d.Close()
-
-	updated, _ := d.Upsert("users", db.Query{"email": user.Email}, nil, user, true)
+	userForm.EncryptedPassword = userForm.Password
+	updated, _ := d.Upsert("users", db.Query{"userid": userForm.UserId}, nil, userForm, true)
 
 	if updated == true {
 		r.JSON(200, map[string]interface{}{
@@ -104,41 +95,43 @@ func NewUser(r render.Render, re *http.Request, f *fishhub.Service, userForm Use
 	return
 }
 
-func UpdateUser(r render.Render, re *http.Request, f *fishhub.Service, userForm UserForm) {
-	user := UserProfile{}
-	user.Email = userForm.Email
-	user.Name = userForm.Name
-	user.Role = userForm.Role
-	user.Password = userForm.Password
-	user.Notification = userForm.Notification
-	user.Address = userForm.Address
-	user.ContactNo = userForm.ContactNo
-	user.Country = userForm.Country
-
-	d := f.DB.Copy()
-	defer d.Close()
-
-	updated, _ := d.Upsert("users", db.Query{"email": user.Email}, nil, user, true)
-
-	if updated == true {
-		r.JSON(200, map[string]interface{}{
-			"Message": "User profile is successfully updated.",
-		})
-		return
+func userExist(f *fishhub.DBService, userId string) bool {
+	db := f.DB.Copy()
+	defer db.Close()
+	ui := User{}
+	query := bson.M{"userid": userId}
+	err := db.FindOne("users", query, &ui)
+	if err == mgo.ErrNotFound {
+		return false
+	} else {
+		return true
 	}
+	return false
+}
 
-	r.JSON(400, map[string]interface{}{
-		"Message":        "Unknown error occurred, please try again",
-		"Classification": "UnknownError",
-	})
-	return
+func Get(r render.Render, re *http.Request, f *fishhub.DBService) {
 
 }
 
-func DeleteUser(r render.Render, re *http.Request) {
+func Update(r render.Render, re *http.Request, f *fishhub.DBService) {
 
 }
 
-func GetUser(r render.Render, re *http.Request) {
+func Delete(r render.Render, re *http.Request, f *fishhub.DBService) {
 
+}
+func (UserForm UserForm) Validate(errors binding.Errors, req *http.Request) binding.Errors {
+	if len(errors) >= 1 {
+		return errors
+	}
+	v := validation.NewValidation(&errors, UserForm)
+	v.Validate(&UserForm.Name).Classify("MinimumLengthError").Key("name").MinLength(4)
+	v.Validate(&UserForm.Name).Classify("MaxLengthError").Key("name").MaxLength(400)
+	v.Validate(&UserForm.Password).Classify("MinimumLengthError").Key("password").MinLength(8)
+	v.Validate(&UserForm.Email).Classify("EmailFormatError").Email()
+	if UserForm.Password != UserForm.ConfirmPassword {
+		fields := []string{"password", "confirm_password"}
+		errors = append(errors, binding.Error{Message: "does not match", FieldNames: fields, Classification: "PasswordNotMatchError"})
+	}
+	return *v.Errors.(*binding.Errors)
 }

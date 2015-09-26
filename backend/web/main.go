@@ -4,9 +4,9 @@ import (
 	"github.com/go-martini/martini"
 	"github.com/greensolutionsonly/fishhub/backend/config"
 	"github.com/greensolutionsonly/fishhub/backend/fishhub"
-	. "github.com/greensolutionsonly/fishhub/backend/login"
+	"github.com/greensolutionsonly/fishhub/backend/login"
 	"github.com/greensolutionsonly/fishhub/backend/session"
-	. "github.com/greensolutionsonly/fishhub/backend/user"
+	"github.com/greensolutionsonly/fishhub/backend/user"
 	"github.com/martini-contrib/binding"
 	"github.com/martini-contrib/render"
 	"github.com/martini-contrib/sessions"
@@ -26,7 +26,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fishhubService, err := fishhub.NewService(config.MongoURL)
+	DBService, err := fishhub.NewDBService(config.MongoURL)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -40,21 +40,19 @@ func main() {
 
 	m := martini.Classic()
 
-	m.Map(fishhubService)
+	m.Map(DBService)
 	m.Map(sessionService)
 
 	m.Group("/users", func(r martini.Router) {
-		r.Post("", binding.Bind(UserForm{}), NewUser)
-		r.Get("/:id", GetUser)
-		r.Put("/update/:id", UpdateUser)
-		r.Delete("/delete/:id", DeleteUser)
+		r.Post("", binding.Bind(user.UserForm{}), user.Create)
+		r.Get("/:id", user.Get)
+		r.Put("/update/:id", user.Update)
+		r.Delete("/delete/:id", user.Delete)
 	})
 
 	m.Group("/login", func(r martini.Router) {
-		r.Post("", binding.Bind(LoginForm{}), CheckCredential)
+		r.Post("", binding.Bind(login.LoginForm{}), login.Verify)
 	})
-	// Setup routes
-	m.Get("/test", home)
 
 	m.Handlers(
 		render.Renderer(render.Options{

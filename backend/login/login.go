@@ -10,16 +10,15 @@ import (
 )
 
 type LoginForm struct {
-	UserEmail string `json:"email" binding:"required"`
-	Password  string `json:"password" binding:"required"`
+	UserId   string `json:"email" binding:"required"`
+	Password string `json:"password" binding:"required"`
 }
 
-func CheckCredential(r render.Render, re *http.Request, loginForm LoginForm, f *fishhub.Service, session sessions.Session) {
+func Verify(r render.Render, re *http.Request, loginForm LoginForm, f *fishhub.DBService, session sessions.Session) {
 	db := f.DB.Copy()
 	defer db.Close()
-	userProfile := UserProfile{}
-
-	query := bson.M{"email": loginForm.UserEmail, "password": loginForm.Password}
+	userProfile := User{}
+	query := bson.M{"email": loginForm.UserId, "password": loginForm.Password}
 	err := db.FindOne("users", query, &userProfile)
 
 	if err != nil {
