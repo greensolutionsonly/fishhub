@@ -14,9 +14,8 @@ import (
 	"net/http"
 )
 
-func home(r render.Render, session sessions.Session) {
-	session.Set("hello", "world")
-	r.HTML(200, "index", "jeremy")
+func home(r render.Render) {
+	r.HTML(200, "index", nil)
 }
 
 func main() {
@@ -53,6 +52,9 @@ func main() {
 	m.Group("/login", func(r martini.Router) {
 		r.Post("", binding.Bind(login.LoginForm{}), login.Verify)
 	})
+
+	// Setup routes
+	m.Get("/", home)
 
 	m.Handlers(
 		render.Renderer(render.Options{

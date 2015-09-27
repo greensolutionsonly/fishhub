@@ -1,6 +1,7 @@
 package user
 
 import (
+	"fmt"
 	"github.com/greensolutionsonly/fishhub/backend/db"
 	"github.com/greensolutionsonly/fishhub/backend/fishhub"
 	"github.com/jamieomatthews/validation"
@@ -12,17 +13,16 @@ import (
 )
 
 type UserForm struct {
-	UserId            string `json:"userid" form:"userid" binding:"required"`
-	Name              string `json:"name" form:"name" binding:"required"`
-	Email             string `json:"email" form:"email" binding:"required"`
-	Role              string `json:"role" form:"role" binding:"required"`
-	Country           string `json:"country" form:"country" binding:"required"`
-	Address           string `json:"address" form:"address"`
-	ContactNo         string `json:"contactno" form:"contactno"`
-	Notification      bool   `json:"notification" form:"notification"`
-	ConfirmPassword   string `json:"-" form:"confirmpassword"`
-	Password          string `json:"-" form:"password"`
-	EncryptedPassword string `json:"password" form:"-"`
+	UserId          string `json:"userid"  binding:"required"`
+	Name            string `json:"name"  binding:"required"`
+	Email           string `json:"email" form:"email"`
+	Role            string `json:"role"  binding:"required"`
+	Country         string `json:"country" binding:"required"`
+	Address         string `json:"address"`
+	ContactNo       string `json:"contactno"`
+	Notification    bool   `json:"notification"`
+	ConfirmPassword string `json:"confirmpassword" binding:"required"`
+	Password        string `json:"password" binding:"required"`
 }
 
 type User struct {
@@ -78,7 +78,7 @@ func Create(r render.Render, re *http.Request, f *fishhub.DBService, userForm Us
 
 	d := f.DB.Copy()
 	defer d.Close()
-	userForm.EncryptedPassword = userForm.Password
+
 	updated, _ := d.Upsert("users", db.Query{"userid": userForm.UserId}, nil, userForm, true)
 
 	if updated == true {
@@ -120,7 +120,9 @@ func Update(r render.Render, re *http.Request, f *fishhub.DBService) {
 func Delete(r render.Render, re *http.Request, f *fishhub.DBService) {
 
 }
+
 func (UserForm UserForm) Validate(errors binding.Errors, req *http.Request) binding.Errors {
+	fmt.Println(UserForm)
 	if len(errors) >= 1 {
 		return errors
 	}
@@ -128,7 +130,9 @@ func (UserForm UserForm) Validate(errors binding.Errors, req *http.Request) bind
 	v.Validate(&UserForm.Name).Classify("MinimumLengthError").Key("name").MinLength(4)
 	v.Validate(&UserForm.Name).Classify("MaxLengthError").Key("name").MaxLength(400)
 	v.Validate(&UserForm.Password).Classify("MinimumLengthError").Key("password").MinLength(8)
-	v.Validate(&UserForm.Email).Classify("EmailFormatError").Email()
+	if UserForm.Email != "" {
+		v.Validate(&UserForm.Email).Classify("EmailFormatError").Email()
+	}
 	if UserForm.Password != UserForm.ConfirmPassword {
 		fields := []string{"password", "confirm_password"}
 		errors = append(errors, binding.Error{Message: "does not match", FieldNames: fields, Classification: "PasswordNotMatchError"})

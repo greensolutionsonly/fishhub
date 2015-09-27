@@ -18,7 +18,7 @@ func Verify(r render.Render, re *http.Request, loginForm LoginForm, f *fishhub.D
 	db := f.DB.Copy()
 	defer db.Close()
 	userProfile := User{}
-	query := bson.M{"email": loginForm.UserId, "password": loginForm.Password}
+	query := bson.M{"userid": loginForm.UserId, "password": loginForm.Password}
 	err := db.FindOne("users", query, &userProfile)
 
 	if err != nil {

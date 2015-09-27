@@ -8,6 +8,13 @@
       <input ng-model="user.name" type="text" ng-required="true">
     </md-input-container>
 
+    <md-input-container class="md-icon-float">
+      <!-- Use floating label instead of placeholder -->
+      <label ng-bind="'User Id' | translate">User Id</label>
+      <ng-md-icon icon="person" size="24" style="fill:red"></ng-md-icon>
+      <input ng-model="user.userid" type="text" ng-required="true">
+    </md-input-container>
+
     <md-input-container>
       <label ng-bind="'I am' | translate">I am </label>
       <md-select ng-model="user.role">
@@ -24,12 +31,12 @@
 
     <md-input-container md-no-float="">
       <ng-md-icon icon="phone" size="24" style="fill:dodgerblue"></ng-md-icon>
-      <input ng-model="user.phone" type="text" placeholder="Phone Number">
+      <input ng-model="user.contactno" type="text" placeholder="Phone Number">
     </md-input-container>
 
     <md-input-container>
       <ng-md-icon icon="email" size="24" style="fill:red"></ng-md-icon>
-      <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true">
+      <input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
     </md-input-container>
 
     <md-input-container md-no-float="">
@@ -38,13 +45,13 @@
     </md-input-container>
 
     <md-input-container>
-      <ng-md-icon icon="security" size="24" style="fill:red"></ng-md-icon>
+      <ng-md-icon icon="lock" size="24" style="fill:red"></ng-md-icon>
       <input ng-model="user.password" type="password" placeholder="Password" ng-required="true">
     </md-input-container>
 
     <md-input-container>
       <!-- Use floating placeholder instead of label -->
-      <ng-md-icon icon="security" size="24" style="fill:red"></ng-md-icon>
+      <ng-md-icon icon="lock" size="24" style="fill:red"></ng-md-icon>
       <input ng-model="user.confirmpassword" type="password" placeholder="Confirm password" ng-required="true">
     </md-input-container>
 
