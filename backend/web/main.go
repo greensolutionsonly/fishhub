@@ -19,7 +19,6 @@ func home(r render.Render) {
 }
 
 func main() {
-
 	config, err := config.Load()
 	if err != nil {
 		log.Fatal(err)

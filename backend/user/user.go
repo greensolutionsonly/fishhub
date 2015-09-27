@@ -26,16 +26,16 @@ type UserForm struct {
 }
 
 type User struct {
-	Id            string `json:"id"`
-	UserId        string `json:"userid"`
-	Name          string `json:"name"`
-	Email         string `json:"email"`
-	Role          string `json:"role"`
-	Country       string `json:"country"`
-	Address       string `json:"address"`
-	ContactNo     string `json:"contactno"`
-	Notification  bool   `json:"notification"`
-	authenticated bool   `json:"-"`
+	Id            bson.ObjectId `json:"_id" bson:"_id,omitempty"`
+	UserId        string        `json:"userid"`
+	Name          string        `json:"name"`
+	Email         string        `json:"email"`
+	Role          string        `json:"role"`
+	Country       string        `json:"country"`
+	Address       string        `json:"address"`
+	ContactNo     string        `json:"contactno"`
+	Notification  bool          `json:"notification"`
+	authenticated bool          `json:"-"`
 	DB            *db.DB
 }
 
