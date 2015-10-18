@@ -96,6 +96,11 @@ function json2translate(template) {
   return outputStream;
 }
 
+gulp.task('build-images', ['clean'], function() {
+  return gulp.src(config.src + '/images/*')
+    .pipe(gulp.dest(config.build + '/images'))
+});
+
 gulp.task('build-vendor-dev', ['clean'], function() {
   return bowerFiles({env: "development", bowerDirectory: "./bower_components"})
     .pipe(gulp.dest(config.build + '/bower_components'))
@@ -150,6 +155,7 @@ gulp.task('build-html-dev', [
   'build-coffee',
   'build-templates',
   'build-countries',
+  'build-images',
   'build-roles'
 ], function() {
   var sourceStream = streamQueue(

@@ -2,6 +2,7 @@ package user
 
 import (
 	"fmt"
+	"github.com/go-martini/martini"
 	"github.com/greensolutionsonly/fishhub/backend/db"
 	"github.com/greensolutionsonly/fishhub/backend/fishhub"
 	"github.com/jamieomatthews/validation"
@@ -109,8 +110,13 @@ func userExist(f *fishhub.DBService, userId string) bool {
 	return false
 }
 
-func Get(r render.Render, re *http.Request, f *fishhub.DBService) {
-
+func Get(r render.Render, params martini.Params, re *http.Request, f *fishhub.DBService) {
+	db := f.DB.Copy()
+	defer db.Close()
+	ui := User{}
+	query := bson.M{"userid": params["id"]}
+	_ = db.FindOne("users", query, &ui)
+	r.JSON(200, ui)
 }
 
 func Update(r render.Render, re *http.Request, f *fishhub.DBService) {

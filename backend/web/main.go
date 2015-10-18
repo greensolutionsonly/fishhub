@@ -4,7 +4,6 @@ import (
 	"github.com/go-martini/martini"
 	"github.com/greensolutionsonly/fishhub/backend/config"
 	"github.com/greensolutionsonly/fishhub/backend/fishhub"
-	"github.com/greensolutionsonly/fishhub/backend/login"
 	"github.com/greensolutionsonly/fishhub/backend/session"
 	"github.com/greensolutionsonly/fishhub/backend/user"
 	"github.com/martini-contrib/binding"
@@ -41,20 +40,6 @@ func main() {
 	m.Map(DBService)
 	m.Map(sessionService)
 
-	m.Group("/users", func(r martini.Router) {
-		r.Post("", binding.Bind(user.UserForm{}), user.Create)
-		r.Get("/:id", user.Get)
-		r.Put("/update/:id", user.Update)
-		r.Delete("/delete/:id", user.Delete)
-	})
-
-	m.Group("/login", func(r martini.Router) {
-		r.Post("", binding.Bind(login.LoginForm{}), login.Verify)
-	})
-
-	// Setup routes
-	m.Get("/", home)
-
 	m.Handlers(
 		render.Renderer(render.Options{
 			Delims: render.Delims{"<%", "%>"},
@@ -63,6 +48,19 @@ func main() {
 		martini.Static("public"),
 		sessions.Sessions("go_session", store),
 	)
+	// setup routes
+	m.Group("/users", func(r martini.Router) {
+		r.Post("", binding.Bind(user.UserForm{}), user.Create)
+		r.Get("/:id", user.Get)
+		r.Put("/update/:id", user.Update)
+		r.Delete("/delete/:id", user.Delete)
+	})
+
+	m.Group("/login", func(r martini.Router) {
+		r.Post("", binding.Bind(session.LoginForm{}), session.Create)
+	})
+
+	m.Get("/", home)
 
 	m.NotFound(func(r render.Render, s sessions.Session) {
 		s.Set("hello", "world")
