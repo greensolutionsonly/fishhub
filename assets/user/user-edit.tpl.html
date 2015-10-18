@@ -7,7 +7,14 @@
       <ng-md-icon icon="person" size="24" style="fill:red"></ng-md-icon>
       <input ng-model="user.name" type="text" ng-required="true">
     </md-input-container>
-    
+
+    <md-input-container class="md-icon-float">
+      <!-- Use floating label instead of placeholder -->
+      <label ng-bind="'User Id' | translate">User Id</label>
+      <ng-md-icon icon="person" size="24" style="fill:red"></ng-md-icon>
+      <input ng-model="user.userid" type="text" readonly="readonly">
+    </md-input-container>
+
     <md-input-container>
       <label ng-bind="'I am' | translate">I am </label>
       <md-select ng-model="user.role">

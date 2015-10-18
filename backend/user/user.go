@@ -1,7 +1,6 @@
 package user
 
 import (
-	"fmt"
 	"github.com/go-martini/martini"
 	"github.com/greensolutionsonly/fishhub/backend/db"
 	"github.com/greensolutionsonly/fishhub/backend/fishhub"
@@ -29,6 +28,7 @@ type UserForm struct {
 type UserUpdateForm struct {
 	Name         string `json:"name"  binding:"required"`
 	Email        string `json:"email" form:"email"`
+	UserId       string `json:"userid" form:"userid"`
 	Role         string `json:"role"  binding:"required"`
 	Country      string `json:"country" binding:"required"`
 	Address      string `json:"address"`
@@ -46,7 +46,7 @@ type User struct {
 	ContactNo     string        `json:"contactno"`
 	Notification  bool          `json:"notification"`
 	authenticated bool          `json:"-"`
-	DB            *db.DB
+	DB            *db.DB        `json:"-"`
 }
 
 func (u *User) IsAuthenticated() bool {
@@ -129,11 +129,10 @@ func Get(r render.Render, params martini.Params, re *http.Request, f *fishhub.DB
 }
 
 func Update(r render.Render, params martini.Params, re *http.Request, f *fishhub.DBService, userForm UserUpdateForm) {
-
 	d := f.DB.Copy()
 	defer d.Close()
-
-	updated, _ := d.Upsert("users", db.Query{"userid": params["id"]}, nil, userForm, true)
+	query := bson.M{"_id": bson.ObjectIdHex(params["id"])}
+	updated, _ := d.Upsert("users", query, nil, userForm, true)
 
 	if updated == true {
 		r.JSON(200, map[string]interface{}{
@@ -154,7 +153,6 @@ func Delete(r render.Render, re *http.Request, f *fishhub.DBService) {
 }
 
 func (UserForm UserForm) Validate(errors binding.Errors, req *http.Request) binding.Errors {
-	fmt.Println(UserForm)
 	if len(errors) >= 1 {
 		return errors
 	}
@@ -168,6 +166,19 @@ func (UserForm UserForm) Validate(errors binding.Errors, req *http.Request) bind
 	if UserForm.Password != UserForm.ConfirmPassword {
 		fields := []string{"password", "confirm_password"}
 		errors = append(errors, binding.Error{Message: "does not match", FieldNames: fields, Classification: "PasswordNotMatchError"})
+	}
+	return *v.Errors.(*binding.Errors)
+}
+
+func (UserForm UserUpdateForm) Validate(errors binding.Errors, req *http.Request) binding.Errors {
+	if len(errors) >= 1 {
+		return errors
+	}
+	v := validation.NewValidation(&errors, UserForm)
+	v.Validate(&UserForm.Name).Classify("MinimumLengthError").Key("name").MinLength(4)
+	v.Validate(&UserForm.Name).Classify("MaxLengthError").Key("name").MaxLength(400)
+	if UserForm.Email != "" {
+		v.Validate(&UserForm.Email).Classify("EmailFormatError").Email()
 	}
 	return *v.Errors.(*binding.Errors)
 }

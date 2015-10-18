@@ -101,7 +101,7 @@ func (db *DB) RemoveCollection(name string, q interface{}) (removed int, err err
 	return i.Removed, err
 }
 
-func (db *DB) Upsert(name string, q Query, f Query, v interface{}, forceUpdate bool) (updated bool, err error) {
+func (db *DB) Upsert(name string, q interface{}, f Query, v interface{}, forceUpdate bool) (updated bool, err error) {
 	var findResult interface{}
 	updated = false
 
