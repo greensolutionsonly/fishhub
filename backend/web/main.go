@@ -52,7 +52,7 @@ func main() {
 	m.Group("/users", func(r martini.Router) {
 		r.Post("", binding.Bind(user.UserForm{}), user.Create)
 		r.Get("/:id", user.Get)
-		r.Put("/update/:id", user.Update)
+		r.Put("/:id", binding.Bind(user.UserUpdateForm{}), user.Update)
 		r.Delete("/delete/:id", user.Delete)
 	})
 

@@ -27,7 +27,7 @@ angular.module('fh.user').controller('UserCtrl', (
       $mdDialog.show(
         controller: successUpdateCtrl
         templateUrl: 'updateSuccess.tmpl.html'
-        parent: angular.element(document.querySelector('#userContainer'))
+        parent: angular.element(document.querySelector('#userUpdateContainer'))
         clickOutsideToClose: true)
 
     $scope.showUpdateErrors = (errors) ->
@@ -42,8 +42,7 @@ angular.module('fh.user').controller('UserCtrl', (
     
     $scope.updateUser = ->
       $scope.loading = true
-      alert($scope.user.role)
-      $scope.user.$save ((resp, headers) ->
+      $scope.user.$update ((resp, headers) ->
         $scope.loading=false
         $scope.showUpdateSuccess()
       ), (err) ->

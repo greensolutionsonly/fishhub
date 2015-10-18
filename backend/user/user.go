@@ -26,6 +26,15 @@ type UserForm struct {
 	Password        string `json:"password" binding:"required"`
 }
 
+type UserUpdateForm struct {
+	Name         string `json:"name"  binding:"required"`
+	Email        string `json:"email" form:"email"`
+	Role         string `json:"role"  binding:"required"`
+	Country      string `json:"country" binding:"required"`
+	Address      string `json:"address"`
+	ContactNo    string `json:"contactno"`
+	Notification bool   `json:"notification"`
+}
 type User struct {
 	Id            bson.ObjectId `json:"_id" bson:"_id,omitempty"`
 	UserId        string        `json:"userid"`
@@ -119,8 +128,25 @@ func Get(r render.Render, params martini.Params, re *http.Request, f *fishhub.DB
 	r.JSON(200, ui)
 }
 
-func Update(r render.Render, re *http.Request, f *fishhub.DBService) {
+func Update(r render.Render, params martini.Params, re *http.Request, f *fishhub.DBService, userForm UserUpdateForm) {
 
+	d := f.DB.Copy()
+	defer d.Close()
+
+	updated, _ := d.Upsert("users", db.Query{"userid": params["id"]}, nil, userForm, true)
+
+	if updated == true {
+		r.JSON(200, map[string]interface{}{
+			"message": "User profile is successfully updated.",
+		})
+		return
+	}
+
+	r.JSON(400, map[string]interface{}{
+		"message":        "Unknown error occurred, please try again",
+		"classification": "UnknownError",
+	})
+	return
 }
 
 func Delete(r render.Render, re *http.Request, f *fishhub.DBService) {
