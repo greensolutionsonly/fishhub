@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/go-martini/martini"
 	"github.com/greensolutionsonly/fishhub/backend/config"
+	"github.com/greensolutionsonly/fishhub/backend/fish"
 	"github.com/greensolutionsonly/fishhub/backend/fishhub"
 	"github.com/greensolutionsonly/fishhub/backend/session"
 	"github.com/greensolutionsonly/fishhub/backend/user"
@@ -57,9 +58,9 @@ func main() {
 	})
 
 	m.Group("/fishes", func(r martini.Router) {
-		r.Post("", binding.Bind(user.FishForm{}), fish.Create)
+		r.Post("", binding.Bind(fish.Fish{}), fish.Create)
 		r.Get("/:id", fish.Get)
-		r.Put("/:id", binding.Bind(user.FishForm{}), fish.Update)
+		r.Put("/:id", binding.Bind(fish.Fish{}), fish.Update)
 		r.Delete("/delete/:id", fish.Delete)
 	})
 

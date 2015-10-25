@@ -2,40 +2,47 @@ angular.module('fh.fish').controller('FishAddCtrl', (
   $rootScope
   $scope
   $location
-  User
+  Fish
   countries
   roles
   $mdDialog
   ) ->
 
-    $scope.loading=false
+    $scope.loading = false
+    $scope.fish = new Fish()
+    $scope.fish.caught_date = new Date()
 
-    successSignupCtrl = ($scope, $mdDialog) ->
+    successCtrl = ($scope, $mdDialog) ->
       $scope.hide = ->
         $mdDialog.hide()
-        $location.path("login")
 
     errorCtrl = ($scope, $mdDialog, errors) ->
       $scope.errors = errors
       $scope.hide = ->
         $mdDialog.hide()
 
-    $scope.showSignupSuccess = ->
+    $scope.showSuccess = ->
       $mdDialog.show(
-        controller: successSignupCtrl
-        templateUrl: 'signupSuccess.tmpl.html'
-        parent: angular.element(document.querySelector('#userContainer'))
+        controller: successCtrl
+        templateUrl: 'success.tmpl.html'
+        parent: angular.element(document.querySelector('#fishContainer'))
         clickOutsideToClose: true)
 
-    $scope.showSignupErrors = (errors) ->
+    $scope.showErrors = (errors) ->
       $mdDialog.show(
         controller: errorCtrl
-        templateUrl: 'signupErrors.tmpl.html'
-        parent: angular.element(document.querySelector('#userContainer'))
+        templateUrl: 'errors.tmpl.html'
+        parent: angular.element(document.querySelector('#fishContainer'))
         locals: { errors: $scope.errors}
         clickOutsideToClose: true)
 
     $scope.addFish = ->
       $scope.loading = true
-      $scope.loading=false
+      $scope.fish.$save ((resp, headers) ->
+        $scope.loading=false
+        $scope.showSuccess()
+      ), (err) ->
+        $scope.errors = err.data
+        $scope.showErrors()
+        $scope.loading=false
 )

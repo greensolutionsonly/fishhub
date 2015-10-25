@@ -1,20 +1,18 @@
-package user
+package fish
 
 import (
 	"github.com/go-martini/martini"
 	"github.com/greensolutionsonly/fishhub/backend/db"
 	"github.com/greensolutionsonly/fishhub/backend/fishhub"
-	"github.com/jamieomatthews/validation"
-	"github.com/martini-contrib/binding"
 	"github.com/martini-contrib/render"
-	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"net/http"
 	"time"
 )
 
-type FishForm struct {
+type Fish struct {
 	Id            bson.ObjectId `json:"_id" bson:"_id,omitempty"`
+	UserId        bson.ObjectId `json:"_id" bson:"_id,omitempty"`
 	Name          string        `json:"name"  binding:"required"`
 	Species       string        `json:"species" binding:"required"`
 	Grade         string        `json:"grade"  binding:"required"`
@@ -26,12 +24,12 @@ type FishForm struct {
 	PricingDollar string        `json:"pricing_dollar" binding:"required"`
 }
 
-func Create(r render.Render, re *http.Request, f *fishhub.DBService, fishForm FishForm) {
+func Create(r render.Render, re *http.Request, f *fishhub.DBService, fish Fish) {
 	d := f.DB.Copy()
 	defer d.Close()
 
-	updated, _ := d.Upsert("fishes", db.Query{"userid": "userForm.UserId"}, nil, fishForm, true)
-
+	_, _ = d.Upsert("fishes", db.Query{"userid": "userForm.UserId"}, nil, fish, true)
+	r.JSON(200, fish)
 	r.JSON(400, map[string]interface{}{
 		"message":        "Unknown error occurred, please try again",
 		"classification": "UnknownError",
@@ -42,20 +40,20 @@ func Create(r render.Render, re *http.Request, f *fishhub.DBService, fishForm Fi
 func Get(r render.Render, params martini.Params, re *http.Request, f *fishhub.DBService) {
 	db := f.DB.Copy()
 	defer db.Close()
-	ui := User{}
+	ui := Fish{}
 	query := bson.M{"id": params["id"]}
 	_ = db.FindOne("fishes", query, &ui)
 	r.JSON(200, ui)
 }
 
-func Update(r render.Render, params martini.Params, re *http.Request, f *fishhub.DBService, fishForm FishForm) {
+func Update(r render.Render, params martini.Params, re *http.Request, f *fishhub.DBService, Fish Fish) {
 	d := f.DB.Copy()
 	defer d.Close()
 	query := bson.M{"_id": bson.ObjectIdHex(params["id"])}
-	updated, _ := d.Upsert("fishes", query, nil, fishForm, true)
+	updated, _ := d.Upsert("fishes", query, nil, Fish, true)
 
 	if updated == true {
-		r.JSON(200, fishForm)
+		r.JSON(200, Fish)
 		return
 	}
 
