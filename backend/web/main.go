@@ -56,6 +56,13 @@ func main() {
 		r.Delete("/delete/:id", user.Delete)
 	})
 
+	m.Group("/fishes", func(r martini.Router) {
+		r.Post("", binding.Bind(user.FishForm{}), fish.Create)
+		r.Get("/:id", fish.Get)
+		r.Put("/:id", binding.Bind(user.FishForm{}), fish.Update)
+		r.Delete("/delete/:id", fish.Delete)
+	})
+
 	m.Group("/login", func(r martini.Router) {
 		r.Post("", binding.Bind(session.LoginForm{}), session.Create)
 	})
