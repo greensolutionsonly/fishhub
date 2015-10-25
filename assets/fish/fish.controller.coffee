@@ -1,18 +1,11 @@
-angular.module('fh.user').controller('UserCtrl', (
+angular.module('fh.fish').controller('FishCtrl', (
   $rootScope
   $scope
   $location
-  User
-  countries
-  roles
   $mdDialog
   $stateParams
   ) ->
 
-    $scope.countries = countries
-    console.log($stateParams)
-
-    $scope.roles = roles
     $scope.loading=false
     successUpdateCtrl = ($scope, $mdDialog) ->
       $scope.hide = ->
@@ -40,15 +33,8 @@ angular.module('fh.user').controller('UserCtrl', (
         locals: { errors: $scope.errors}
         clickOutsideToClose: true)
 
-    $scope.user = User.get({id: $stateParams.id})
+    $scope.fish = Fish.get({id: $stateParams.id})
     
     $scope.updateUser = ->
       $scope.loading = true
-      $scope.user.$update ((resp, headers) ->
-        $scope.loading=false
-        $scope.showUpdateSuccess()
-      ), (err) ->
-        $scope.errors = err.data
-        $scope.showUpdateErrors()
-        $scope.loading=false
 )

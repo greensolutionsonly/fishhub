@@ -1,0 +1,110 @@
+<div  layout="column" class="inputdemoIcons" id="fishContainer">
+  <br>
+  <md-content layout-padding="" class="autoScroll">
+    <md-input-container class="md-icon-float">
+      <!-- Use floating label instead of placeholder -->
+      <label ng-bind="'Name' | translate">Name</label>
+      <ng-md-icon icon="beenhere" size="24" style="fill:red"></ng-md-icon>
+      <input ng-model="fish.name" type="text" ng-required="true">
+    </md-input-container>
+
+    <md-input-container class="md-icon-float">
+      <!-- Use floating label instead of placeholder -->
+      <label ng-bind="'Species' | translate">Species</label>
+      <ng-md-icon icon="subtitles" size="24" style="fill:red"></ng-md-icon>
+      <input ng-model="fish.species" type="text" ng-required="true">
+    </md-input-container>
+
+    <md-input-container class="md-icon-float">
+      <!-- Use floating label instead of placeholder -->
+      <label ng-bind="'Grade' | translate">Grade</label>
+      <ng-md-icon icon="grade" size="24" style="fill:red"></ng-md-icon>
+      <input ng-model="fish.grade" type="text" ng-required="true">
+    </md-input-container>
+
+    <md-input-container class="md-icon-float">
+      <!-- Use floating label instead of placeholder -->
+      <label ng-bind="'Size' | translate">Size</label>
+      <ng-md-icon icon="add_circle" size="24" style="fill:red"></ng-md-icon>
+      <input ng-model="fish.size" type="text" ng-required="true">
+    </md-input-container>
+
+
+    <md-input-container class="md-icon-float">
+      <!-- Use floating label instead of placeholder -->
+      <label ng-bind="'Quantity' | translate">Quantity</label>
+      <ng-md-icon icon="unfold_more" size="24" style="fill:red"></ng-md-icon>
+      <input ng-model="fish.quantity" type="text" ng-required="true">
+    </md-input-container>
+
+    <md-input-container class="md-icon-float">
+      <!-- Use floating label instead of placeholder -->
+      <label ng-bind="'Location' | translate">Location</label>
+      <ng-md-icon icon="my_location" size="24" style="fill:red"></ng-md-icon>
+      <input ng-model="fish.location" type="text" ng-required="true">
+    </md-input-container>
+
+    <md-input-container class="md-icon-float">
+      <!-- Use floating label instead of placeholder -->
+      <label ng-bind="'Caught Date' | translate">Caught Date</label>
+      <ng-md-icon icon="today" size="24" style="fill:red"></ng-md-icon>
+      <input ng-model="fish.caught_date" type="text" ng-required="true">
+    </md-input-container>
+
+    <md-input-container class="md-icon-float">
+      <!-- Use floating label instead of placeholder -->
+      <label ng-bind="'Pricing' | translate">Pricing</label>
+      <ng-md-icon icon="attach_money" size="24" style="fill:red"></ng-md-icon>
+      <input ng-model="fish.pricing" type="text" ng-required="true">
+    </md-input-container>
+
+    <div layout="row" ng-show="loading" layout-sm="column" layout-align="space-around" class="layout layout-row layout-align-space-around layout-sm layout-sm-column">
+      <md-progress-circular md-mode="indeterminate" aria-valuemin="0" aria-valuemax="100" role="progressbar" class="ng-scope md-default-theme" style="transform: scale(0.5);"><div class="md-spinner-wrapper md-mode-indeterminate"><div class="md-inner"><div class="md-gap"></div><div class="md-left"><div class="md-half-circle"></div></div><div class="md-right"><div class="md-half-circle"></div></div></div></div></md-progress-circular>
+      <p ng-bind="'Please wait while the account creation is in progress' | translate">Please wait while the account creation is in progress</p>
+    </div>
+     <md-button md-no-ink="" class="md-raised md-primary md-button md-default-theme" ng-click="createUser()">Submit</md-button>
+  </md-content>
+</div>
+
+<script type="text/ng-template" id="signupErrors.tmpl.html">
+  <md-dialog aria-label="Signup Errors">
+    <form>
+    <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2 ng-bind="'Signup Errors' | translate"></h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="hide()">
+        <ng-md-icon icon="close" size="30" style="fill:white" aria-label="Close dialog"></ng-md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content style="max-width:800px;max-height:810px;">
+    <div ng-repeat="error in errors">
+     <div ng-bind="'{{ error.fieldNames[0] + error.message }}' | translate"></div>
+     <div ng-show="error.classification == 'UserExistError'">
+      <a ng-bind="'click here to login to your profile' | translate"></a>
+     </div>
+    </div>
+  </md-dialog-content>
+  </form>
+  </md-dialog>
+</script>
+
+<script type="text/ng-template" id="signupSuccess.tmpl.html">
+  <md-dialog aria-label="Successful Sigup">
+    <form>
+    <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2 ng-bind="'Successful Signup' | translate"></h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="hide()">
+        <ng-md-icon icon="close" size="30" style="fill:white" aria-label="Close dialog"></ng-md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content style="max-width:800px;max-height:810px;">
+    <div ng-bind="'Your account is created successfully' | translate">Your account is created successfully.</div>
+  </md-dialog-content>
+  </form>
+  </md-dialog>
+</script>

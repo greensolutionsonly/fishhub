@@ -26,14 +26,15 @@ type UserForm struct {
 }
 
 type UserUpdateForm struct {
-	Name         string `json:"name"  binding:"required"`
-	Email        string `json:"email" form:"email"`
-	UserId       string `json:"userid" form:"userid"`
-	Role         string `json:"role"  binding:"required"`
-	Country      string `json:"country" binding:"required"`
-	Address      string `json:"address"`
-	ContactNo    string `json:"contactno"`
-	Notification bool   `json:"notification"`
+	Name         string        `json:"name"  binding:"required"`
+	Email        string        `json:"email" form:"email"`
+	UserId       string        `json:"userid" form:"userid"`
+	Role         string        `json:"role"  binding:"required"`
+	Country      string        `json:"country" binding:"required"`
+	Address      string        `json:"address"`
+	ContactNo    string        `json:"contactno"`
+	Notification bool          `json:"notification"`
+	Id           bson.ObjectId `json:"_id" bson:"_id,omitempty"`
 }
 type User struct {
 	Id            bson.ObjectId `json:"_id" bson:"_id,omitempty"`
@@ -135,9 +136,7 @@ func Update(r render.Render, params martini.Params, re *http.Request, f *fishhub
 	updated, _ := d.Upsert("users", query, nil, userForm, true)
 
 	if updated == true {
-		r.JSON(200, map[string]interface{}{
-			"message": "User profile is successfully updated.",
-		})
+		r.JSON(200, userForm)
 		return
 	}
 

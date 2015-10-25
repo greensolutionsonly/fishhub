@@ -8,6 +8,7 @@ angular.module('fishHubApp',[
   'ngMdIcons'
   'fh.home'
   'fh.welcome'
+  'fh.fish'
   'pascalprecht.translate'
 ])
 
