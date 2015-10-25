@@ -64,12 +64,12 @@
   </md-content>
 </div>
 
-<script type="text/ng-template" id="signupErrors.tmpl.html">
-  <md-dialog aria-label="Signup Errors">
+<script type="text/ng-template" id="errors.tmpl.html">
+  <md-dialog aria-label="Errors">
     <form>
     <md-toolbar>
     <div class="md-toolbar-tools">
-      <h2 ng-bind="'Signup Errors' | translate"></h2>
+      <h2 ng-bind="'Errors' | translate"></h2>
       <span flex></span>
       <md-button class="md-icon-button" ng-click="hide()">
         <ng-md-icon icon="close" size="30" style="fill:white" aria-label="Close dialog"></ng-md-icon>
@@ -79,17 +79,15 @@
   <md-dialog-content style="max-width:800px;max-height:810px;">
     <div ng-repeat="error in errors">
      <div ng-bind="'{{ error.fieldNames[0] + error.message }}' | translate"></div>
-     <div ng-show="error.classification == 'UserExistError'">
-      <a ng-bind="'click here to login to your profile' | translate"></a>
-     </div>
+
     </div>
   </md-dialog-content>
   </form>
   </md-dialog>
 </script>
 
-<script type="text/ng-template" id="signupSuccess.tmpl.html">
-  <md-dialog aria-label="Successful Sigup">
+<script type="text/ng-template" id="success.tmpl.html">
+  <md-dialog aria-label="Successful">
     <form>
     <md-toolbar>
     <div class="md-toolbar-tools">
@@ -101,7 +99,7 @@
     </div>
   </md-toolbar>
   <md-dialog-content style="max-width:800px;max-height:810px;">
-    <div ng-bind="'Your account is created successfully' | translate">Your account is created successfully.</div>
+    <div ng-bind="'Information is submitted.' | translate">Information is submitted.</div>
   </md-dialog-content>
   </form>
   </md-dialog>
