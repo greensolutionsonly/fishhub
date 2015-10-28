@@ -3,8 +3,6 @@ angular.module('fh.fish').controller('FishAddCtrl', (
   $scope
   $location
   Fish
-  countries
-  roles
   $mdDialog
   ) ->
 

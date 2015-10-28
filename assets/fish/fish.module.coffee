@@ -16,5 +16,11 @@ angular.module('fh.fish', [
       main:
         controller: 'FishCtrl'
         templateUrl: 'fish/fish-edit.tpl.html'
+  ).state('fishes/all',
+    url: '/fishes/all'
+    views:
+      main:
+        controller: 'FishCtrl'
+        templateUrl: 'fish/fishes.tpl.html'
   )
 )
