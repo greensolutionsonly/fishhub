@@ -58,6 +58,7 @@ func main() {
 	})
 
 	m.Group("/fishes", func(r martini.Router) {
+		r.Get("", getAllFish)
 		r.Post("", binding.Bind(fish.Fish{}), addFish)
 		r.Get("/:id", getFish)
 		r.Put("/:id", binding.Bind(fish.Fish{}), updateFish)

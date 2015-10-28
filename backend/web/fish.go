@@ -36,6 +36,22 @@ func getFish(r render.Render, params martini.Params, re *http.Request, f *fishhu
 	r.JSON(200, fish)
 }
 
+func getAllFish(r render.Render, re *http.Request, f *fishhub.DBService, user *user.User) {
+	d := f.DB.Copy()
+	defer d.Close()
+	query := bson.M{"userid": user.UserId}
+	var fishes []*fish.Fish
+	err := d.FindAll("fishes", query, nil, &fishes)
+	if err != nil {
+		r.JSON(400, map[string]interface{}{
+			"message":        "Unknown error occurred, please try again",
+			"classification": "UnknownError",
+		})
+		return
+	}
+	r.JSON(200, fishes)
+}
+
 func updateFish(r render.Render, params martini.Params, re *http.Request, f *fishhub.DBService, fish fish.Fish) {
 	d := f.DB.Copy()
 	defer d.Close()
