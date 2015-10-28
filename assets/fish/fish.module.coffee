@@ -4,20 +4,20 @@ angular.module('fh.fish', [
 ])
 
 .config(($stateProvider) ->
-  $stateProvider.state('fishes',
-    url: '/fishes'
+  $stateProvider.state('newFish',
+    url: '/fishes/new'
     views:
       main:
         controller: 'FishAddCtrl'
         templateUrl: 'fish/fish-add.tpl.html'
-  ).state('fishes/:id',
+  ).state('editFish',
     url: '/fishes/:id'
     views:
       main:
         controller: 'FishCtrl'
         templateUrl: 'fish/fish-edit.tpl.html'
-  ).state('fishes/all',
-    url: '/fishes/all'
+  ).state('fishes',
+    url: '/fishes'
     views:
       main:
         controller: 'FishCtrl'
