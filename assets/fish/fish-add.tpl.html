@@ -34,7 +34,7 @@
       <!-- Use floating label instead of placeholder -->
       <label ng-bind="'Quantity' | translate">Quantity</label>
       <ng-md-icon icon="unfold_more" size="24" style="fill:red"></ng-md-icon>
-      <input ng-model="fish.quantity" type="text" ng-required="true">
+      <input  type="number" ng-model="fish.quantity" ng-required="true">
     </md-input-container>
 
     <md-input-container class="md-icon-float">
@@ -53,7 +53,14 @@
       <!-- Use floating label instead of placeholder -->
       <label ng-bind="'Pricing' | translate">Pricing</label>
       <ng-md-icon icon="attach_money" size="24" style="fill:red"></ng-md-icon>
-      <input ng-model="fish.pricing" type="text" ng-required="true">
+      <input type="number"  ng-model="fish.pricing" ng-required="true">
+    </md-input-container>
+
+    <md-input-container class="md-icon-float">
+      <!-- Use floating label instead of placeholder -->
+      <label ng-bind="'Currency' | translate">Currency</label>
+      <ng-md-icon icon="attach_money" size="24" style="fill:red"></ng-md-icon>
+      <input ng-model="fish.currencytype" type="text" ng-required="true">
     </md-input-container>
 
     <div layout="row" ng-show="loading" layout-sm="column" layout-align="space-around" class="layout layout-row layout-align-space-around layout-sm layout-sm-column">

@@ -58,11 +58,11 @@ func main() {
 	})
 
 	m.Group("/fishes", func(r martini.Router) {
-		r.Post("", binding.Bind(fish.Fish{}), fish.Create)
-		r.Get("/:id", fish.Get)
-		r.Put("/:id", binding.Bind(fish.Fish{}), fish.Update)
-		r.Delete("/delete/:id", fish.Delete)
-	})
+		r.Post("", binding.Bind(fish.Fish{}), addFish)
+		r.Get("/:id", getFish)
+		r.Put("/:id", binding.Bind(fish.Fish{}), updateFish)
+		r.Delete("/delete/:id", deleteFish)
+	}, Auth)
 
 	m.Group("/login", func(r martini.Router) {
 		r.Post("", binding.Bind(session.LoginForm{}), session.Create)
