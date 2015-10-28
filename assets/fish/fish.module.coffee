@@ -14,13 +14,13 @@ angular.module('fh.fish', [
     url: '/fishes/:id'
     views:
       main:
-        controller: 'FishCtrl'
+        controller: 'FishEditCtrl'
         templateUrl: 'fish/fish-edit.tpl.html'
   ).state('fishes',
     url: '/fishes'
     views:
       main:
-        controller: 'FishCtrl'
+        controller: 'FishListCtrl'
         templateUrl: 'fish/fishes.tpl.html'
   )
 )
