@@ -9,4 +9,6 @@ angular.module('fh.fish').controller('FishListCtrl', (
 
     $scope.loading=false
     $scope.fishes = Fish.query()
+    $scope.go = (path) ->
+      $location.path(path)
 )

@@ -109,7 +109,6 @@ func Create(c martini.Context, sessionService *Service, r render.Render, re *htt
 	sessionService.UpsertSession(userProfile.UserId)
 	c.Map(userProfile)
 	return
-
 }
 
 func Destroy() {

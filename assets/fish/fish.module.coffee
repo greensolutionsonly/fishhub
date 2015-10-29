@@ -22,5 +22,11 @@ angular.module('fh.fish', [
       main:
         controller: 'FishListCtrl'
         templateUrl: 'fish/fishes.tpl.html'
+  ).state('viewFish',
+    url: '/fishes/:id/view'
+    views:
+      main:
+        controller: 'FishViewCtrl'
+        templateUrl: 'fish/fish-view.tpl.html'
   )
 )

@@ -62,7 +62,7 @@ func main() {
 		r.Post("", binding.Bind(fish.Fish{}), addFish)
 		r.Get("/:id", getFish)
 		r.Put("/:id", binding.Bind(fish.Fish{}), updateFish)
-		r.Delete("/delete/:id", deleteFish)
+		r.Delete("/:id", deleteFish)
 	}, Auth)
 
 	m.Group("/login", func(r martini.Router) {

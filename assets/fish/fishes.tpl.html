@@ -1,10 +1,13 @@
-<div>
-<md-list>
-  <md-subheader class="md-no-sticky"></md-subheader>
-  <md-list-item ng-repeat="fish in fishes">
-    <p> {{ fish.name }} </p>
-    <p> {{ fish.pricing }} </p>
-  </md-list-item>
+<md-content>
+  <md-list>
+    <md-list-item class="md-3-line" ng-repeat="fish in fishes">
+      <ng-md-icon ng-click="go('fishes/'+fish._id+'/view')" icon="info" size="30" style="fill:gray"></ng-md-icon>
+    <div class="md-list-item-text" layout="column">
+      <h3>{{fish.name }}</h3>
+      <h4> {{ fish.pricing  }} : {{ fish.currencytype  }}</h4>
+      <p></p>
+    </div>
   <md-divider></md-divider>
-</md-list>
-</div>
+  </md-list-item>
+ </md-list>
+</md-content>

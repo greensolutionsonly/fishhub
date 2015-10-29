@@ -31,7 +31,7 @@ func getFish(r render.Render, params martini.Params, re *http.Request, f *fishhu
 	db := f.DB.Copy()
 	defer db.Close()
 	fish := fish.Fish{}
-	query := bson.M{"id": params["id"]}
+	query := bson.M{"_id": bson.ObjectIdHex(params["id"])}
 	_ = db.FindOne("fishes", query, &fish)
 	r.JSON(200, fish)
 }

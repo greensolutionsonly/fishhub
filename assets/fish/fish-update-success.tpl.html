@@ -1,0 +1,16 @@
+<md-dialog aria-label="Successful">
+  <form>
+    <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2 ng-bind="'Successful Update' | translate"></h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="hide()">
+        <ng-md-icon icon="close" size="30" style="fill:white" aria-label="Close dialog"></ng-md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content style="max-width:800px;max-height:810px;">
+    <div ng-bind="'Information is updated successfully.' | translate">Information is updated successfully.</div>
+  </md-dialog-content>
+  </form>
+</md-dialog>
