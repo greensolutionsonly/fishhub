@@ -11,6 +11,8 @@ angular.module('fh.fish').controller('FishViewCtrl', (
     $scope.fish = Fish.get({ id: $stateParams.id})
     $scope.view = ->
       $location.path("fishes/"+$scope.fish._id)
+    $scope.add = ->
+      $location.path("fishes/new")
     $scope.delete = ->
       if confirm("Delete?")
         $scope.fish.$delete ->
