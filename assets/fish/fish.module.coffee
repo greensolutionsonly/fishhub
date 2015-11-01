@@ -1,6 +1,7 @@
 angular.module('fh.fish', [
   'ui.router'
   'fh.fishResource'
+  'fh.currencies'
 ])
 
 .config(($stateProvider) ->

@@ -3,11 +3,14 @@ angular.module('fh.fish').controller('FishAddCtrl', (
   $scope
   $location
   Fish
+  currencies
   $mdDialog
   ) ->
 
     $scope.loading = false
     $scope.fish = new Fish()
+    $scope.currencyType = "\u0192"
+    $scope.currencies = currencies
     $scope.fish.caught_date = new Date()
 
     successCtrl = ($scope, $mdDialog) ->

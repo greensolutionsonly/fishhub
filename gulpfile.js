@@ -135,6 +135,12 @@ gulp.task('build-roles', ['clean'], function() {
     .pipe(gulp.dest(config.build + '/utility'));
 });
 
+gulp.task('build-currencies', ['clean'], function() {
+  return gulp.src(config.src + '/utility/currencies.json')
+    .pipe(gulpNgConfig('fh.currencies'))
+    .pipe(gulp.dest(config.build + '/utility'));
+});
+
 gulp.task('build-templates', ['clean'], function() {
   return gulp.src([
       config.src + '/**/*.tpl.html',
@@ -156,6 +162,7 @@ gulp.task('build-html-dev', [
   'build-templates',
   'build-countries',
   'build-images',
+  'build-currencies',
   'build-roles'
 ], function() {
   var sourceStream = streamQueue(

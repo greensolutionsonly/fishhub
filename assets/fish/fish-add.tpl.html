@@ -49,6 +49,15 @@
     </div>
     </md-content>
 
+    <md-input-container class="md-icon-float md-icon-right md-block">
+      <label>Donation Amount</label>
+      <ng-md-icon icon="my_location" size="24" style="fill:red"></ng-md-icon>
+      <div layout="row">
+        <input ng-model="user.donation" type="number" step="0.01" flex>
+        <ng-md-icon icon="my_location" size="24" style="fill:red" style="position: absolute; top: 4px;"></ng-md-icon>
+      </div>
+    </md-input-container>
+
     <md-input-container class="md-icon-float">
       <!-- Use floating label instead of placeholder -->
       <label ng-bind="'Pricing' | translate">Pricing</label>
@@ -56,11 +65,11 @@
       <input type="number"  ng-model="fish.pricing" ng-required="true">
     </md-input-container>
 
-    <md-input-container class="md-icon-float">
-      <!-- Use floating label instead of placeholder -->
-      <label ng-bind="'Currency' | translate">Currency</label>
-      <ng-md-icon icon="attach_money" size="24" style="fill:red"></ng-md-icon>
-      <input ng-model="fish.currencytype" type="text" ng-required="true">
+    <md-input-container>
+      <label ng-bind="'Currency Type' | translate">Currency Type </label>
+      <md-select ng-model="fish.currencytype">
+          <md-option ng-repeat="currency in currencies" value="{{currency.cc}}">{{currency.name}}</md-option>
+      </md-select>
     </md-input-container>
 
     <div layout="row" ng-show="loading" layout-sm="column" layout-align="space-around" class="layout layout-row layout-align-space-around layout-sm layout-sm-column">
