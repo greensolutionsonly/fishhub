@@ -55,22 +55,21 @@
       <input ng-model="user.confirmpassword" type="password" placeholder="Confirm password" ng-required="true">
     </md-input-container>
 
-    <md-input-container>
-      <md-switch ng-model="user.notification" aria-label="Receive notifications">
+    <md-switch ng-model="user.notification" aria-label="Receive notifications">
         Receive notification
-      </md-switch>
-    </md-input-container>
-    <div layout="row" ng-show="loading" layout-sm="column" layout-align="space-around" class="layout layout-row layout-align-space-around layout-sm layout-sm-column">
-      <md-progress-circular md-mode="indeterminate" aria-valuemin="0" aria-valuemax="100" role="progressbar" class="ng-scope md-default-theme" style="transform: scale(0.5);"><div class="md-spinner-wrapper md-mode-indeterminate"><div class="md-inner"><div class="md-gap"></div><div class="md-left"><div class="md-half-circle"></div></div><div class="md-right"><div class="md-half-circle"></div></div></div></div></md-progress-circular>
-      <p ng-bind="'Please wait while the account creation is in progress' | translate">Please wait while the account creation is in progress</p>
-    </div>
-     <md-button md-no-ink="" class="md-raised md-primary md-button md-default-theme" ng-click="createUser()">Submit</md-button>
+    </md-switch>
   </md-content>
+
+  <md-button md-no-ink="" ng-bind="'Submit' | translate" class="md-raised md-primary md-button md-default-theme" ng-click="createUser()">
+    Submit
+  </md-button>
 </div>
 
-  <div class="container" ng-show="loading" style="margin-top: 5px;margin-bottom:20px;padding: 5px;">
-    <md-progress-linear></md-progress-linear>
-    <div class="bottom-block">
-      <span g-bind="'Please wait while the account creation is in progress' | translate">Please wait while the account creation is in progress...</span>
-    </div>
+<div class="container" ng-show="loading" style="padding: 5px;">
+  <md-progress-linear></md-progress-linear>
+  <div class="bottom-block">
+    <span g-bind="'Please wait while the account creation is in progress' | translate">Please wait while the account creation is in progress...</span>
   </div>
+</div>
+
+
