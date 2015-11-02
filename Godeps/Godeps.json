@@ -1,6 +1,6 @@
 {
 	"ImportPath": "github.com/greensolutionsonly/fishhub",
-	"GoVersion": "go1.5.1",
+	"GoVersion": "go1.2.1",
 	"Packages": [
 		"./..."
 	],

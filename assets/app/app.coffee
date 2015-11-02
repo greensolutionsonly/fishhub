@@ -12,7 +12,7 @@ angular.module('fishHubApp',[
   'pascalprecht.translate'
 ])
 
-  .controller('AppCtrl', ($scope, $timeout, $mdSidenav, $mdUtil,$log) ->
+  .controller('AppCtrl', ($scope,$timeout,$location,$mdSidenav,$mdUtil,$log) ->
     buildToggler = (navID) ->
       debounceFn = $mdUtil.debounce((->
         $mdSidenav(navID).toggle().then ->
@@ -22,13 +22,14 @@ angular.module('fishHubApp',[
       ), 200)
       debounceFn
     $scope.toggleLeft = buildToggler('left')
-  )
-  .controller('LeftCtrl', ($scope, $timeout, $mdSidenav, $log) ->
+    $scope.viewItems = ->
+      $location.path("fishes")
+      $scope.close()
+
     $scope.close = ->
       $mdSidenav('left').close().then ->
-        $log.debug 'close LEFT is done'
         return
       return
 
-    return
+      return
   )
