@@ -1,6 +1,7 @@
 package user
 
 import (
+	"fmt"
 	"github.com/go-martini/martini"
 	"github.com/greensolutionsonly/fishhub/backend/db"
 	"github.com/greensolutionsonly/fishhub/backend/fishhub"
@@ -89,7 +90,7 @@ func Create(r render.Render, re *http.Request, f *fishhub.DBService, userForm Us
 
 	d := f.DB.Copy()
 	defer d.Close()
-
+	fmt.Println(userForm)
 	updated, _ := d.Upsert("users", db.Query{"userid": userForm.UserId}, nil, userForm, true)
 
 	if updated == true {
