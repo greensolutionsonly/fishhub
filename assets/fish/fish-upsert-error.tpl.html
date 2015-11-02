@@ -10,8 +10,8 @@
   </md-toolbar>
   <md-dialog-content style="max-width:800px;max-height:810px;">
     <div ng-repeat="error in errors">
-      <div style="margin-top: 10px; text-align: center; padding: 10px">
-      <label ng-bind="'{{ error.fieldNames[0] + error.message }}' | translate"></label>
+      <div style="margin-top: 10px; text-align: center; padding: 10px;">
+        <label ng-bind="'{{ error.fieldNames[0] + error.message }}' | translate"></label>
       </div>
     </div>
   </md-dialog-content>
