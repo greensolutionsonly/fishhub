@@ -26,14 +26,14 @@ angular.module('fh.user').controller('UserAddCtrl', (
     $scope.showSignupSuccess = ->
       $mdDialog.show(
         controller: successSignupCtrl
-        templateUrl: 'signupSuccess.tmpl.html'
+        templateUrl: 'user/user-upsert-success.tpl.html'
         parent: angular.element(document.querySelector('#userContainer'))
         clickOutsideToClose: true)
 
     $scope.showSignupErrors = (errors) ->
       $mdDialog.show(
         controller: errorCtrl
-        templateUrl: 'signupErrors.tmpl.html'
+        templateUrl: 'user/user-upsert-error.tpl.html'
         parent: angular.element(document.querySelector('#userContainer'))
         locals: { errors: $scope.errors}
         clickOutsideToClose: true)

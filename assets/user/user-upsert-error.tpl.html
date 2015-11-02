@@ -1,0 +1,22 @@
+<md-dialog aria-label="Signup Errors">
+  <md-toolbar>
+  <div class="md-toolbar-tools">
+    <h2 ng-bind="'Signup Errors' | translate"></h2>
+    <span flex></span>
+    <md-button class="md-icon-button" ng-click="hide()">
+      <ng-md-icon icon="close" size="30" style="fill:white" aria-label="Close dialog"></ng-md-icon>
+    </md-button>
+  </div>
+  </md-toolbar>
+
+  <md-dialog-content style="max-width:800px;max-height:810px;">
+    <div ng-repeat="error in errors">
+      <div style="margin-top: 10px; text-align: center; padding: 10px;">
+        <div ng-bind="'{{ error.fieldNames[0] + error.message }}' | translate"></div>
+        <div ng-show="error.classification == 'UserExistError'">
+          <a ng-bind="'click here to login to your profile' | translate"></a>
+        </div>
+      </div>
+    </div>
+  </md-dialog-content>
+</md-dialog>
