@@ -1,5 +1,5 @@
 <md-dialog aria-label="Errors">
-  <md-toolbar>
+  <md-toolbar class="md-warn">
     <div class="md-toolbar-tools">
       <h2 ng-bind="'Errors' | translate"></h2>
       <span flex></span>
@@ -10,7 +10,9 @@
   </md-toolbar>
   <md-dialog-content style="max-width:800px;max-height:810px;">
     <div ng-repeat="error in errors">
-     <div ng-bind="'{{ error.fieldNames[0] + error.message }}' | translate"></div>
+      <div style="margin-top: 3px; text-align: center; padding: 5px">
+      <label ng-bind="'{{ error.fieldNames[0] + error.message }}' | translate"></label>
+      </div>
     </div>
   </md-dialog-content>
 </md-dialog>

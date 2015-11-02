@@ -25,14 +25,14 @@ angular.module('fh.fish').controller('FishAddCtrl', (
     $scope.showSuccess = ->
       $mdDialog.show(
         controller: successCtrl
-        templateUrl: 'success.tmpl.html'
+        templateUrl: 'fish/fish-add-success.tpl.html'
         parent: angular.element(document.querySelector('#fishContainer'))
         clickOutsideToClose: true)
 
     $scope.showErrors = (errors) ->
       $mdDialog.show(
         controller: errorCtrl
-        templateUrl: 'errors.tmpl.html'
+        templateUrl: 'fish/fish-add-error.tpl.html'
         parent: angular.element(document.querySelector('#fishContainer'))
         locals: { errors: $scope.errors}
         clickOutsideToClose: true)
