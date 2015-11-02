@@ -65,33 +65,16 @@
   </div>
 </div>
 
-<md-content layout-padding>
-  <md-grid-list md-cols-gt-md="3" md-cols-sm="3" md-cols-md="8" md-row-height-gt-md="1:1" md-row-height="4:3" md-gutter-gt-md="16px" md-gutter-gt-sm="8px" md-gutter="4px">
-    <md-grid-tile>
-      <md-button class="md-fab md-fab-top-left right" aria-label="Insert Drive">
-        <ng-md-icon ng-click="delete()" style="width: 24px; height: 24px;" icon="remove" size="23" style="fill:gray"></ng-md-icon>
-        <md-tooltip md-visible="demo.showTooltip">
-          <label ng-bind="'Delete' | translate">Delete</label>
-        </md-tooltip>
-      </md-button>
-    </md-grid-tile>
-
-    <md-grid-tile>
-      <md-button class="md-fab md-fab-top-right right" aria-label="Photos">
-        <ng-md-icon  ng-click="add()" style="width: 24px; height: 24px;" icon="add" size="23" style="fill:gray"></ng-md-icon>
-        <md-tooltip>
-          <label ng-bind="'Add' | translate">Add</label>
-        </md-tooltip>
-      </md-button>
-    </md-grid-tile>
-
-    <md-grid-tile>
-      <md-button class="md-fab md-fab-top-right right" aria-label="Photos">
-        <ng-md-icon  ng-click="view()" style="width: 24px; height: 24px;" icon="edit" size="23" style="fill:gray"></ng-md-icon>
-        <md-tooltip>
-        <label ng-bind="'Edit' | translate">Edit</label>
-        </md-tooltip>
-      </md-button>
-    </md-grid-tile>
-  </md-grid-list>
+<md-content style="text-align: center">
+  <div layout="row" style="height:30px">
+    <div flex>
+       <ng-md-icon icon="remove-circle" ng-click="delete()" size="30" style="fill:red" aria-label="Add"></ng-md-icon>
+    </div>
+    <div flex>
+        <ng-md-icon icon="add_circle" size="30" ng-click="add()" style="fill:gray" aria-label="Off"></ng-md-icon>
+    </div>
+    <div flex>
+       <ng-md-icon icon="border_color" size="30" ng-click="view()" style="fill:orange" aria-label="Cake"></ng-md-icon>
+    </div>
+  </div>
 </md-content>
