@@ -4,10 +4,12 @@ angular.module('fh.fish').controller('FishEditCtrl', (
   $location
   $mdDialog
   Fish
+  currencies
   $stateParams
   ) ->
 
     $scope.loading=false
+    $scope.currencies = currencies
     $scope.fish = Fish.get({ id: $stateParams.id })
     successCtrl = ($scope, $mdDialog) ->
       $scope.hide = ->
@@ -22,14 +24,14 @@ angular.module('fh.fish').controller('FishEditCtrl', (
     $scope.showSuccess = ->
       $mdDialog.show(
         controller: successCtrl
-        templateUrl: 'fish/fish-update-success.tpl.html'
+        templateUrl: 'fish/fish-upsert-success.tpl.html'
         parent: angular.element(document.querySelector('#fishContainer'))
         clickOutsideToClose: true)
 
     $scope.showErrors = (errors) ->
       $mdDialog.show(
         controller: errorCtrl
-        templateUrl: 'fish/fish-update-error.tpl.html'
+        templateUrl: 'fish/fish-upsert-error.tpl.html'
         parent: angular.element(document.querySelector('#fishContainer'))
         locals: { errors: $scope.errors}
         clickOutsideToClose: true)

@@ -1,72 +1,73 @@
-<div  layout="column" class="inputdemoIcons" id="fishContainer">
-  <br>
-  <md-content layout-padding="" class="autoScroll">
-    <md-input-container class="md-icon-float">
-      <!-- Use floating label instead of placeholder -->
+<div  layout="column"  id="fishContainer"  ng-cloak>
+  <br/>
+  <div style="padding:8px;">
+    <md-input-container class="md-block">
       <label ng-bind="'Name' | translate">Name</label>
-      <ng-md-icon icon="beenhere" size="24" style="fill:red"></ng-md-icon>
+      <ng-md-icon icon="input" size="24" style="fill:#323C75"></ng-md-icon>
       <input ng-model="fish.name" type="text" ng-required="true">
     </md-input-container>
 
-    <md-input-container class="md-icon-float">
+    <md-input-container class="md-block">
       <!-- Use floating label instead of placeholder -->
       <label ng-bind="'Species' | translate">Species</label>
-      <ng-md-icon icon="subtitles" size="24" style="fill:red"></ng-md-icon>
+      <ng-md-icon icon="subtitles" size="24" style="fill:#323C75"></ng-md-icon>
       <input ng-model="fish.species" type="text" ng-required="true">
     </md-input-container>
 
-    <md-input-container class="md-icon-float">
+    <md-input-container class="md-block">
       <!-- Use floating label instead of placeholder -->
       <label ng-bind="'Grade' | translate">Grade</label>
-      <ng-md-icon icon="grade" size="24" style="fill:red"></ng-md-icon>
+      <ng-md-icon icon="grade" size="24" style="fill:#323C75"></ng-md-icon>
       <input ng-model="fish.grade" type="text" ng-required="true">
-    </md-input-container>
+      </md-input-container>
 
-    <md-input-container class="md-icon-float">
+    <md-input-container class="md-block">
       <!-- Use floating label instead of placeholder -->
       <label ng-bind="'Size' | translate">Size</label>
-      <ng-md-icon icon="add_circle" size="24" style="fill:red"></ng-md-icon>
+      <ng-md-icon icon="add_circle" size="24" style="fill:#323C75"></ng-md-icon>
       <input ng-model="fish.size" type="text" ng-required="true">
     </md-input-container>
 
-
-    <md-input-container class="md-icon-float">
-      <!-- Use floating label instead of placeholder -->
+    <md-input-container class="md-block">
+    <!-- Use floating label instead of placeholder -->
       <label ng-bind="'Quantity' | translate">Quantity</label>
-      <ng-md-icon icon="unfold_more" size="24" style="fill:red"></ng-md-icon>
+      <ng-md-icon icon="unfold_more" size="24" style="fill:#323C75"></ng-md-icon>
       <input  type="number" ng-model="fish.quantity" ng-required="true">
     </md-input-container>
 
-    <md-input-container class="md-icon-float">
+    <md-input-container class="md-block">
       <!-- Use floating label instead of placeholder -->
       <label ng-bind="'Location' | translate">Location</label>
-      <ng-md-icon icon="my_location" size="24" style="fill:red"></ng-md-icon>
+      <ng-md-icon icon="my_location" size="24" style="fill:#323C75"></ng-md-icon>
       <input ng-model="fish.location" type="text" ng-required="true">
     </md-input-container>
-    <md-content layout-padding>
-    <div layout layout-sm="column">
-      <md-datepicker ng-model="fish.caughtdate" md-placeholder="Enter date"></md-datepicker>
-    </div>
-    </md-content>
 
-    <md-input-container class="md-icon-float">
+    <md-input-container class="md-block">
       <!-- Use floating label instead of placeholder -->
       <label ng-bind="'Pricing' | translate">Pricing</label>
-      <ng-md-icon icon="attach_money" size="24" style="fill:red"></ng-md-icon>
+      <ng-md-icon icon="attach_money" size="24" style="fill:#323C75"></ng-md-icon>
       <input type="number"  ng-model="fish.pricing" ng-required="true">
     </md-input-container>
 
-    <md-input-container class="md-icon-float">
-      <!-- Use floating label instead of placeholder -->
-      <label ng-bind="'Currency' | translate">Currency</label>
-      <ng-md-icon icon="attach_money" size="24" style="fill:red"></ng-md-icon>
-      <input ng-model="fish.currencytype" type="text" ng-required="true">
+    <md-input-container class="md-block">
+      <label ng-bind="'Currency Type' | translate">Currency Type</label>
+      <md-select ng-model="fish.currencytype">
+        <md-option ng-repeat="currency in currencies" value="{{currency.cc}}">{{currency.name}}</md-option>
+      </md-select>
     </md-input-container>
+  </div>
+  <div>
+    <md-datepicker ng-model="fish.caughtdate" md-placeholder="Enter Caught Date"></md-datepicker>
+  </div>
 
-    <div layout="row" ng-show="loading" layout-sm="column" layout-align="space-around" class="layout layout-row layout-align-space-around layout-sm layout-sm-column">
-      <md-progress-circular md-mode="indeterminate" aria-valuemin="0" aria-valuemax="100" role="progressbar" class="ng-scope md-default-theme" style="transform: scale(0.5);"><div class="md-spinner-wrapper md-mode-indeterminate"><div class="md-inner"><div class="md-gap"></div><div class="md-left"><div class="md-half-circle"></div></div><div class="md-right"><div class="md-half-circle"></div></div></div></div></md-progress-circular>
-      <p ng-bind="'Please wait while the account creation is in progress' | translate">Please wait while the account creation is in progress</p>
+  <md-button md-no-ink="" ng-bind="'Update' | translate" class="md-raised md-primary md-button md-default-theme" ng-click="updateFish()">
+      Update
+  </md-button>
+
+  <div class="container" ng-show="loading" style="margin-top: 5px;margin-bottom:20px;padding: 5px;">
+    <md-progress-linear></md-progress-linear>
+    <div class="bottom-block">
+      <span g-bind="'Please wait while we update the data' | translate">Please wait while we update the data</span>
     </div>
-     <md-button md-no-ink="" class="md-raised md-primary md-button md-default-theme" ng-click="updateFish()">Update</md-button>
-  </md-content>
+  </div>
 </div>
