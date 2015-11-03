@@ -49,13 +49,13 @@
                 <h3>My Profile</h3>
                 <p>change your profile information</p>
               </div>
-            </md-list-item>      
+            </md-list-item>
             <md-list-item class="md-2-line">
               <div class="md-list-item-text">
                 <h3>Change Password</h3>
                 <p>change your password</p>
               </div>
-            </md-list-item>      
+            </md-list-item>
             <md-list-item class="md-2-line">
               <div md-swipe-right="viewItems()" class="md-list-item-text">
                 <h3 ng-click="viewItems()" ng-bind="'My items' | translate">My items</h3>
@@ -66,19 +66,22 @@
         </md-content>
       </md-sidenav>
     </section>
-    
+
     <div ui-view="main">
     </div>
-    
+
     <!-- inject:js -->
     <!-- endinject -->
-    
+
     <style type="text/css">
       md-input-container label:not(.md-no-float), md-input-container .md-placeholder {
         padding-left: 26px;
       }
       md-input-container .md-input {
         width: 90%;
+      }
+      md-toolbar.md-default-theme:not(.md-menu-toolbar).md-accent, md-toolbar:not(.md-menu-toolbar).md-accent {
+        background-color: rgba(58, 115, 183, 0.93)
       }
     </style>
   </body>
