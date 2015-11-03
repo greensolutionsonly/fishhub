@@ -1,17 +1,30 @@
 <div  id="welcomeContainer">
-  <div id="welcome">
-    <div style="margin-top: 10px;">
-      <label><a href="#/login">Sign in</a></label>
-    </div>
-    <div style="margin-top: 10px;">
-      <label> <a href="#/users">Sign Up</a> </label>
-    </div>
-    <p> Welcome to Fishhub </p>
+  <div id="welcome" style="background: white;">
+   <md-content layout-padding="">
+      <md-list>
+        <md-list-item class="md-2-line">
+          <div class="md-list-item-text">
+            <ng-md-icon icon="login"  size="30" style="fill:dodgerblue"></ng-md-icon>
+            <h3>Login</h3>
+            <p>Login into your account</p>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item class="md-2-line">
+          <div class="md-list-item-text">
+            <ng-md-icon icon="account_circle"  size="30" style="fill:dodgerblue"></ng-md-icon>
+            <h3>Sign Up</h3>
+            <p>You can create a new account</p>
+          </div>
+        </md-list-item>
+      </md-list>
+    </md-content>
   </div>
+  <p style="color: white"> Welcome to Fishhub </p>
 </div>
 
 <style type="text/css">
-  #welcome {
+  #welcomeContainer {
     background: url('images/background.png');
     width: auto;
     height: 700px;
@@ -20,8 +33,11 @@
     background-size: cover;
     padding: 10px;
   }
+  #welcome {
+    -webkit-box-shadow: 4px 3px 4px 4px #FFFFFF;
+    box-shadow: 4px 3px 4px 4px #FFFFFF;
+  }
   #welcome a {
-    color: white;
     font-size: 18px;
     font-style: italic;
     text-decoration: none;
