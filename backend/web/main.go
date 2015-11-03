@@ -50,12 +50,13 @@ func main() {
 		sessions.Sessions("go_session", store),
 	)
 	// setup routes
+
+	m.Post("/users", binding.Bind(user.UserForm{}), user.Create)
 	m.Group("/users", func(r martini.Router) {
-		r.Post("", binding.Bind(user.UserForm{}), user.Create)
 		r.Get("/:id", user.Get)
 		r.Put("/:id", binding.Bind(user.UserUpdateForm{}), user.Update)
 		r.Delete("/delete/:id", user.Delete)
-	})
+	}, Auth)
 
 	m.Group("/fishes", func(r martini.Router) {
 		r.Get("", getAllFish)
