@@ -23,6 +23,10 @@ angular.module('fishHubApp',[
       ), 200)
       debounceFn
     $scope.toggleLeft = buildToggler('left')
+
+    $scope.go = (path) ->
+      $location.path(path)
+
     $scope.viewItems = ->
       $location.path("fishes")
       $scope.close()
