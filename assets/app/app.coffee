@@ -13,6 +13,7 @@ angular.module('fishHubApp',[
 ])
 
   .controller('AppCtrl', ($scope,$timeout,$location,$mdSidenav,$mdUtil,$log) ->
+    $location.path("welcome")
     buildToggler = (navID) ->
       debounceFn = $mdUtil.debounce((->
         $mdSidenav(navID).toggle().then ->
