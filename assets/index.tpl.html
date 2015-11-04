@@ -46,14 +46,14 @@
               <md-list>
                 <md-list-item class="md-2-line">
                   <div class="md-list-item-text" ng-click="go('users/' + user.Id + '/view')">
-                    <h3>My Profile {{ user }}</h3>
-                    <p>change your profile information</p>
+                    <h3 ng-bind="'change your profile information' | translate">My Profile</h3>
+                    <p ng-bind="'change your profile information' | translate">change your profile information</p>
                   </div>
                 </md-list-item>
                 <md-list-item class="md-2-line">
                   <div class="md-list-item-text">
-                    <h3>Change Password</h3>
-                    <p>change your password</p>
+                    <h3 ng-bind="'Change Password' | translate">Change Password</h3>
+                    <p ng-bind="'change your password' | translate">change your password</p>
                   </div>
                 </md-list-item>
                 <md-list-item class="md-2-line">
