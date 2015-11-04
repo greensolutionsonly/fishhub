@@ -42,26 +42,28 @@
         </md-toolbar>
         <md-content layout-padding="">
           <ng-md-icon icon="arrow_back" ng-click="close()" size="30" style="fill:red"></ng-md-icon>
-          <md-list>
-            <md-list-item class="md-2-line">
-              <div class="md-list-item-text">
-                <h3>My Profile</h3>
-                <p>change your profile information</p>
-              </div>
-            </md-list-item>
-            <md-list-item class="md-2-line">
-              <div class="md-list-item-text">
-                <h3>Change Password</h3>
-                <p>change your password</p>
-              </div>
-            </md-list-item>
-            <md-list-item class="md-2-line">
-              <div md-swipe-right="viewItems()" class="md-list-item-text">
-                <h3 ng-click="viewItems()" ng-bind="'My items' | translate">My items</h3>
-                <p  ng-bind="'You can add, view, delete fish items' | translate">You can add, view, delete fish items</p>
-              </div>
-            </md-list-item>
-          </md-list>
+          <div ng-show="user.IsLogged">
+              <md-list>
+                <md-list-item class="md-2-line">
+                  <div class="md-list-item-text">
+                    <h3>My Profile</h3>
+                    <p>change your profile information</p>
+                  </div>
+                </md-list-item>
+                <md-list-item class="md-2-line">
+                  <div class="md-list-item-text">
+                    <h3>Change Password</h3>
+                    <p>change your password</p>
+                  </div>
+                </md-list-item>
+                <md-list-item class="md-2-line">
+                  <div md-swipe-right="viewItems()" class="md-list-item-text">
+                    <h3 ng-click="viewItems()" ng-bind="'My items' | translate">My items</h3>
+                    <p  ng-bind="'You can add, view, delete fish items' | translate">You can add, view, delete fish items</p>
+                  </div>
+                </md-list-item>
+              </md-list>
+          </div>
         </md-content>
       </md-sidenav>
     </section>

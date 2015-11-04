@@ -8,5 +8,5 @@ angular.module('fh.user').controller('UserViewCtrl', (
   ) ->
 
     $scope.loading=false
-    $scope.fish = User.get({ id: $stateParams.id})
+    $scope.user = User.get({ id: $stateParams.id})
 )

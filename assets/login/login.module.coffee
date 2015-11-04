@@ -1,5 +1,6 @@
 angular.module('fh.login', [
   'ui.router'
+  'ngCookies'
 ])
 
 .config(($stateProvider) ->

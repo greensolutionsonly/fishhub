@@ -61,7 +61,7 @@ func getUser(r render.Render, params martini.Params, re *http.Request, f *fishhu
 	db := f.DB.Copy()
 	defer db.Close()
 	ui := user.User{}
-	query := bson.M{"userid": params["id"]}
+	query := bson.M{"_id": bson.ObjectIdHex(params["id"])}
 	_ = db.FindOne("users", query, &ui)
 	r.JSON(200, ui)
 }

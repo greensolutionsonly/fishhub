@@ -22,7 +22,8 @@
     "angular-resource": "*",
     "angular-translate": "*",
     "angular-material-icons": "*",
-    "countries": "~1.0.3"
+    "countries": "~1.0.3",
+    "angular-cookies": "*"
   },
   "overrides": {
     "angular": {
@@ -96,6 +97,16 @@
         ],
         "production": [
           "release/angular-ui-router.min.js"
+        ]
+      }
+    },
+    "angular-cookies": {
+      "main": {
+        "development": [
+          "angular-cookies.js"
+        ],
+        "production": [
+          "angular-cookies.min.js"
         ]
       }
     },

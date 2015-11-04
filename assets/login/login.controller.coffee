@@ -5,6 +5,7 @@ angular.module('fh.login').controller('LoginCtrl', (
   $mdDialog
   SessionService
   $http
+  $cookies
   ) ->
 
     $scope.loading=false
@@ -26,10 +27,13 @@ angular.module('fh.login').controller('LoginCtrl', (
         $location.path("home")
         SessionService.IsLogged = true
         SessionService.Role = data.role
-        SessionService.Id= data._id
+        SessionService.Id = data._id
         SessionService.UserId = data.userid
         SessionService.Country = data.country
         SessionService.Email = data.email
+        $cookies.put("LastLoggedinTime", Math.floor(Date.now() / 1000))
+        $cookies.put("UserId", data.userid)
+        $cookies.put("Id", data._id)
       ).error (data, status, headers, config) ->
         console.log(data)
         $scope.showLoginError()
