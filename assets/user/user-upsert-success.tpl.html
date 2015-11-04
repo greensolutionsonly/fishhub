@@ -1,7 +1,8 @@
-<md-dialog aria-label="Successful Sigup">
+<md-dialog aria-label="Successful">
   <md-toolbar>
   <div class="md-toolbar-tools">
-    <h2 ng-bind="'Successful Signup' | translate"></h2>
+    <h2 ng-show="create" ng-bind="'Successful Signup' | translate"></h2>
+    <h2 ng-show="update" ng-bind="'Successful Update' | translate"></h2>
     <span flex></span>
     <md-button class="md-icon-button" ng-click="hide()">
       <ng-md-icon icon="close" size="30" style="fill:white" aria-label="Close dialog"></ng-md-icon>
@@ -10,6 +11,7 @@
   </md-toolbar>
 
   <md-dialog-content style="max-width:800px;max-height:810px;">
-    <div style="margin-top: 10px; text-align: center; padding: 10px;" ng-bind="'Your account is created successfully' | translate">Your account is created successfully.</div>
+    <div ng-show="create" style="margin-top: 10px; text-align: center; padding: 10px;" ng-bind="'Your account is created successfully' | translate">Your account is created successfully.</div>
+    <div ng-show="update" style="margin-top: 10px; text-align: center; padding: 10px;" ng-bind="'Your account is updated successfully' | translate">Your account is updated successfully.</div>
   </md-dialog-content>
 </md-dialog>

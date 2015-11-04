@@ -1,53 +1,63 @@
-<div  layout="column" class="inputdemoIcons">
+<div  layout="column" ng-cloak>
   <br>
   <md-content layout-padding="" class="autoScroll">
-    <md-input-container class="md-icon-float">
+    <md-input-container class="md-block">
       <!-- Use floating label instead of placeholder -->
-      <label>Name</label>
-      <ng-md-icon icon="person" size="24" style="fill:red"></ng-md-icon>
-      <input ng-model="user.name" type="text" ng-required="true">
+      <label ng-bind="'Name' | translate">Name</label>
+      <ng-md-icon icon="person" size="24" style="fill:dodgerblue"></ng-md-icon>
+      <input ng-model="user.name" type="text" readonly="readonly">
     </md-input-container>
 
-    <md-input-container>
-      <label>I am </label>
-      <md-select ng-model="ctrl.userState">
-          <md-option ng-repeat="role in roles" value="{{role}}">{{role}}</md-option>
-      </md-select>
+    <md-input-container class="md-block">
+      <!-- Use floating label instead of placeholder -->
+      <label ng-bind="'User Id' | translate">User Id</label>
+      <ng-md-icon icon="perm_identity" size="24" style="fill:dodgerblue"></ng-md-icon>
+      <input ng-model="user.userid" type="text" readonly="readonly">
     </md-input-container>
 
-    <md-input-container md-no-float="">
+    <md-input-container class="md-block">
+      <label ng-bind="'I am' | translate">I am</label>
+      <ng-md-icon icon="accessibility" size="24" style="fill:dodgerblue"></ng-md-icon>
+      <input ng-model="user.role" type="text" readonly="readonly">
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <label ng-bind="'I am from' | translate">I am from</label>
+      <ng-md-icon icon="home" size="24" style="fill:dodgerblue"></ng-md-icon>
+      <input ng-model="user.country" type="text" readonly="readonly">
+    </md-input-container>
+
+
+    <md-input-container class="md-block">
       <ng-md-icon icon="phone" size="24" style="fill:dodgerblue"></ng-md-icon>
-      <input ng-model="user.phone" type="text" placeholder="Phone Number">
+      <input ng-model="user.contactno" type="text" placeholder="Phone Number" ng-readonly="true">
     </md-input-container>
 
     <md-input-container>
-      <ng-md-icon icon="email" size="24" style="fill:red"></ng-md-icon>
-      <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true">
+      <ng-md-icon icon="email" size="24" style="fill:dodgerblue"></ng-md-icon>
+      <input ng-model="user.email" type="email" placeholder="Email" ng-readonly="true">
     </md-input-container>
 
-    <md-input-container md-no-float="">
+    <md-input-container class="md-block">
       <ng-md-icon icon="place" size="24" style="fill:dodgerblue"></ng-md-icon>
-      <input ng-model="user.address" type="text" placeholder="Address">
+      <input ng-model="user.address" type="text" placeholder="Address" ng-readonly="true">
     </md-input-container>
 
-    <md-input-container>
-      <ng-md-icon icon="email" size="24" style="fill:red"></ng-md-icon>
-      <input ng-model="user.password" type="password" placeholder="Password" ng-required="true">
-    </md-input-container>
-
-    <md-input-container>
-      <!-- Use floating placeholder instead of label -->
-      <ng-md-icon icon="email" size="24" style="fill:red"></ng-md-icon>
-      <input ng-model="user.confirm_password" type="password" placeholder="Confirm password" ng-required="true">
-    </md-input-container>
-    <md-input-container>
-      <md-switch ng-model="data.cb1" aria-label="Receive notifications">
+    <md-switch ng-model="user.notification" aria-label="Receive notifications" ng-disabled="true">
         Receive notification
-      </md-switch>
-    </md-input-container>
-
-     <md-button md-no-ink="" class="md-primary" ng-click="createUser()">Submit</md-button>
-
+    </md-switch>
   </md-content>
-
 </div>
+
+<md-content style="text-align: center">
+  <div layout="row" style="height:30px;margin-bottom: 30px">
+    <div flex>
+    </div>
+    <div flex>
+        <ng-md-icon icon="mode_edit" size="30" ng-click="edit()" style="fill:gray" aria-label="Off"></ng-md-icon>
+    </div>
+    <div flex>
+    </div>
+  </div>
+</md-content>
+

@@ -45,8 +45,8 @@
           <div ng-show="user.IsLogged">
               <md-list>
                 <md-list-item class="md-2-line">
-                  <div class="md-list-item-text">
-                    <h3>My Profile</h3>
+                  <div class="md-list-item-text" ng-click="go('users/' + user.Id + '/view')">
+                    <h3>My Profile {{ user }}</h3>
                     <p>change your profile information</p>
                   </div>
                 </md-list-item>

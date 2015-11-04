@@ -1,7 +1,8 @@
-<md-dialog aria-label="Signup Errors">
+<md-dialog aria-label="User Errors">
   <md-toolbar>
   <div class="md-toolbar-tools">
-    <h2 ng-bind="'Signup Errors' | translate"></h2>
+    <h2 ng-show="create" ng-bind="'Signup Errors' | translate"></h2>
+    <h2 ng-show="update" ng-bind="'Update Errors' | translate"></h2>
     <span flex></span>
     <md-button class="md-icon-button" ng-click="hide()">
       <ng-md-icon icon="close" size="30" style="fill:white" aria-label="Close dialog"></ng-md-icon>

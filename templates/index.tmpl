@@ -48,8 +48,8 @@
           <div ng-show="user.IsLogged">
               <md-list>
                 <md-list-item class="md-2-line">
-                  <div class="md-list-item-text">
-                    <h3>My Profile</h3>
+                  <div class="md-list-item-text" ng-click="go('users/' + user.Id + '/view')">
+                    <h3>My Profile {{ user }}</h3>
                     <p>change your profile information</p>
                   </div>
                 </md-list-item>
@@ -88,8 +88,8 @@
     <script src="assets/home/home.module.js"></script>
     <script src="assets/i18n/i18n.module.js"></script>
     <script src="assets/login/login.module.js"></script>
-    <script src="assets/user/user.module.js"></script>
     <script src="assets/welcome/welcome.module.js"></script>
+    <script src="assets/user/user.module.js"></script>
     <script src="assets/fish/fish.resource.js"></script>
     <script src="assets/user/user.resource.js"></script>
     <script src="assets/app/app.js"></script>
@@ -103,12 +103,12 @@
     <script src="assets/i18n/en.js"></script>
     <script src="assets/login/login.controller.js"></script>
     <script src="assets/session/session.js"></script>
+    <script src="assets/welcome/welcome.controller.js"></script>
     <script src="assets/user/user-add.controller.js"></script>
     <script src="assets/user/user-edit.controller.js"></script>
     <script src="assets/user/user-list.controller.js"></script>
     <script src="assets/user/user-view.controller.js"></script>
     <script src="assets/user/user.controller.js"></script>
-    <script src="assets/welcome/welcome.controller.js"></script>
     <script src="utility/countries.js"></script>
     <script src="utility/currencies.js"></script>
     <script src="utility/roles.js"></script>

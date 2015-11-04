@@ -14,12 +14,16 @@ angular.module('fh.user').controller('UserAddCtrl', (
     $scope.loading=false
 
     successSignupCtrl = ($scope, $mdDialog) ->
+      $scope.update = false
+      $scope.create = true
       $scope.hide = ->
         $mdDialog.hide()
         $location.path("login")
 
     errorCtrl = ($scope, $mdDialog, errors) ->
       $scope.errors = errors
+      $scope.create = true
+      $scope.update = false
       $scope.hide = ->
         $mdDialog.hide()
 

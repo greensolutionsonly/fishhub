@@ -50,8 +50,9 @@ angular.module('fishHubApp',[
         SessionService.Email = data.email
       $scope.init = ->
         if $scope.isAlreadyLoggedin() == true
-          data = User.get({ id: $cookies.get("Id")})
-          $scope.setSession(data)
+          User.get { id: $cookies.get("Id")}, (data, responseHeaders) ->
+            $scope.setSession(data)
+
       $scope.init()
       $scope.close = ->
         $mdSidenav('left').close().then ->

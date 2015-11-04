@@ -1,4 +1,4 @@
-angular.module('fh.user').controller('UserCtrl', (
+angular.module('fh.user').controller('UserEditCtrl', (
   $rootScope
   $scope
   $location
@@ -10,37 +10,37 @@ angular.module('fh.user').controller('UserCtrl', (
   ) ->
 
     $scope.countries = countries
-    console.log($stateParams)
-
+    $scope.user = User.get({ id: $stateParams.id })
     $scope.roles = roles
     $scope.loading=false
     successUpdateCtrl = ($scope, $mdDialog) ->
+      $scope.update = true
+      $scope.create = false
       $scope.hide = ->
         $mdDialog.hide()
         $location.path("users/"+$stateParams.id)
-        alert($stateParams.id)
 
     errorCtrl = ($scope, $mdDialog, errors) ->
       $scope.errors = errors
+      $scope.update = true
+      $scope.create = false
       $scope.hide = ->
         $mdDialog.hide()
 
     $scope.showUpdateSuccess = ->
       $mdDialog.show(
         controller: successUpdateCtrl
-        templateUrl: 'updateSuccess.tmpl.html'
+        templateUrl: 'user/user-upsert-success.tpl.html'
         parent: angular.element(document.querySelector('#userUpdateContainer'))
         clickOutsideToClose: true)
 
     $scope.showUpdateErrors = (errors) ->
       $mdDialog.show(
         controller: errorCtrl
-        templateUrl: 'updateErrors.tmpl.html'
-        parent: angular.element(document.querySelector('#userContainer'))
+        templateUrl: 'user/user-upsert-error.tpl.html'
+        parent: angular.element(document.querySelector('#userUpdateContainer'))
         locals: { errors: $scope.errors}
         clickOutsideToClose: true)
-
-    $scope.user = User.get({id: $stateParams.id})
 
     $scope.updateUser = ->
       $scope.loading = true
