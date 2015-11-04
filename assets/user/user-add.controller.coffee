@@ -7,6 +7,7 @@ angular.module('fh.user').controller('UserAddCtrl', (
   roles
   locales
   $mdDialog
+  $translate
   ) ->
 
     $scope.user = new User()
@@ -35,6 +36,9 @@ angular.module('fh.user').controller('UserAddCtrl', (
         templateUrl: 'user/user-upsert-success.tpl.html'
         parent: angular.element(document.querySelector('#userContainer'))
         clickOutsideToClose: true)
+
+    $scope.toggleLanguage = ->
+      $translate.use($scope.user.locale)
 
     $scope.showSignupErrors = (errors) ->
       $mdDialog.show(

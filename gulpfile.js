@@ -169,6 +169,7 @@ gulp.task('build-html-dev', [
   'build-countries',
   'build-images',
   'build-currencies',
+  'build-locales',
   'build-roles'
 ], function() {
   var sourceStream = streamQueue(

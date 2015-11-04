@@ -8,6 +8,7 @@ angular.module('fh.user').controller('UserEditCtrl', (
   locales
   $mdDialog
   $stateParams
+  $translate
   ) ->
 
     $scope.countries = countries
@@ -35,7 +36,8 @@ angular.module('fh.user').controller('UserEditCtrl', (
         templateUrl: 'user/user-upsert-success.tpl.html'
         parent: angular.element(document.querySelector('#userUpdateContainer'))
         clickOutsideToClose: true)
-
+    $scope.toggleLanguage = ->
+      $translate.use($scope.user.locale)
     $scope.showUpdateErrors = (errors) ->
       $mdDialog.show(
         controller: errorCtrl
@@ -48,6 +50,7 @@ angular.module('fh.user').controller('UserEditCtrl', (
       $scope.loading = true
       $scope.user.$update ((resp, headers) ->
         $scope.loading=false
+        $scope.toggleLanguage()
         $scope.showUpdateSuccess()
       ), (err) ->
         $scope.errors = err.data

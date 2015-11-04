@@ -6,6 +6,7 @@ angular.module('fh.login').controller('LoginCtrl', (
   SessionService
   $http
   $cookies
+  $translate
   ) ->
 
     $scope.loading=false
@@ -34,6 +35,7 @@ angular.module('fh.login').controller('LoginCtrl', (
         $cookies.put("LastLoggedinTime", Math.floor(Date.now() / 1000))
         $cookies.put("UserId", data.userid)
         $cookies.put("Id", data._id)
+        $translate.use(data.locale)
       ).error (data, status, headers, config) ->
         console.log(data)
         $scope.showLoginError()
