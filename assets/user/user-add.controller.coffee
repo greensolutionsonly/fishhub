@@ -5,12 +5,14 @@ angular.module('fh.user').controller('UserAddCtrl', (
   User
   countries
   roles
+  locales
   $mdDialog
   ) ->
 
     $scope.user = new User()
     $scope.countries = countries
     $scope.roles = roles
+    $scope.locales = locales
     $scope.loading=false
 
     successSignupCtrl = ($scope, $mdDialog) ->

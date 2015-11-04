@@ -11,6 +11,7 @@ angular.module('fishHubApp',[
   'fh.welcome'
   'fh.fish'
   'fh.userSession'
+  'fh.locales'
   'pascalprecht.translate'
 ])
 

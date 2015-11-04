@@ -5,11 +5,13 @@ angular.module('fh.user').controller('UserEditCtrl', (
   User
   countries
   roles
+  locales
   $mdDialog
   $stateParams
   ) ->
 
     $scope.countries = countries
+    $scope.locales = locales
     $scope.user = User.get({ id: $stateParams.id })
     $scope.roles = roles
     $scope.loading=false

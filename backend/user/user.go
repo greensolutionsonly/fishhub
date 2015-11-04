@@ -19,6 +19,7 @@ type UserForm struct {
 	Notification    bool   `json:"notification"`
 	ConfirmPassword string `json:"confirmpassword" binding:"required"`
 	Password        string `json:"password" binding:"required"`
+	Locale          string `json:"locale" binding:"required"`
 }
 
 type UserUpdateForm struct {
@@ -31,6 +32,7 @@ type UserUpdateForm struct {
 	ContactNo    string        `json:"contactno"`
 	Notification bool          `json:"notification"`
 	Id           bson.ObjectId `json:"_id" bson:"_id,omitempty"`
+	Locale       string        `json:"locale" binding:"required"`
 }
 type User struct {
 	Id            bson.ObjectId `json:"_id" bson:"_id,omitempty"`
@@ -44,6 +46,7 @@ type User struct {
 	Notification  bool          `json:"notification"`
 	authenticated bool          `json:"-"`
 	DB            *db.DB        `json:"-"`
+	Locale        string        `json:"locale"`
 }
 
 func (u *User) IsAuthenticated() bool {

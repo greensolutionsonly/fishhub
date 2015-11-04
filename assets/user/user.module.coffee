@@ -3,6 +3,7 @@ angular.module('fh.user', [
   'fh.userResource'
   'fh.countries'
   'fh.roles'
+  'fh.locales'
 ])
 
 .config(($stateProvider) ->

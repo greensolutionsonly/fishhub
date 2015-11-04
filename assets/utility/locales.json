@@ -1,0 +1,7 @@
+{
+  "locales": [
+    {"value":"en","name":"English"},
+    {"value":"bh","name":"Bahasa"},
+    {"value":"ch","name":"Chinese"}
+  ]
+}

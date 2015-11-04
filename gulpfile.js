@@ -141,6 +141,12 @@ gulp.task('build-currencies', ['clean'], function() {
     .pipe(gulp.dest(config.build + '/utility'));
 });
 
+gulp.task('build-locales', ['clean'], function() {
+  return gulp.src(config.src + '/utility/locales.json')
+    .pipe(gulpNgConfig('fh.locales'))
+    .pipe(gulp.dest(config.build + '/utility'));
+});
+
 gulp.task('build-templates', ['clean'], function() {
   return gulp.src([
       config.src + '/**/*.tpl.html',

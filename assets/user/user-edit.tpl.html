@@ -30,6 +30,13 @@
     </md-input-container>
 
     <md-input-container class="md-block">
+      <label ng-bind="'Language' | translate">Language</label>
+      <md-select ng-model="user.locale">
+          <md-option ng-repeat="locale in locales" value="{{locale.value}}">{{locale.name}}</md-option>
+      </md-select>
+    </md-input-container>
+
+    <md-input-container class="md-block">
       <ng-md-icon icon="phone" size="24" style="fill:dodgerblue"></ng-md-icon>
       <input ng-model="user.contactno" type="text" placeholder="Phone Number">
     </md-input-container>
