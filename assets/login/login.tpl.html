@@ -1,44 +1,29 @@
-<div  layout="column" class="inputdemoIcons" id="loginContainer">
+<div  layout="column"  id="loginContainer">
   <br>
   <md-content layout-padding="" class="autoScroll">
-    <md-input-container class="md-icon-float">
+    <md-input-container class="md-block">
       <!-- Use floating label instead of placeholder -->
       <label ng-bind="'User Id' | translate">User Id</label>
       <ng-md-icon icon="person" size="24" style="fill:rgb(255,64,129)"></ng-md-icon>
       <input ng-model="user.userid" type="text" ng-required="true">
     </md-input-container>
 
-    <md-input-container class="md-icon-float">
+    <md-input-container class="md-block">
       <!-- Use floating label instead of placeholder -->
       <label ng-bind="'Password' | translate">Password</label>
       <ng-md-icon icon="security" size="24" style="fill:rgb(255,64,129)"></ng-md-icon>
       <input ng-model="user.password" type="password" ng-required="true">
     </md-input-container>
-    <div layout="row" ng-show="loading" layout-sm="column" layout-align="space-around" class="layout layout-row layout-align-space-around layout-sm layout-sm-column">
-      <md-progress-circular md-mode="indeterminate" aria-valuemin="0" aria-valuemax="100" role="progressbar" class="ng-scope md-default-theme" style="transform: scale(0.5);"><div class="md-spinner-wrapper md-mode-indeterminate"><div class="md-inner"><div class="md-gap"></div><div class="md-left"><div class="md-half-circle"></div></div><div class="md-right"><div class="md-half-circle"></div></div></div></div></md-progress-circular>
-      <p ng-bind="'Please wait while the account creation is in progress' | translate">Please wait while we check your account</p>
-    </div>
-     <md-button md-no-ink="" class="md-raised md-primary md-button md-default-theme" ng-click="checkCredential()">Submit</md-button>
   </md-content>
 </div>
 
-<script type="text/ng-template" id="loginError.tmpl.html">
-  <md-dialog aria-label="Login Error">
-    <form>
-    <md-toolbar>
-    <div class="md-toolbar-tools">
-      <h2 ng-bind="'Login Error' | translate"></h2>
-      <span flex></span>
-      <md-button class="md-icon-button" ng-click="hide()">
-        <ng-md-icon icon="close" size="30" style="fill:white" aria-label="Close dialog"></ng-md-icon>
-      </md-button>
-    </div>
-  </md-toolbar>
-  <md-dialog-content style="max-width:800px;max-height:810px;">
-    <div>
-      <h4>Your user id or password is not correct, try again.</h4>
-    </div>
-  </md-dialog-content>
-  </form>
-  </md-dialog>
-</script>
+<md-button md-no-ink="" class="md-raised md-primary md-button md-default-theme" ng-click="checkCredential()">
+  Submit
+</md-button>
+
+<div class="container" ng-show="loading" style="padding: 5px;">
+  <md-progress-linear></md-progress-linear>
+  <div class="bottom-block">
+    <span g-bind="'Please wait while we check your account' | translate">Please wait while we check your account</span>
+  </div>
+</div>

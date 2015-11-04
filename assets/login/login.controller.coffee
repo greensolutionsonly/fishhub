@@ -3,6 +3,7 @@ angular.module('fh.login').controller('LoginCtrl', (
   $scope
   $location
   $mdDialog
+  SessionService
   $http
   ) ->
 
@@ -11,10 +12,11 @@ angular.module('fh.login').controller('LoginCtrl', (
     errorCtrl = ($scope, $mdDialog) ->
       $scope.hide = ->
         $mdDialog.hide()
+    console.log(SessionService)
     $scope.showLoginError = (errors) ->
       $mdDialog.show(
         controller: errorCtrl
-        templateUrl: 'loginError.tmpl.html'
+        templateUrl: 'login/login-error.tpl.html'
         parent: angular.element(document.querySelector('#loginContainer'))
         clickOutsideToClose: true)
     $scope.checkCredential = ->
@@ -22,7 +24,12 @@ angular.module('fh.login').controller('LoginCtrl', (
       $http.post("login", $scope.user).success((data, status) ->
         $scope.loading = false
         $location.path("home")
-        console.log($location.path())
+        SessionService.IsLogged = true
+        SessionService.Role = data.role
+        SessionService.Id= data._id
+        SessionService.UserId = data.userid
+        SessionService.Country = data.country
+        SessionService.Email = data.email
       ).error (data, status, headers, config) ->
         console.log(data)
         $scope.showLoginError()

@@ -9,6 +9,7 @@ angular.module('fishHubApp',[
   'fh.home'
   'fh.welcome'
   'fh.fish'
+  'fh.userSession'
   'pascalprecht.translate'
 ])
 

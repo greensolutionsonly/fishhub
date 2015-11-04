@@ -1,5 +1,6 @@
 angular.module('fh.home', [
   'ui.router'
+  'fh.userSession'
 ])
 
 .config(($stateProvider) ->

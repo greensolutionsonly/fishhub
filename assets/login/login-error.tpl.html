@@ -1,0 +1,16 @@
+<md-dialog aria-label="Login Error">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2 ng-bind="'Login Error' | translate"></h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="hide()">
+        <ng-md-icon icon="close" size="30" style="fill:white" aria-label="Close dialog"></ng-md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content style="max-width:800px;max-height:810px;">
+    <div>
+      <h4>Your user id or password is not correct, try again.</h4>
+    </div>
+  </md-dialog-content>
+</md-dialog>

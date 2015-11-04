@@ -30,7 +30,7 @@ func createUser(r render.Render, re *http.Request, f *fishhub.DBService, userFor
 	updated, _ := d.Upsert("users", query, nil, userForm, true)
 
 	if updated == true {
-		r.JSON(400, map[string]interface{}{
+		r.JSON(200, map[string]interface{}{
 			"message": "User profile is successfully created.",
 		})
 		return

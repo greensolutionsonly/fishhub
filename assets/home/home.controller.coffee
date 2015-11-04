@@ -3,6 +3,8 @@ angular.module('fh.home').controller('HomeCtrl', (
   $scope
   $location
   $mdDialog
+  SessionService
   ) ->
     $scope.loading=false
+    console.log(SessionService)
 )

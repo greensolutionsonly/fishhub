@@ -1,6 +1,7 @@
 package session
 
 import (
+	"fmt"
 	"github.com/go-martini/martini"
 	"github.com/greensolutionsonly/fishhub/backend/db"
 	"github.com/greensolutionsonly/fishhub/backend/fishhub"
@@ -91,9 +92,10 @@ func Create(c martini.Context, sessionService *Service, r render.Render, re *htt
 	db := f.DB.Copy()
 	defer db.Close()
 	userProfile := &user.User{}
+
 	query := bson.M{"userid": loginForm.UserId, "password": loginForm.Password}
 	err := db.FindOne("users", query, userProfile)
-
+	fmt.Println(query)
 	if err != nil {
 		r.JSON(401, map[string]interface{}{
 			"message":        "Unauthorized error",
@@ -102,9 +104,7 @@ func Create(c martini.Context, sessionService *Service, r render.Render, re *htt
 		return
 	}
 	session.Set("userid", userProfile.UserId)
-	r.JSON(200, map[string]interface{}{
-		"message": "authorized",
-	})
+	r.JSON(200, userProfile)
 
 	sessionService.UpsertSession(userProfile.UserId)
 	c.Map(userProfile)
