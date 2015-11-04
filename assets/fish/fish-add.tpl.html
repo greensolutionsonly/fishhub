@@ -57,7 +57,7 @@
     </md-input-container>
   </div>
   <div>
-    <md-datepicker ng-model="fish.caughtdate" md-placeholder="  Enter Caught Date">
+    <md-datepicker ng-model="fish.caughtdate" md-placeholder="{{ 'Enter Caught Date' | translate">
     </md-datepicker>
   </div>
 
@@ -68,7 +68,7 @@
   <div class="container" ng-show="loading" style="margin-top: 5px;margin-bottom:20px;padding: 5px;">
     <md-progress-linear></md-progress-linear>
     <div class="bottom-block">
-      <span g-bind="'Please wait while the account creation is in progress' | translate">Please wait while the account creation is in progress...</span>
+      <span g-bind="'Please wait while we update your data' | translate">Please wait while we update your data</span>
     </div>
   </div>
 </div>
