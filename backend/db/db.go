@@ -96,6 +96,11 @@ func (db *DB) UpsertSession(name string, q interface{}, v interface{}) (err erro
 	return
 }
 
+func (db *DB) Insert(name string, v interface{}) (err error) {
+	err = db.DB().C(name).Insert(v)
+	return
+}
+
 func (db *DB) RemoveCollection(name string, q interface{}) (removed int, err error) {
 	i, err := db.DB().C(name).RemoveAll(q)
 	return i.Removed, err
@@ -201,7 +206,8 @@ func (db *DB) EnsureUniqueIndexKey(colName string, keys ...string) error {
 }
 
 func (db *DB) ensureDefaultIndex() error {
-	err := db.EnsureUniqueIndexKey("users", "id")
+
+	err := db.EnsureUniqueIndexKey("users", "userid")
 	if err != nil {
 		return err
 	}

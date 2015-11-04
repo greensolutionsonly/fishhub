@@ -51,11 +51,12 @@ func main() {
 	)
 	// setup routes
 
-	m.Post("/users", binding.Bind(user.UserForm{}), user.Create)
+	m.Post("/users", binding.Bind(user.UserForm{}), createUser)
+
 	m.Group("/users", func(r martini.Router) {
-		r.Get("/:id", user.Get)
-		r.Put("/:id", binding.Bind(user.UserUpdateForm{}), user.Update)
-		r.Delete("/delete/:id", user.Delete)
+		r.Get("/:id", getUser)
+		r.Put("/:id", binding.Bind(user.UserUpdateForm{}), updateUser)
+		r.Delete("/delete/:id", deleteUser)
 	}, Auth)
 
 	m.Group("/fishes", func(r martini.Router) {

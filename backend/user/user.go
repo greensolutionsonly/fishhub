@@ -1,14 +1,9 @@
 package user
 
 import (
-	"fmt"
-	"github.com/go-martini/martini"
 	"github.com/greensolutionsonly/fishhub/backend/db"
-	"github.com/greensolutionsonly/fishhub/backend/fishhub"
 	"github.com/jamieomatthews/validation"
 	"github.com/martini-contrib/binding"
-	"github.com/martini-contrib/render"
-	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"net/http"
 )
@@ -76,109 +71,33 @@ func (u *User) GetById(id interface{}) error {
 	return err
 }
 
-func Create(r render.Render, re *http.Request, f *fishhub.DBService, userForm UserForm) {
-	userExistError := binding.Error{
-		Message:        "is already taken",
-		FieldNames:     []string{"email"},
-		Classification: "UserExistError",
-	}
-	errors := binding.Errors{userExistError}
-	if userExist(f, userForm.Email) {
-		r.JSON(400, errors)
-		return
-	}
-
-	d := f.DB.Copy()
-	defer d.Close()
-	fmt.Println(userForm)
-	updated, _ := d.Upsert("users", db.Query{"userid": userForm.UserId}, nil, userForm, true)
-
-	if updated == true {
-		r.JSON(200, map[string]interface{}{
-			"message": "User profile is successfully created.",
-		})
-		return
-	}
-
-	r.JSON(400, map[string]interface{}{
-		"message":        "Unknown error occurred, please try again",
-		"classification": "UnknownError",
-	})
-	return
-}
-
-func userExist(f *fishhub.DBService, userId string) bool {
-	db := f.DB.Copy()
-	defer db.Close()
-	ui := User{}
-	query := bson.M{"userid": userId}
-	err := db.FindOne("users", query, &ui)
-	if err == mgo.ErrNotFound {
-		return false
-	} else {
-		return true
-	}
-	return false
-}
-
-func Get(r render.Render, params martini.Params, re *http.Request, f *fishhub.DBService) {
-	db := f.DB.Copy()
-	defer db.Close()
-	ui := User{}
-	query := bson.M{"userid": params["id"]}
-	_ = db.FindOne("users", query, &ui)
-	r.JSON(200, ui)
-}
-
-func Update(r render.Render, params martini.Params, re *http.Request, f *fishhub.DBService, userForm UserUpdateForm) {
-	d := f.DB.Copy()
-	defer d.Close()
-	query := bson.M{"_id": bson.ObjectIdHex(params["id"])}
-	updated, _ := d.Upsert("users", query, nil, userForm, true)
-
-	if updated == true {
-		r.JSON(200, userForm)
-		return
-	}
-
-	r.JSON(400, map[string]interface{}{
-		"message":        "Unknown error occurred, please try again",
-		"classification": "UnknownError",
-	})
-	return
-}
-
-func Delete(r render.Render, re *http.Request, f *fishhub.DBService) {
-
-}
-
-func (UserForm UserForm) Validate(errors binding.Errors, req *http.Request) binding.Errors {
+func (userForm UserForm) Validate(errors binding.Errors, req *http.Request) binding.Errors {
 	if len(errors) >= 1 {
 		return errors
 	}
-	v := validation.NewValidation(&errors, UserForm)
-	v.Validate(&UserForm.Name).Classify("MinimumLengthError").Key("name").MinLength(4)
-	v.Validate(&UserForm.Name).Classify("MaxLengthError").Key("name").MaxLength(400)
-	v.Validate(&UserForm.Password).Classify("MinimumLengthError").Key("password").MinLength(8)
-	if UserForm.Email != "" {
-		v.Validate(&UserForm.Email).Classify("EmailFormatError").Email()
+	v := validation.NewValidation(&errors, userForm)
+	v.Validate(&userForm.Name).Classify("MinimumLengthError").Key("name").MinLength(4)
+	v.Validate(&userForm.Name).Classify("MaxLengthError").Key("name").MaxLength(400)
+	v.Validate(&userForm.Password).Classify("MinimumLengthError").Key("password").MinLength(8)
+	if userForm.Email != "" {
+		v.Validate(&userForm.Email).Classify("EmailFormatError").Email()
 	}
-	if UserForm.Password != UserForm.ConfirmPassword {
+	if userForm.Password != userForm.ConfirmPassword {
 		fields := []string{"password", "confirm_password"}
 		errors = append(errors, binding.Error{Message: "does not match", FieldNames: fields, Classification: "PasswordNotMatchError"})
 	}
 	return *v.Errors.(*binding.Errors)
 }
 
-func (UserForm UserUpdateForm) Validate(errors binding.Errors, req *http.Request) binding.Errors {
+func (userForm UserUpdateForm) Validate(errors binding.Errors, req *http.Request) binding.Errors {
 	if len(errors) >= 1 {
 		return errors
 	}
-	v := validation.NewValidation(&errors, UserForm)
-	v.Validate(&UserForm.Name).Classify("MinimumLengthError").Key("name").MinLength(4)
-	v.Validate(&UserForm.Name).Classify("MaxLengthError").Key("name").MaxLength(400)
-	if UserForm.Email != "" {
-		v.Validate(&UserForm.Email).Classify("EmailFormatError").Email()
+	v := validation.NewValidation(&errors, userForm)
+	v.Validate(&userForm.Name).Classify("MinimumLengthError").Key("name").MinLength(4)
+	v.Validate(&userForm.Name).Classify("MaxLengthError").Key("name").MaxLength(400)
+	if userForm.Email != "" {
+		v.Validate(&userForm.Email).Classify("EmailFormatError").Email()
 	}
 	return *v.Errors.(*binding.Errors)
 }
