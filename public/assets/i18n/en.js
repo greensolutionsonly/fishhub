@@ -1,0 +1,3 @@
+angular.module('fh.i18n').config(function($translateProvider) {
+  $translateProvider.translations("en", {"HELLO_WORLD":"hello world","PAGE_TITLE_HOME":"Home","PAGE_TITLE_MY_PROFILE":"My Profile","HEADER_MENU":"My Profile","nameRequired":"name is required","emailRequired":"email is required","roleRequired":"role is required","countryRequired":"country is required","passwordMinimum Length is 8":"password length must be 8 or above","emailMust be a valid email address":"email must be in valid email format.","passworddoes not match":"password  and confirm password does not match.","emailis already taken":"This email is already taken"});
+})
