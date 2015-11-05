@@ -40,6 +40,11 @@ angular.module('fishHubApp',[
           $location.path(path)
         $scope.isAlreadyLoggedin = ->
           angular.isDefined($cookies.get("Id"))
+        $scope.showHomePage = ->
+          if $scope.isAlreadyLoggedin() == true
+            $location.path('fishes')
+          else
+            $location.path('welcome')
         $scope.viewItems = ->
           $location.path("fishes")
           $scope.close()
@@ -55,6 +60,7 @@ angular.module('fishHubApp',[
           if $scope.isAlreadyLoggedin() == true
             User.get { id: $cookies.get("Id")}, (data, responseHeaders) ->
               $scope.setSession(data)
+          $scope.showHomePage()
 
         $scope.init()
         $scope.close = ->

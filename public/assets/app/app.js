@@ -28,6 +28,13 @@ angular.module('fishHubApp', ['ui.router', 'fh.user', 'fh.login', 'fh.i18n', 'ng
   $scope.isAlreadyLoggedin = function() {
     return angular.isDefined($cookies.get("Id"));
   };
+  $scope.showHomePage = function() {
+    if ($scope.isAlreadyLoggedin() === true) {
+      return $location.path('fishes');
+    } else {
+      return $location.path('welcome');
+    }
+  };
   $scope.viewItems = function() {
     $location.path("fishes");
     return $scope.close();
@@ -43,12 +50,13 @@ angular.module('fishHubApp', ['ui.router', 'fh.user', 'fh.login', 'fh.i18n', 'ng
   };
   $scope.init = function() {
     if ($scope.isAlreadyLoggedin() === true) {
-      return User.get({
+      User.get({
         id: $cookies.get("Id")
       }, function(data, responseHeaders) {
         return $scope.setSession(data);
       });
     }
+    return $scope.showHomePage();
   };
   $scope.init();
   return $scope.close = function() {
