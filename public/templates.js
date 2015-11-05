@@ -857,8 +857,8 @@ module.run(['$templateCache', function($templateCache) {
     '          </div>\n' +
     '        </md-list-item>\n' +
     '        <md-divider></md-divider>\n' +
-    '        <md-list-item class="md-2-line">\n' +
-    '          <div class="md-list-item-text" ng-click="go(\'users\')">\n' +
+    '        <md-list-item class="md-2-line m">\n' +
+    '          <div class="md-list-item-text" ng-click="go(\'users/new\')">\n' +
     '            <ng-md-icon icon="account_circle"  class="welcome_trans" size="30" style="fill:dodgerblue"></ng-md-icon>\n' +
     '            <h3>Sign Up</h3>\n' +
     '            <p>You can create a new account</p>\n' +
