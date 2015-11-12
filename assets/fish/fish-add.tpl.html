@@ -52,7 +52,7 @@
     <md-input-container class="md-block">
       <label ng-bind="'Currency Type' | translate">Currency Type</label>
       <md-select ng-model="fish.currencytype">
-        <md-option ng-repeat="currency in currencies" value="{{currency.cc}}">{{currency.name}}</md-option>
+        <md-option ng-repeat="currency in currencies" value="{{currency.country}}">{{currency.name}}</md-option>
       </md-select>
     </md-input-container>
   </div>

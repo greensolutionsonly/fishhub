@@ -4,6 +4,7 @@ angular.module('fh.fish').controller('FishAddCtrl', (
   $location
   Fish
   currencies
+  SessionService
   $mdDialog
   ) ->
 
@@ -36,7 +37,9 @@ angular.module('fh.fish').controller('FishAddCtrl', (
         parent: angular.element(document.querySelector('#fishContainer'))
         locals: { errors: $scope.errors}
         clickOutsideToClose: true)
-
+    $scope.setCurrency = ->
+      $scope.fish.currencytype = SessionService.Country
+    $scope.setCurrency()
     $scope.addFish = ->
       $scope.loading = true
       $scope.fish.$save ((resp, headers) ->

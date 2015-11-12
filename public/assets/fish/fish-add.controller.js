@@ -1,4 +1,4 @@
-angular.module('fh.fish').controller('FishAddCtrl', function($rootScope, $scope, $location, Fish, currencies, $mdDialog) {
+angular.module('fh.fish').controller('FishAddCtrl', function($rootScope, $scope, $location, Fish, currencies, SessionService, $mdDialog) {
   var errorCtrl, successCtrl;
   $scope.loading = false;
   $scope.fish = new Fish();
@@ -35,6 +35,10 @@ angular.module('fh.fish').controller('FishAddCtrl', function($rootScope, $scope,
       clickOutsideToClose: true
     });
   };
+  $scope.setCurrency = function() {
+    return $scope.fish.currencytype = SessionService.Country;
+  };
+  $scope.setCurrency();
   return $scope.addFish = function() {
     $scope.loading = true;
     return $scope.fish.$save((function(resp, headers) {
