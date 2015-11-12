@@ -1,4 +1,4 @@
-angular.module('fishHubApp', ['ui.router', 'fh.user', 'fh.login', 'fh.i18n', 'ngMaterial', 'ngCookies', 'fh.templates', 'ngMdIcons', 'fh.home', 'fh.welcome', 'fh.fish', 'fh.userSession', 'fh.locales', 'pascalprecht.translate']).controller('AppCtrl', function($scope, $timeout, $location, $mdSidenav, $mdUtil, $log, $translate, SessionService, $cookies, $rootScope, User) {
+angular.module('fishHubApp', ['ui.router', 'fh.user', 'fh.login', 'fh.i18n', 'ngMaterial', 'ngCookies', 'fh.templates', 'ngMdIcons', 'fh.home', 'fh.welcome', 'fh.fish', 'fh.bid', 'fh.userSession', 'fh.locales', 'pascalprecht.translate']).controller('AppCtrl', function($scope, $timeout, $location, $mdSidenav, $mdUtil, $log, $translate, SessionService, $cookies, $rootScope, User) {
   var buildToggler;
   $scope.user = SessionService;
   $scope.lastLoggedinTime = $cookies.get("LastLoggedinTime");
@@ -22,6 +22,7 @@ angular.module('fishHubApp', ['ui.router', 'fh.user', 'fh.login', 'fh.i18n', 'ng
       $cookies.put("LastVisitedPath", next);
     }
   });
+  $scope.isAdmin = SessionService.IsAdmin;
   $scope.go = function(path) {
     $location.path(path);
     return $scope.close();
@@ -47,6 +48,8 @@ angular.module('fishHubApp', ['ui.router', 'fh.user', 'fh.login', 'fh.i18n', 'ng
     SessionService.UserId = data.userid;
     SessionService.Country = data.country;
     SessionService.Email = data.email;
+    SessionService.IsAdmin = data.isadmin;
+    $scope.isAdmin = data.isadmin;
     return $translate.use(data.locale);
   };
   $scope.init = function() {

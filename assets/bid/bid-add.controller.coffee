@@ -6,6 +6,7 @@ angular.module('fh.bid').controller('BidAddCtrl', (
   currencies
   SessionService
   $mdDialog
+  $stateParams
   ) ->
 
     $scope.loading = false
@@ -38,6 +39,7 @@ angular.module('fh.bid').controller('BidAddCtrl', (
 
     $scope.addBid = ->
       $scope.loading = true
+      $scope.bid.fishid = $stateParams.id
       $scope.bid.$save ((resp, headers) ->
         $scope.loading=false
         $scope.showSuccess()

@@ -6,7 +6,8 @@ angular.module('fh.userSession', []).factory("SessionService", function() {
     UserId: '',
     Role: '',
     Email: '',
-    Country: ''
+    Country: '',
+    IsAdmin: false
   };
   return session;
 });

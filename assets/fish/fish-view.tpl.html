@@ -62,7 +62,10 @@
       <ng-md-icon icon="attach_money" size="24" style="fill:dodgerblue"></ng-md-icon>
       <input type="text"  ng-model="fish.caughtdate"  readonly="readonly">
     </md-input-container>
+
+
   </div>
+  <md-button class="md-raised md-warn" ng-click="bid(fish._id)" ng-show="isAdmin">Bid</md-button>
 </div>
 
 <md-content style="text-align: center">

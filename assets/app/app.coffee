@@ -10,6 +10,7 @@ angular.module('fishHubApp',[
   'fh.home'
   'fh.welcome'
   'fh.fish'
+  'fh.bid'
   'fh.userSession'
   'fh.locales'
   'pascalprecht.translate'
@@ -36,6 +37,7 @@ angular.module('fishHubApp',[
         $rootScope.$on '$locationChangeStart', (event, next, current) ->
           $cookies.put("LastVisitedPath", next) if $scope.user.IsLogged
           return
+        $scope.isAdmin = SessionService.IsAdmin
         $scope.go = (path) ->
           $location.path(path)
           $scope.close()
@@ -56,6 +58,8 @@ angular.module('fishHubApp',[
           SessionService.UserId = data.userid
           SessionService.Country = data.country
           SessionService.Email = data.email
+          SessionService.IsAdmin = data.isadmin
+          $scope.isAdmin = data.isadmin
           $translate.use(data.locale)
         $scope.init = ->
           if $scope.isAlreadyLoggedin() == true

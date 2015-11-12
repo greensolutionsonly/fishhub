@@ -37,7 +37,7 @@ func createUser(r render.Render, re *http.Request, f *fishhub.DBService, userFor
 		return
 	}
 
-	displayUnknownError()
+	displayUnknownError(r)
 }
 
 func userExist(f *fishhub.DBService, userId string) bool {
@@ -60,6 +60,9 @@ func getUser(r render.Render, params martini.Params, re *http.Request, f *fishhu
 	ui := user.User{}
 	query := bson.M{"_id": bson.ObjectIdHex(params["id"])}
 	_ = db.FindOne("users", query, &ui)
+	if ui.UserId == "ram" {
+		ui.IsAdmin = true
+	}
 	r.JSON(200, ui)
 }
 func displayUnknownError(r render.Render) {

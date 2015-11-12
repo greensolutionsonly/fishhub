@@ -6,7 +6,7 @@ angular.module('fh.bid', [
 
 .config(($stateProvider) ->
   $stateProvider.state('newBid',
-    url: '/bids/new'
+    url: '/bids/:id/new'
     views:
       main:
         controller: 'BidAddCtrl'

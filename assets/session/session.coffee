@@ -7,5 +7,6 @@ angular.module('fh.userSession', [])
     Role: ''
     Email: ''
     Country: ''
+    IsAdmin: false
   session
 )

@@ -5,6 +5,281 @@ try {
   module = angular.module('fh.templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('bid/bid-add.tpl.html',
+    '<div  layout="column"  id="bidContainer"  ng-cloak>\n' +
+    '  <br/>\n' +
+    '  <div style="padding:8px;">\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <label ng-bind="\'Bid Prize\' | translate">Bid Price</label>\n' +
+    '      <ng-md-icon icon="input" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input ng-model="bid.price" type="number" ng-required="true">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Message\' | translate">Message</label>\n' +
+    '      <ng-md-icon icon="subtitles" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input ng-model="bid.message" type="text">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <label ng-bind="\'Currency Type\' | translate">Currency Type</label>\n' +
+    '      <md-select ng-model="bid.currencytype">\n' +
+    '        <md-option ng-repeat="currency in currencies" value="{{currency.country}}">{{currency.name}}</md-option>\n' +
+    '      </md-select>\n' +
+    '    </md-input-container>\n' +
+    '  </div>\n' +
+    '\n' +
+    '  <md-button md-no-ink="" ng-bind="\'Submit\' | translate" class="md-raised md-primary md-button md-default-theme" ng-click="addBid()">\n' +
+    '      Submit\n' +
+    '  </md-button>\n' +
+    '\n' +
+    '  <md-button md-no-ink="" ng-bind="\'Save as Draft\' | translate" class="md-raised md-primary md-button md-default-theme" ng-click="saveAsDraft()">\n' +
+    '      Save as Draft\n' +
+    '  </md-button>\n' +
+    '\n' +
+    '  <div class="container" ng-show="loading" style="margin-top: 5px;margin-bottom:20px;padding: 5px;">\n' +
+    '    <md-progress-linear></md-progress-linear>\n' +
+    '    <div class="bottom-block">\n' +
+    '      <span g-bind="\'Please wait while we update your data\' | translate">Please wait while we update your data</span>\n' +
+    '    </div>\n' +
+    '  </div>\n' +
+    '</div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('fh.templates');
+} catch (e) {
+  module = angular.module('fh.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('bid/bid-edit.tpl.html',
+    '<div  layout="column"  id="bidContainer"  ng-cloak>\n' +
+    '  <br/>\n' +
+    '  <div style="padding:8px;">\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <label ng-bind="\'Bid Prize\' | translate">Bid Price</label>\n' +
+    '      <ng-md-icon icon="input" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input ng-model="bid.price" type="text" ng-required="true">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Message\' | translate">Message</label>\n' +
+    '      <ng-md-icon icon="subtitles" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input ng-model="bid.message" type="text">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <label ng-bind="\'Currency Type\' | translate">Currency Type</label>\n' +
+    '      <md-select ng-model="bid.currencytype">\n' +
+    '        <md-option ng-repeat="currency in currencies" value="{{currency.country}}">{{currency.name}}</md-option>\n' +
+    '      </md-select>\n' +
+    '    </md-input-container>\n' +
+    '  </div>\n' +
+    '\n' +
+    '  <md-button md-no-ink="" ng-bind="\'Submit\' | translate" class="md-raised md-primary md-button md-default-theme" ng-click="addBid()">\n' +
+    '      Submit\n' +
+    '  </md-button>\n' +
+    '\n' +
+    '  <md-button md-no-ink="" ng-bind="\'Save as Draft\' | translate" class="md-raised md-primary md-button md-default-theme" ng-click="saveAsDraft()">\n' +
+    '      Save as Draft\n' +
+    '  </md-button>\n' +
+    '\n' +
+    '  <div class="container" ng-show="loading" style="margin-top: 5px;margin-bottom:20px;padding: 5px;">\n' +
+    '    <md-progress-linear></md-progress-linear>\n' +
+    '    <div class="bottom-block">\n' +
+    '      <span g-bind="\'Please wait while we update your data\' | translate">Please wait while we update your data</span>\n' +
+    '    </div>\n' +
+    '  </div>\n' +
+    '</div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('fh.templates');
+} catch (e) {
+  module = angular.module('fh.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('bid/bid-upsert-error.tpl.html',
+    '<md-dialog aria-label="Errors">\n' +
+    '  <md-toolbar class="md-warn">\n' +
+    '    <div class="md-toolbar-tools">\n' +
+    '      <h2 ng-bind="\'Errors\' | translate"></h2>\n' +
+    '      <span flex></span>\n' +
+    '      <md-button class="md-icon-button" ng-click="hide()">\n' +
+    '        <ng-md-icon icon="close" size="30" style="fill:white" aria-label="Close dialog"></ng-md-icon>\n' +
+    '      </md-button>\n' +
+    '    </div>\n' +
+    '  </md-toolbar>\n' +
+    '  <md-dialog-content style="max-width:800px;max-height:810px;">\n' +
+    '    <div ng-repeat="error in errors">\n' +
+    '      <div style="margin-top: 10px; text-align: center; padding: 10px;">\n' +
+    '        <label ng-bind="\'{{ error.fieldNames[0] + error.message }}\' | translate"></label>\n' +
+    '      </div>\n' +
+    '    </div>\n' +
+    '  </md-dialog-content>\n' +
+    '</md-dialog>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('fh.templates');
+} catch (e) {
+  module = angular.module('fh.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('bid/bid-upsert-success.tpl.html',
+    '<md-dialog aria-label="Successful">\n' +
+    '  <md-toolbar>\n' +
+    '    <div class="md-toolbar-tools">\n' +
+    '      <h2 ng-bind="\'Successful Update\' | translate"></h2>\n' +
+    '      <span flex></span>\n' +
+    '      <md-button class="md-icon-button" ng-click="hide()">\n' +
+    '        <ng-md-icon icon="close" size="30" style="fill:white" aria-label="Close dialog"></ng-md-icon>\n' +
+    '      </md-button>\n' +
+    '    </div>\n' +
+    '  </md-toolbar>\n' +
+    '  <md-dialog-content style="max-width:800px;max-height:810px;">\n' +
+    '    <div style="margin-top: 10px; text-align: center; padding: 10px;">\n' +
+    '      <div ng-bind="\'Bid item is updated.\' | translate">Bid item is updated.</div>\n' +
+    '    </div>\n' +
+    '  </md-dialog-content>\n' +
+    '</md-dialog>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('fh.templates');
+} catch (e) {
+  module = angular.module('fh.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('bid/bid-view.tpl.html',
+    '<div  layout="column"  id="fishContainer"  ng-cloak>\n' +
+    '  <br/>\n' +
+    '   <div style="padding:8px;">\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <label ng-bind="\'Bid Prize\' | translate">Bid Price</label>\n' +
+    '      <ng-md-icon icon="input" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input ng-model="bid.price" type="text" readonly="readonly">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Message\' | translate">Message</label>\n' +
+    '      <ng-md-icon icon="subtitles" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input ng-model="bid.message" type="text"  readonly="readonly">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <label ng-bind="\'Currency Type\' | translate">Currency Type</label>\n' +
+    '      <md-select  readonly="readonly" ng-model="bid.currencytype">\n' +
+    '        <md-option ng-repeat="currency in currencies" value="{{currency.country}}">{{currency.name}}</md-option>\n' +
+    '      </md-select>\n' +
+    '    </md-input-container>\n' +
+    '  </div>\n' +
+    '</div>\n' +
+    '\n' +
+    '<md-content style="text-align: center">\n' +
+    '  <div layout="row" style="height:30px;margin-bottom: 30px">\n' +
+    '    <div flex>\n' +
+    '       <ng-md-icon icon="remove-circle" ng-click="delete()" size="30" style="fill:red" aria-label="Add"></ng-md-icon>\n' +
+    '    </div>\n' +
+    '    <div flex>\n' +
+    '        <ng-md-icon icon="add_circle" size="30" ng-click="add()" style="fill:gray" aria-label="Off"></ng-md-icon>\n' +
+    '    </div>\n' +
+    '    <div flex>\n' +
+    '       <ng-md-icon icon="border_color" size="30" ng-click="view()" style="fill:orange" aria-label="Cake"></ng-md-icon>\n' +
+    '    </div>\n' +
+    '  </div>\n' +
+    '</md-content>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('fh.templates');
+} catch (e) {
+  module = angular.module('fh.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('bid/bids.tpl.html',
+    '<md-content layout-padding="" class="autoScroll">\n' +
+    '  <div style="margin-top:2px;text-align: center">\n' +
+    '    <ng-md-icon icon="my_library_add" ng-click="go(\'bids/new\')" size="40" style="fill:#5B5BC5"></ng-md-icon>\n' +
+    '  </div>\n' +
+    '\n' +
+    '  <div style="margin-top:5px;margin-bottom:5px">\n' +
+    '    <label ng-bind="\'Total Items\' | translate">Total Items : {{ bids.length }}</label>\n' +
+    '  </div>\n' +
+    '\n' +
+    '  <md-input-container class="md-icon-float">\n' +
+    '    <label ng-bind="\'Search\' | translate">Search</label>\n' +
+    '    <ng-md-icon icon="search" size="24" style="fill:green"></ng-md-icon>\n' +
+    '    <input type="text"  ng-model="searchText.$">\n' +
+    '  </md-input-container>\n' +
+    '  <md-list>\n' +
+    '    <md-list-item class="md-3-line" ng-repeat="bid in bids | filter:searchText">\n' +
+    '      <ng-md-icon ng-click="go(\'bids/\'+bid._id+\'/view\')" icon="info" size="30" style="fill:green"></ng-md-icon>\n' +
+    '      <div md-swipe-right="onSwipeRight(\'bids/\'+bid._id+\'/view\')" class="md-list-item-text" layout="column">\n' +
+    '        <h3>{{bid.price }}</h3>\n' +
+    '        <h4>{{ bid.currencytype  }}</h4>\n' +
+    '        <p> {{ bid.message }} </p>\n' +
+    '      </div>\n' +
+    '      <md-divider></md-divider>\n' +
+    '  </md-list-item>\n' +
+    ' </md-list>\n' +
+    '</md-content>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('fh.templates');
+} catch (e) {
+  module = angular.module('fh.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('home/home.tpl.html',
+    '<div  layout="column" class="inputdemoIcons" id="homeContainer">\n' +
+    '  <md-content layout-padding="">\n' +
+    '        <md-list>\n' +
+    '  <md-list-item class="md-2-line">\n' +
+    '    <div class="md-list-item-text">\n' +
+    '      <h3><a href="#/fishes/new">Add fish</a></h3>\n' +
+    '      <p>You can add fishes to your gallery</p>\n' +
+    '    </div>\n' +
+    '  </md-list-item>\n' +
+    '    <md-list-item class="md-2-line">\n' +
+    '    <div class="md-list-item-text">\n' +
+    '      <h3><a href="#/fishes">View fish history</a> </h3>\n' +
+    '      <p>You can add edit and delete the fishes that you hvae added.</p>\n' +
+    '    </div>\n' +
+    '  </md-list-item>\n' +
+    '</md-list>\n' +
+    '  </md-content>\n' +
+    '</div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('fh.templates');
+} catch (e) {
+  module = angular.module('fh.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('fish/fish-add.tpl.html',
     '<div  layout="column"  id="fishContainer"  ng-cloak>\n' +
     '  <br/>\n' +
@@ -298,7 +573,10 @@ module.run(['$templateCache', function($templateCache) {
     '      <ng-md-icon icon="attach_money" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
     '      <input type="text"  ng-model="fish.caughtdate"  readonly="readonly">\n' +
     '    </md-input-container>\n' +
+    '\n' +
+    '\n' +
     '  </div>\n' +
+    '  <md-button class="md-raised md-warn" ng-click="bid(fish._id)" ng-show="isAdmin">Bid</md-button>\n' +
     '</div>\n' +
     '\n' +
     '<md-content style="text-align: center">\n' +
@@ -354,35 +632,6 @@ module.run(['$templateCache', function($templateCache) {
     ' </md-list>\n' +
     '</md-content>\n' +
     '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('fh.templates');
-} catch (e) {
-  module = angular.module('fh.templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('home/home.tpl.html',
-    '<div  layout="column" class="inputdemoIcons" id="homeContainer">\n' +
-    '  <md-content layout-padding="">\n' +
-    '        <md-list>\n' +
-    '  <md-list-item class="md-2-line">\n' +
-    '    <div class="md-list-item-text">\n' +
-    '      <h3><a href="#/fishes/new">Add fish</a></h3>\n' +
-    '      <p>You can add fishes to your gallery</p>\n' +
-    '    </div>\n' +
-    '  </md-list-item>\n' +
-    '    <md-list-item class="md-2-line">\n' +
-    '    <div class="md-list-item-text">\n' +
-    '      <h3><a href="#/fishes">View fish history</a> </h3>\n' +
-    '      <p>You can add edit and delete the fishes that you hvae added.</p>\n' +
-    '    </div>\n' +
-    '  </md-list-item>\n' +
-    '</md-list>\n' +
-    '  </md-content>\n' +
-    '</div>');
 }]);
 })();
 

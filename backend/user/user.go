@@ -47,6 +47,7 @@ type User struct {
 	authenticated bool          `json:"-"`
 	DB            *db.DB        `json:"-"`
 	Locale        string        `json:"locale"`
+	IsAdmin       bool          `json:"isadmin"`
 }
 
 func (u *User) IsAuthenticated() bool {

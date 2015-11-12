@@ -62,6 +62,12 @@
                     <p  ng-bind="'You can add, view, delete fish items' | translate">You can add, view, delete fish items</p>
                   </div>
                 </md-list-item>
+                <md-list-item class="md-2-line" ng-show="isAdmin">
+                  <div md-swipe-right="go('bids')" class="md-list-item-text">
+                    <h3 ng-click="go('bids')" ng-bind="'Bids' | translate">Bids</h3>
+                    <p  ng-bind="'You can add, view, delete bids' | translate">You can add, view, delete bids</p>
+                  </div>
+                </md-list-item>
               </md-list>
           </div>
         </md-content>
