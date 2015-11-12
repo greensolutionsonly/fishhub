@@ -21,6 +21,12 @@
       </md-select>
     </md-input-container>
   </div>
+
+  <div>
+    <div md-virtual-repeat="followup in bid.followups" md-on-demand class="repeated-item" flex>
+      {{followup}}
+    </div>
+  </div>
 </div>
 
 <md-content style="text-align: center">
