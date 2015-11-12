@@ -1,0 +1,38 @@
+<div  layout="column"  id="fishContainer"  ng-cloak>
+  <br/>
+   <div style="padding:8px;">
+    <md-input-container class="md-block">
+      <label ng-bind="'Bid Prize' | translate">Bid Price</label>
+      <ng-md-icon icon="input" size="24" style="fill:dodgerblue"></ng-md-icon>
+      <input ng-model="bid.price" type="text" readonly="readonly">
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <!-- Use floating label instead of placeholder -->
+      <label ng-bind="'Message' | translate">Message</label>
+      <ng-md-icon icon="subtitles" size="24" style="fill:dodgerblue"></ng-md-icon>
+      <input ng-model="bid.message" type="text"  readonly="readonly">
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <label ng-bind="'Currency Type' | translate">Currency Type</label>
+      <md-select  readonly="readonly" ng-model="bid.currencytype">
+        <md-option ng-repeat="currency in currencies" value="{{currency.country}}">{{currency.name}}</md-option>
+      </md-select>
+    </md-input-container>
+  </div>
+</div>
+
+<md-content style="text-align: center">
+  <div layout="row" style="height:30px;margin-bottom: 30px">
+    <div flex>
+       <ng-md-icon icon="remove-circle" ng-click="delete()" size="30" style="fill:red" aria-label="Add"></ng-md-icon>
+    </div>
+    <div flex>
+        <ng-md-icon icon="add_circle" size="30" ng-click="add()" style="fill:gray" aria-label="Off"></ng-md-icon>
+    </div>
+    <div flex>
+       <ng-md-icon icon="border_color" size="30" ng-click="view()" style="fill:orange" aria-label="Cake"></ng-md-icon>
+    </div>
+  </div>
+</md-content>

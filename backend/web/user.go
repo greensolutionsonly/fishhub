@@ -37,11 +37,7 @@ func createUser(r render.Render, re *http.Request, f *fishhub.DBService, userFor
 		return
 	}
 
-	r.JSON(400, map[string]interface{}{
-		"message":        "Unknown error occurred, please try again",
-		"classification": "UnknownError",
-	})
-	return
+	displayUnknownError()
 }
 
 func userExist(f *fishhub.DBService, userId string) bool {

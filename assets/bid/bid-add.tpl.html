@@ -1,0 +1,39 @@
+<div  layout="column"  id="bidContainer"  ng-cloak>
+  <br/>
+  <div style="padding:8px;">
+    <md-input-container class="md-block">
+      <label ng-bind="'Bid Prize' | translate">Bid Price</label>
+      <ng-md-icon icon="input" size="24" style="fill:dodgerblue"></ng-md-icon>
+      <input ng-model="bid.price" type="text" ng-required="true">
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <!-- Use floating label instead of placeholder -->
+      <label ng-bind="'Message' | translate">Message</label>
+      <ng-md-icon icon="subtitles" size="24" style="fill:dodgerblue"></ng-md-icon>
+      <input ng-model="bid.message" type="text">
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <label ng-bind="'Currency Type' | translate">Currency Type</label>
+      <md-select ng-model="bid.currencytype">
+        <md-option ng-repeat="currency in currencies" value="{{currency.country}}">{{currency.name}}</md-option>
+      </md-select>
+    </md-input-container>
+  </div>
+
+  <md-button md-no-ink="" ng-bind="'Submit' | translate" class="md-raised md-primary md-button md-default-theme" ng-click="addBid()">
+      Submit
+  </md-button>
+
+  <md-button md-no-ink="" ng-bind="'Save as Draft' | translate" class="md-raised md-primary md-button md-default-theme" ng-click="saveAsDraft()">
+      Save as Draft
+  </md-button>
+
+  <div class="container" ng-show="loading" style="margin-top: 5px;margin-bottom:20px;padding: 5px;">
+    <md-progress-linear></md-progress-linear>
+    <div class="bottom-block">
+      <span g-bind="'Please wait while we update your data' | translate">Please wait while we update your data</span>
+    </div>
+  </div>
+</div>
