@@ -5,35 +5,6 @@ try {
   module = angular.module('fh.templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('home/home.tpl.html',
-    '<div  layout="column" class="inputdemoIcons" id="homeContainer">\n' +
-    '  <md-content layout-padding="">\n' +
-    '        <md-list>\n' +
-    '  <md-list-item class="md-2-line">\n' +
-    '    <div class="md-list-item-text">\n' +
-    '      <h3><a href="#/fishes/new">Add fish</a></h3>\n' +
-    '      <p>You can add fishes to your gallery</p>\n' +
-    '    </div>\n' +
-    '  </md-list-item>\n' +
-    '    <md-list-item class="md-2-line">\n' +
-    '    <div class="md-list-item-text">\n' +
-    '      <h3><a href="#/fishes">View fish history</a> </h3>\n' +
-    '      <p>You can add edit and delete the fishes that you hvae added.</p>\n' +
-    '    </div>\n' +
-    '  </md-list-item>\n' +
-    '</md-list>\n' +
-    '  </md-content>\n' +
-    '</div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('fh.templates');
-} catch (e) {
-  module = angular.module('fh.templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('fish/fish-add.tpl.html',
     '<div  layout="column"  id="fishContainer"  ng-cloak>\n' +
     '  <br/>\n' +
@@ -383,6 +354,35 @@ module.run(['$templateCache', function($templateCache) {
     ' </md-list>\n' +
     '</md-content>\n' +
     '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('fh.templates');
+} catch (e) {
+  module = angular.module('fh.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('home/home.tpl.html',
+    '<div  layout="column" class="inputdemoIcons" id="homeContainer">\n' +
+    '  <md-content layout-padding="">\n' +
+    '        <md-list>\n' +
+    '  <md-list-item class="md-2-line">\n' +
+    '    <div class="md-list-item-text">\n' +
+    '      <h3><a href="#/fishes/new">Add fish</a></h3>\n' +
+    '      <p>You can add fishes to your gallery</p>\n' +
+    '    </div>\n' +
+    '  </md-list-item>\n' +
+    '    <md-list-item class="md-2-line">\n' +
+    '    <div class="md-list-item-text">\n' +
+    '      <h3><a href="#/fishes">View fish history</a> </h3>\n' +
+    '      <p>You can add edit and delete the fishes that you hvae added.</p>\n' +
+    '    </div>\n' +
+    '  </md-list-item>\n' +
+    '</md-list>\n' +
+    '  </md-content>\n' +
+    '</div>');
 }]);
 })();
 

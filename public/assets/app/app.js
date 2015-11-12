@@ -23,7 +23,8 @@ angular.module('fishHubApp', ['ui.router', 'fh.user', 'fh.login', 'fh.i18n', 'ng
     }
   });
   $scope.go = function(path) {
-    return $location.path(path);
+    $location.path(path);
+    return $scope.close();
   };
   $scope.isAlreadyLoggedin = function() {
     return angular.isDefined($cookies.get("Id"));
