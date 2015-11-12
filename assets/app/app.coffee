@@ -38,6 +38,7 @@ angular.module('fishHubApp',[
           return
         $scope.go = (path) ->
           $location.path(path)
+          $scope.close()
         $scope.isAlreadyLoggedin = ->
           angular.isDefined($cookies.get("Id"))
         $scope.showHomePage = ->
