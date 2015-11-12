@@ -27,7 +27,8 @@ func createUser(r render.Render, re *http.Request, f *fishhub.DBService, userFor
 	defer d.Close()
 
 	query := bson.M{"userid": userForm.UserId}
-	updated, _ := d.Upsert("users", query, nil, userForm, true)
+	update := bson.M{"$set": userForm}
+	updated, _ := d.Upsert("users", query, nil, update, true)
 
 	if updated == true {
 		r.JSON(200, map[string]interface{}{
@@ -65,23 +66,37 @@ func getUser(r render.Render, params martini.Params, re *http.Request, f *fishhu
 	_ = db.FindOne("users", query, &ui)
 	r.JSON(200, ui)
 }
+func displayUnknownError(r render.Render) {
+	r.JSON(400, map[string]interface{}{
+		"message":        "Unknown error occurred, please try again",
+		"classification": "UnknownError",
+	})
+}
 
 func updateUser(r render.Render, params martini.Params, re *http.Request, f *fishhub.DBService, userForm user.UserUpdateForm) {
 	d := f.DB.Copy()
 	defer d.Close()
 	query := bson.M{"_id": bson.ObjectIdHex(params["id"])}
-	updated, _ := d.Upsert("users", query, nil, userForm, true)
 
-	if updated == true {
-		r.JSON(200, userForm)
+	update := bson.M{
+		"address":      userForm.Address,
+		"contactno":    userForm.ContactNo,
+		"country":      userForm.Country,
+		"email":        userForm.Email,
+		"locale":       userForm.Locale,
+		"name":         userForm.Name,
+		"notification": userForm.Notification,
+		"role":         userForm.Role,
+	}
+
+	err := d.Update("users", query, bson.M{"$set": update})
+
+	if err != nil {
+		displayUnknownError(r)
 		return
 	}
 
-	r.JSON(400, map[string]interface{}{
-		"message":        "Unknown error occurred, please try again",
-		"classification": "UnknownError",
-	})
-	return
+	r.JSON(200, userForm)
 }
 
 func deleteUser(r render.Render, re *http.Request, f *fishhub.DBService) {

@@ -96,6 +96,11 @@ func (db *DB) UpsertSession(name string, q interface{}, v interface{}) (err erro
 	return
 }
 
+func (db *DB) Update(name string, q interface{}, v interface{}) (err error) {
+	err = db.DB().C(name).Update(q, v)
+	return
+}
+
 func (db *DB) Insert(name string, v interface{}) (err error) {
 	err = db.DB().C(name).Insert(v)
 	return
