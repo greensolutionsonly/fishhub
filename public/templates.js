@@ -187,6 +187,12 @@ module.run(['$templateCache', function($templateCache) {
     '      </md-select>\n' +
     '    </md-input-container>\n' +
     '  </div>\n' +
+    '\n' +
+    '  <div>\n' +
+    '    <div md-virtual-repeat="followup in bid.followups" md-on-demand class="repeated-item" flex>\n' +
+    '      {{followup}}\n' +
+    '    </div>\n' +
+    '  </div>\n' +
     '</div>\n' +
     '\n' +
     '<md-content style="text-align: center">\n' +
@@ -241,35 +247,6 @@ module.run(['$templateCache', function($templateCache) {
     ' </md-list>\n' +
     '</md-content>\n' +
     '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('fh.templates');
-} catch (e) {
-  module = angular.module('fh.templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('home/home.tpl.html',
-    '<div  layout="column" class="inputdemoIcons" id="homeContainer">\n' +
-    '  <md-content layout-padding="">\n' +
-    '        <md-list>\n' +
-    '  <md-list-item class="md-2-line">\n' +
-    '    <div class="md-list-item-text">\n' +
-    '      <h3><a href="#/fishes/new">Add fish</a></h3>\n' +
-    '      <p>You can add fishes to your gallery</p>\n' +
-    '    </div>\n' +
-    '  </md-list-item>\n' +
-    '    <md-list-item class="md-2-line">\n' +
-    '    <div class="md-list-item-text">\n' +
-    '      <h3><a href="#/fishes">View fish history</a> </h3>\n' +
-    '      <p>You can add edit and delete the fishes that you hvae added.</p>\n' +
-    '    </div>\n' +
-    '  </md-list-item>\n' +
-    '</md-list>\n' +
-    '  </md-content>\n' +
-    '</div>');
 }]);
 })();
 
@@ -577,6 +554,7 @@ module.run(['$templateCache', function($templateCache) {
     '\n' +
     '  </div>\n' +
     '  <md-button class="md-raised md-warn" ng-click="bid(fish._id)" ng-show="isAdmin">Bid</md-button>\n' +
+    '  <md-button ng-bind="\'View Bids\' | translate" class="md-raised md-warn" ng-click="bid(fish._id)">View Bids</md-button>\n' +
     '</div>\n' +
     '\n' +
     '<md-content style="text-align: center">\n' +
@@ -632,6 +610,35 @@ module.run(['$templateCache', function($templateCache) {
     ' </md-list>\n' +
     '</md-content>\n' +
     '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('fh.templates');
+} catch (e) {
+  module = angular.module('fh.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('home/home.tpl.html',
+    '<div  layout="column" class="inputdemoIcons" id="homeContainer">\n' +
+    '  <md-content layout-padding="">\n' +
+    '        <md-list>\n' +
+    '  <md-list-item class="md-2-line">\n' +
+    '    <div class="md-list-item-text">\n' +
+    '      <h3><a href="#/fishes/new">Add fish</a></h3>\n' +
+    '      <p>You can add fishes to your gallery</p>\n' +
+    '    </div>\n' +
+    '  </md-list-item>\n' +
+    '    <md-list-item class="md-2-line">\n' +
+    '    <div class="md-list-item-text">\n' +
+    '      <h3><a href="#/fishes">View fish history</a> </h3>\n' +
+    '      <p>You can add edit and delete the fishes that you hvae added.</p>\n' +
+    '    </div>\n' +
+    '  </md-list-item>\n' +
+    '</md-list>\n' +
+    '  </md-content>\n' +
+    '</div>');
 }]);
 })();
 
