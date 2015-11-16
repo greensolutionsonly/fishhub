@@ -1,0 +1,18 @@
+<md-dialog aria-label="Errors">
+  <md-toolbar class="md-warn">
+    <div class="md-toolbar-tools">
+      <h2 ng-bind="'Errors' | translate"></h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="hide()">
+        <ng-md-icon icon="close" size="30" style="fill:white" aria-label="Close dialog"></ng-md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content style="max-width:800px;max-height:810px;">
+    <div ng-repeat="error in errors">
+      <div style="margin-top: 10px; text-align: center; padding: 10px;">
+        <label ng-bind="'{{ error.fieldNames[0] + error.message }}' | translate"></label>
+      </div>
+    </div>
+  </md-dialog-content>
+</md-dialog>

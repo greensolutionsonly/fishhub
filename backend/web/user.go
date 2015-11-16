@@ -65,12 +65,6 @@ func getUser(r render.Render, params martini.Params, re *http.Request, f *fishhu
 	}
 	r.JSON(200, ui)
 }
-func displayUnknownError(r render.Render) {
-	r.JSON(400, map[string]interface{}{
-		"message":        "Unknown error occurred, please try again",
-		"classification": "UnknownError",
-	})
-}
 
 func updateUser(r render.Render, params martini.Params, re *http.Request, f *fishhub.DBService, userForm user.UserUpdateForm) {
 	d := f.DB.Copy()

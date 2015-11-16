@@ -13,6 +13,7 @@ angular.module('fishHubApp',[
   'fh.bid'
   'fh.userSession'
   'fh.locales'
+  'fh.chat'
   'pascalprecht.translate'
 ])
 

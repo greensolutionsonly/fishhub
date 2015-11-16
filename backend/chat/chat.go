@@ -20,48 +20,61 @@ type Chat struct {
 	IsRead      bool                  `json:"is_read" form:"-"`
 	IsDelivered bool                  `json:is_delivered form:"-"`
 	ReadAt      time.Time             `json:"read_at"`
-	Db          fishhub.DBService     `json:"-" form:"-"`
+	Db          *fishhub.DBService    `json:"-" form:"-"`
 }
 
-func (c *Chat) UpsertMime() {
+func (c *Chat) InsertMime() error {
+
+	return nil
+}
+
+func (c Chat) Update() {
 
 }
 
-func (c *Chat) Upsert() error {
+func (c *Chat) Insert() error {
+	db := c.Db.DB.Copy()
+	defer db.Close()
+	c.SendAt = time.Now()
 
-return nil
+	if c.MessageType == "text" {
+		err := db.Insert("chats", c)
+		return err
+	}
+
+	return c.InsertMime()
 }
 
 func (c Chat) Clear() {
-  db := c.Db.DB.Copy()
-  defer db.Close()
-  _ = db.RemoveID("chats", c.Id)
+	db := c.Db.DB.Copy()
+	defer db.Close()
+	_ = db.RemoveID("chats", c.Id)
 
 }
 
 func (c Chat) ClearAll() {
-    db := c.Db.DB.Copy()
-  defer db.Close()
+	db := c.Db.DB.Copy()
+	defer db.Close()
 
-  q := bson.M{"from_uid": c.FromUid, "touid": c.ToUid}
-  _ = db.RemoveAll("chats", q)
+	q := bson.M{"from_uid": c.FromUid, "touid": c.ToUid}
+	_ = db.RemoveAll("chats", q)
 }
 
 func (c Chat) Validate() {
 
 }
 
-func (c Chat) GetChats() []Chat, error {
-    db := c.Db.DB.Copy()
-  defer db.Close()
+func (c Chat) GetChats() ([]Chat, error) {
+	db := c.Db.DB.Copy()
+	defer db.Close()
 
 	q := bson.M{"from_uid": c.FromUid, "touid": c.ToUid}
 	sortFields := []string{"-send_at"}
 	chats := []Chat{}
 	err := db.FindAll("chats", q, sortFields, &chats)
-  if err != nil {
-    return chats, err
-  }
+	if err != nil {
+		return chats, err
+	}
 
 	return chats, nil
 }
