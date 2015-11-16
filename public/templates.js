@@ -316,34 +316,70 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('chat/chats.tpl.html',
-    '<md-content layout-padding="" class="autoScroll">\n' +
-    '  <div style="margin-top:2px;text-align: center">\n' +
-    '    <ng-md-icon icon="my_library_add" ng-click="go(\'fishes/new\')" size="40" style="fill:#5B5BC5"></ng-md-icon>\n' +
+    '<div style="display: flex; flex-flow: column; height: 100%;">\n' +
+    '  <div>\n' +
+    '    <md-content>\n' +
+    '      <md-toolbar style="background-color:whi">\n' +
+    '          <div class="md-toolbar-tools">\n' +
+    '            <md-button class="md-icon-button" aria-label="Settings">\n' +
+    '              <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>\n' +
+    '            </md-button>\n' +
+    '            <h2>\n' +
+    '              <span>Toolbar with Icon Buttons</span>\n' +
+    '            </h2>\n' +
+    '          <span flex></span>\n' +
+    '          <md-button class="md-icon-button" aria-label="Favorite">\n' +
+    '            <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>\n' +
+    '          </md-button>\n' +
+    '          <md-button class="md-icon-button" aria-label="More">\n' +
+    '            <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>\n' +
+    '          </md-button>\n' +
+    '        </div>\n' +
+    '      </md-toolbar>\n' +
+    '    </md-content>\n' +
     '  </div>\n' +
     '\n' +
-    '  <div style="margin-top:5px;margin-bottom:5px">\n' +
-    '    <label ng-bind="\'Total Items\' | translate">Total Items : {{ fishes.length }}</label>\n' +
+    '  <div style="min-height: 0; flex: 1; overflow: auto;">\n' +
+    '    <div style="height: auto;">\n' +
+    '      <md-content layout-padding="" class="autoScroll">\n' +
+    '        <md-list>\n' +
+    '          <md-list-item class="md-1-line" ng-repeat="chat in chats">\n' +
+    '            <img ng-src="" class="md-avatar" alt="" />\n' +
+    '            <div md-swipe-right="" class="md-list-item-text" layout="column">\n' +
+    '              <h1></h1>\n' +
+    '              <p>{{chat.message }}</p>\n' +
+    '            </div>\n' +
+    '            <md-divider></md-divider>\n' +
+    '          </md-list-item>\n' +
+    '        </md-list>\n' +
+    '      </md-content>\n' +
+    '    </div>\n' +
     '  </div>\n' +
     '\n' +
-    '  <md-input-container class="md-icon-float">\n' +
-    '      <!-- Use floating label instead of placeholder -->\n' +
-    '    <label ng-bind="\'Search\' | translate">Search</label>\n' +
-    '    <ng-md-icon icon="search" size="24" style="fill:green"></ng-md-icon>\n' +
-    '    <input type="text"  ng-model="searchText.$">\n' +
-    '  </md-input-container>\n' +
-    '  <md-list>\n' +
-    '    <md-list-item class="md-3-line" ng-repeat="fish in fishes | filter:searchText">\n' +
-    '      <ng-md-icon ng-click="go(\'fishes/\'+fish._id+\'/view\')" icon="info" size="30" style="fill:green"></ng-md-icon>\n' +
-    '      <div md-swipe-right="onSwipeRight(\'fishes/\'+fish._id+\'/view\')" class="md-list-item-text" layout="column">\n' +
-    '        <h3>{{fish.name }}</h3>\n' +
-    '        <h4> {{ fish.pricing  }} : {{ fish.currencytype  }}</h4>\n' +
-    '        <p><span ng-bind="\'Caught Date\' | translate">Caught Date</span> : {{ fish.caughtdate}}</p>\n' +
+    '  <div class="sticky">\n' +
+    '    <div layout="row" layout-wrap>\n' +
+    '      <div flex="80">\n' +
+    '        <md-input-container class="md-block">\n' +
+    '          <input ng-model="message" placeholder="Type a message">\n' +
+    '        </md-input-container>\n' +
     '      </div>\n' +
-    '      <md-divider></md-divider>\n' +
-    '  </md-list-item>\n' +
-    ' </md-list>\n' +
-    '</md-content>\n' +
-    '');
+    '\n' +
+    '      <div flex="20">\n' +
+    '        <md-button class="md-raised" ng-click="sendText()">Send</md-button>\n' +
+    '      </div>\n' +
+    '    </div>\n' +
+    '  </div>\n' +
+    '\n' +
+    '</div>\n' +
+    '<style type="text/css">\n' +
+    '  .sticky {\n' +
+    '    top:calc( 100% - 100px );\n' +
+    '    position:fixed;\n' +
+    '    height:50px;\n' +
+    '    width: 100%;\n' +
+    '    background-color: white;\n' +
+    '  }\n' +
+    '</style>');
 }]);
 })();
 

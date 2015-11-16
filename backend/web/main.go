@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/go-martini/martini"
 	"github.com/greensolutionsonly/fishhub/backend/bid"
+	"github.com/greensolutionsonly/fishhub/backend/chat"
 	"github.com/greensolutionsonly/fishhub/backend/config"
 	"github.com/greensolutionsonly/fishhub/backend/fish"
 	"github.com/greensolutionsonly/fishhub/backend/fishhub"
@@ -74,6 +75,13 @@ func main() {
 		r.Get("/:id", getBid)
 		r.Put("/:id", binding.Bind(bid.Bid{}), updateBid)
 		r.Delete("/:id", deleteBid)
+	}, Auth)
+
+	m.Group("/chats", func(r martini.Router) {
+		r.Get("", getChats)
+		r.Post("", binding.Bind(chat.Chat{}), newChat)
+		r.Delete("/:id", clearChat)
+		r.Delete("/", clearChats)
 	}, Auth)
 
 	m.Group("/login", func(r martini.Router) {

@@ -1,6 +1,7 @@
 package chat
 
 import (
+	"fmt"
 	"github.com/greensolutionsonly/fishhub/backend/fishhub"
 	"gopkg.in/mgo.v2/bson"
 	"mime/multipart"
@@ -9,17 +10,17 @@ import (
 
 type Chat struct {
 	Id          bson.ObjectId         `json:"_id" bson:"_id,omitempty" form:"-"`
-	FromUid     string                `json:"from_uid" form:"from_uid"`
-	ToUid       string                `json:"to_uid" form:"to_uid"`
+	FromUid     string                `json:"fromuid" form:"from_uid"`
+	ToUid       string                `json:"touid" form:"to_uid"`
 	Message     string                `json:"message" form:"message"`
-	MessageType string                `json:"message_type" form:"-"`
-	MimeUrl     string                `json:"mime_url" form:"-"`
+	MessageType string                `json:"messagetype" form:"message_type"`
+	MimeUrl     string                `json:"mimeurl" form:"-"`
 	MimeFile    *multipart.FileHeader `json:"-" form:"mime_file"`
-	SendAt      time.Time             `json:"send_at" form:"-"`
-	ReceivedAt  time.Time             `json:"received_at" form:"-"`
-	IsRead      bool                  `json:"is_read" form:"-"`
-	IsDelivered bool                  `json:is_delivered form:"-"`
-	ReadAt      time.Time             `json:"read_at"`
+	SendAt      time.Time             `json:"sendat" form:"-"`
+	ReceivedAt  time.Time             `json:"receivedat" form:"-"`
+	IsRead      bool                  `json:"isread" form:"-"`
+	IsDelivered bool                  `json:isdelivered form:"-"`
+	ReadAt      time.Time             `json:"readat"`
 	Db          *fishhub.DBService    `json:"-" form:"-"`
 }
 
@@ -36,7 +37,7 @@ func (c *Chat) Insert() error {
 	db := c.Db.DB.Copy()
 	defer db.Close()
 	c.SendAt = time.Now()
-
+	fmt.Println(c)
 	if c.MessageType == "text" {
 		err := db.Insert("chats", c)
 		return err
