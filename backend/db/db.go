@@ -173,6 +173,12 @@ func (db *DB) RemoveID(name string, id bson.ObjectId) (err error) {
 	return
 }
 
+func (db *DB) RemoveAll(name string, q interface{}) (err error) {
+	err = db.DB().C(name).Remove(q)
+
+	return
+}
+
 func (db *DB) EnsureIndexKey(colName string, keys ...string) error {
 	for _, key := range keys {
 		index := mgo.Index{
