@@ -257,6 +257,103 @@ try {
   module = angular.module('fh.templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('chat/chat-upsert-error.tpl.html',
+    '<md-dialog aria-label="Errors">\n' +
+    '  <md-toolbar class="md-warn">\n' +
+    '    <div class="md-toolbar-tools">\n' +
+    '      <h2 ng-bind="\'Errors\' | translate"></h2>\n' +
+    '      <span flex></span>\n' +
+    '      <md-button class="md-icon-button" ng-click="hide()">\n' +
+    '        <ng-md-icon icon="close" size="30" style="fill:white" aria-label="Close dialog"></ng-md-icon>\n' +
+    '      </md-button>\n' +
+    '    </div>\n' +
+    '  </md-toolbar>\n' +
+    '  <md-dialog-content style="max-width:800px;max-height:810px;">\n' +
+    '    <div ng-repeat="error in errors">\n' +
+    '      <div style="margin-top: 10px; text-align: center; padding: 10px;">\n' +
+    '        <label ng-bind="\'{{ error.fieldNames[0] + error.message }}\' | translate"></label>\n' +
+    '      </div>\n' +
+    '    </div>\n' +
+    '  </md-dialog-content>\n' +
+    '</md-dialog>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('fh.templates');
+} catch (e) {
+  module = angular.module('fh.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('chat/chat-upsert-success.tpl.html',
+    '<md-dialog aria-label="Successful">\n' +
+    '  <md-toolbar>\n' +
+    '    <div class="md-toolbar-tools">\n' +
+    '      <h2 ng-bind="\'Successful Update\' | translate"></h2>\n' +
+    '      <span flex></span>\n' +
+    '      <md-button class="md-icon-button" ng-click="hide()">\n' +
+    '        <ng-md-icon icon="close" size="30" style="fill:white" aria-label="Close dialog"></ng-md-icon>\n' +
+    '      </md-button>\n' +
+    '    </div>\n' +
+    '  </md-toolbar>\n' +
+    '  <md-dialog-content style="max-width:800px;max-height:810px;">\n' +
+    '    <div style="margin-top: 10px; text-align: center; padding: 10px;">\n' +
+    '      <div ng-bind="\'Item is updated.\' | translate">Item is updated.</div>\n' +
+    '    </div>\n' +
+    '  </md-dialog-content>\n' +
+    '</md-dialog>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('fh.templates');
+} catch (e) {
+  module = angular.module('fh.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('chat/chats.tpl.html',
+    '<md-content layout-padding="" class="autoScroll">\n' +
+    '  <div style="margin-top:2px;text-align: center">\n' +
+    '    <ng-md-icon icon="my_library_add" ng-click="go(\'fishes/new\')" size="40" style="fill:#5B5BC5"></ng-md-icon>\n' +
+    '  </div>\n' +
+    '\n' +
+    '  <div style="margin-top:5px;margin-bottom:5px">\n' +
+    '    <label ng-bind="\'Total Items\' | translate">Total Items : {{ fishes.length }}</label>\n' +
+    '  </div>\n' +
+    '\n' +
+    '  <md-input-container class="md-icon-float">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '    <label ng-bind="\'Search\' | translate">Search</label>\n' +
+    '    <ng-md-icon icon="search" size="24" style="fill:green"></ng-md-icon>\n' +
+    '    <input type="text"  ng-model="searchText.$">\n' +
+    '  </md-input-container>\n' +
+    '  <md-list>\n' +
+    '    <md-list-item class="md-3-line" ng-repeat="fish in fishes | filter:searchText">\n' +
+    '      <ng-md-icon ng-click="go(\'fishes/\'+fish._id+\'/view\')" icon="info" size="30" style="fill:green"></ng-md-icon>\n' +
+    '      <div md-swipe-right="onSwipeRight(\'fishes/\'+fish._id+\'/view\')" class="md-list-item-text" layout="column">\n' +
+    '        <h3>{{fish.name }}</h3>\n' +
+    '        <h4> {{ fish.pricing  }} : {{ fish.currencytype  }}</h4>\n' +
+    '        <p><span ng-bind="\'Caught Date\' | translate">Caught Date</span> : {{ fish.caughtdate}}</p>\n' +
+    '      </div>\n' +
+    '      <md-divider></md-divider>\n' +
+    '  </md-list-item>\n' +
+    ' </md-list>\n' +
+    '</md-content>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('fh.templates');
+} catch (e) {
+  module = angular.module('fh.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('fish/fish-add.tpl.html',
     '<div  layout="column"  id="fishContainer"  ng-cloak>\n' +
     '  <br/>\n' +
@@ -1128,23 +1225,11 @@ module.run(['$templateCache', function($templateCache) {
     '\n' +
     '<style type="text/css">\n' +
     '  #welcomeContainer {\n' +
-    '    background: url(\'images/background.png\');\n' +
-    '    width: auto;\n' +
-    '    height: 700px;\n' +
-    '    background-repeat: no-repeat;\n' +
     '    text-align: center;\n' +
-    '    background-size: cover;\n' +
     '    padding: 10px;\n' +
+    '    margin-bottom: 200px\n' +
     '  }\n' +
-    '  #welcome {\n' +
-    '    -webkit-box-shadow: 4px 3px 4px 4px #FFFFFF;\n' +
-    '    box-shadow: 4px 3px 4px 4px #FFFFFF;\n' +
     '\n' +
-    '  }\n' +
-    '  .welcome_trans {\n' +
-    '    -webkit-transition: width 2s, height 2s, -webkit-transform 2s;\n' +
-    '    transition: width 2s, height 2s, transform 2s;\n' +
-    '  }\n' +
     '  #welcome a {\n' +
     '    font-size: 18px;\n' +
     '    font-style: italic;\n' +

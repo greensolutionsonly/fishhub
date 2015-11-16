@@ -1,4 +1,4 @@
-angular.module('fishHubApp', ['ui.router', 'fh.user', 'fh.login', 'fh.i18n', 'ngMaterial', 'ngCookies', 'fh.templates', 'ngMdIcons', 'fh.home', 'fh.welcome', 'fh.fish', 'fh.bid', 'fh.userSession', 'fh.locales', 'pascalprecht.translate']).controller('AppCtrl', function($scope, $timeout, $location, $mdSidenav, $mdUtil, $log, $translate, SessionService, $cookies, $rootScope, User) {
+angular.module('fishHubApp', ['ui.router', 'fh.user', 'fh.login', 'fh.i18n', 'ngMaterial', 'ngCookies', 'fh.templates', 'ngMdIcons', 'fh.home', 'fh.welcome', 'fh.fish', 'fh.bid', 'fh.userSession', 'fh.locales', 'fh.chat', 'pascalprecht.translate']).controller('AppCtrl', function($scope, $timeout, $location, $mdSidenav, $mdUtil, $log, $translate, SessionService, $cookies, $rootScope, User) {
   var buildToggler;
   $scope.user = SessionService;
   $scope.lastLoggedinTime = $cookies.get("LastLoggedinTime");
