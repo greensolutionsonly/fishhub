@@ -1,23 +1,22 @@
 <div style="display: flex; flex-flow: column; height: 100%;">
   <div>
     <md-content>
-      <md-toolbar style="background-color:whi">
-          <div class="md-toolbar-tools">
-            <md-button class="md-icon-button" aria-label="Settings">
-              <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-            </md-button>
-            <h2>
-              <span>Toolbar with Icon Buttons</span>
-            </h2>
-          <span flex></span>
-          <md-button class="md-icon-button" aria-label="Favorite">
-            <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
-          </md-button>
-          <md-button class="md-icon-button" aria-label="More">
-            <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
-          </md-button>
+      <div style="background-color:rgba(158, 158, 158, 0.16);">
+        <div layout="row" style="padding: 10px">
+          <div flex>
+            <ng-md-icon icon="clear_all" size="25" style="fill:#161521"></ng-md-icon>
+          </div>
+          <div flex>
+            <ng-md-icon icon="refresh" size="25" style="fill:#161521"></ng-md-icon>
+          </div>
+          <div flex>
+            <ng-md-icon icon="thumb_up" size="25" style="fill:#161521"></ng-md-icon>
+          </div>
+          <div flex>
+            <ng-md-icon icon="thumb_down" size="25" style="fill:#161521"></ng-md-icon>
+          </div>
         </div>
-      </md-toolbar>
+      </div>
     </md-content>
   </div>
 
@@ -25,10 +24,10 @@
     <div style="height: auto;">
       <md-content layout-padding="" class="autoScroll">
         <md-list>
-          <md-list-item class="md-1-line" ng-repeat="chat in chats">
-            <img ng-src="" class="md-avatar" alt="" />
+          <md-list-item class="md-2-line" ng-repeat="chat in chats">
+            <img ng-src="http://icons.iconarchive.com/icons/designbolts/free-male-avatars/128/Male-Avatar-icon.png" class="md-avatar" alt="" />
             <div md-swipe-right="" class="md-list-item-text" layout="column">
-              <h1></h1>
+              <h5> {{ userName }} </h5>
               <p>{{chat.message }}</p>
             </div>
             <md-divider></md-divider>
@@ -45,9 +44,8 @@
           <input ng-model="message" placeholder="Type a message">
         </md-input-container>
       </div>
-
       <div flex="20">
-        <md-button class="md-raised" ng-click="sendText()">Send</md-button>
+        <md-button class="md-raised" ng-keypress="keyPress($event)" ng-click="sendText()">Send</md-button>
       </div>
     </div>
   </div>
@@ -55,10 +53,10 @@
 </div>
 <style type="text/css">
   .sticky {
-    top:calc( 100% - 100px );
+    top:calc( 100% - 50px );
     position:fixed;
     height:50px;
     width: 100%;
-    background-color: w;
+    background-color: rgb(224,224,224);
   }
 </style>

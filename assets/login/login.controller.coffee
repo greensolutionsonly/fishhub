@@ -33,6 +33,7 @@ angular.module('fh.login').controller('LoginCtrl', (
         SessionService.Country = data.country
         SessionService.Email = data.email
         SessionService.IsAdmin = data.isadmin
+        SessionService.UserName = data.name
         $cookies.put("LastLoggedinTime", Math.floor(Date.now() / 1000))
         $cookies.put("UserId", data.userid)
         $cookies.put("Id", data._id)

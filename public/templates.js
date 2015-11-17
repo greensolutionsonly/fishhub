@@ -319,23 +319,22 @@ module.run(['$templateCache', function($templateCache) {
     '<div style="display: flex; flex-flow: column; height: 100%;">\n' +
     '  <div>\n' +
     '    <md-content>\n' +
-    '      <md-toolbar style="background-color:whi">\n' +
-    '          <div class="md-toolbar-tools">\n' +
-    '            <md-button class="md-icon-button" aria-label="Settings">\n' +
-    '              <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>\n' +
-    '            </md-button>\n' +
-    '            <h2>\n' +
-    '              <span>Toolbar with Icon Buttons</span>\n' +
-    '            </h2>\n' +
-    '          <span flex></span>\n' +
-    '          <md-button class="md-icon-button" aria-label="Favorite">\n' +
-    '            <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>\n' +
-    '          </md-button>\n' +
-    '          <md-button class="md-icon-button" aria-label="More">\n' +
-    '            <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>\n' +
-    '          </md-button>\n' +
+    '      <div style="background-color:rgba(158, 158, 158, 0.16);">\n' +
+    '        <div layout="row" style="padding: 10px">\n' +
+    '          <div flex>\n' +
+    '            <ng-md-icon icon="clear_all" size="25" style="fill:#161521"></ng-md-icon>\n' +
+    '          </div>\n' +
+    '          <div flex>\n' +
+    '            <ng-md-icon icon="refresh" size="25" style="fill:#161521"></ng-md-icon>\n' +
+    '          </div>\n' +
+    '          <div flex>\n' +
+    '            <ng-md-icon icon="thumb_up" size="25" style="fill:#161521"></ng-md-icon>\n' +
+    '          </div>\n' +
+    '          <div flex>\n' +
+    '            <ng-md-icon icon="thumb_down" size="25" style="fill:#161521"></ng-md-icon>\n' +
+    '          </div>\n' +
     '        </div>\n' +
-    '      </md-toolbar>\n' +
+    '      </div>\n' +
     '    </md-content>\n' +
     '  </div>\n' +
     '\n' +
@@ -343,10 +342,10 @@ module.run(['$templateCache', function($templateCache) {
     '    <div style="height: auto;">\n' +
     '      <md-content layout-padding="" class="autoScroll">\n' +
     '        <md-list>\n' +
-    '          <md-list-item class="md-1-line" ng-repeat="chat in chats">\n' +
-    '            <img ng-src="" class="md-avatar" alt="" />\n' +
+    '          <md-list-item class="md-2-line" ng-repeat="chat in chats">\n' +
+    '            <img ng-src="http://icons.iconarchive.com/icons/designbolts/free-male-avatars/128/Male-Avatar-icon.png" class="md-avatar" alt="" />\n' +
     '            <div md-swipe-right="" class="md-list-item-text" layout="column">\n' +
-    '              <h1></h1>\n' +
+    '              <h5> {{ userName }} </h5>\n' +
     '              <p>{{chat.message }}</p>\n' +
     '            </div>\n' +
     '            <md-divider></md-divider>\n' +
@@ -363,9 +362,8 @@ module.run(['$templateCache', function($templateCache) {
     '          <input ng-model="message" placeholder="Type a message">\n' +
     '        </md-input-container>\n' +
     '      </div>\n' +
-    '\n' +
     '      <div flex="20">\n' +
-    '        <md-button class="md-raised" ng-click="sendText()">Send</md-button>\n' +
+    '        <md-button class="md-raised" ng-keypress="keyPress($event)" ng-click="sendText()">Send</md-button>\n' +
     '      </div>\n' +
     '    </div>\n' +
     '  </div>\n' +
@@ -373,11 +371,11 @@ module.run(['$templateCache', function($templateCache) {
     '</div>\n' +
     '<style type="text/css">\n' +
     '  .sticky {\n' +
-    '    top:calc( 100% - 100px );\n' +
+    '    top:calc( 100% - 50px );\n' +
     '    position:fixed;\n' +
     '    height:50px;\n' +
     '    width: 100%;\n' +
-    '    background-color: white;\n' +
+    '    background-color: rgb(224,224,224);\n' +
     '  }\n' +
     '</style>');
 }]);

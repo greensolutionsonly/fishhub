@@ -8,5 +8,6 @@ angular.module('fh.userSession', [])
     Email: ''
     Country: ''
     IsAdmin: false
+    UserName: ''
   session
 )

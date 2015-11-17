@@ -60,6 +60,7 @@ angular.module('fishHubApp',[
           SessionService.Country = data.country
           SessionService.Email = data.email
           SessionService.IsAdmin = data.isadmin
+          SessionService.UserName = data.name
           $scope.isAdmin = data.isadmin
           $translate.use(data.locale)
         $scope.init = ->

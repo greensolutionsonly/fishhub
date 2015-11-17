@@ -49,6 +49,7 @@ angular.module('fishHubApp', ['ui.router', 'fh.user', 'fh.login', 'fh.i18n', 'ng
     SessionService.Country = data.country;
     SessionService.Email = data.email;
     SessionService.IsAdmin = data.isadmin;
+    SessionService.UserName = data.name;
     $scope.isAdmin = data.isadmin;
     return $translate.use(data.locale);
   };

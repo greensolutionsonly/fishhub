@@ -11,8 +11,13 @@ angular.module('fh.chat').controller('ChatCtrl', (
 
     $scope.loading=false
     $scope.chats = []
+    $scope.userName = SessionService.UserName
+    $scope.keyPress = (event) ->
+      alert(1)
+      console.log(event)
 
     $scope.sendText = ->
+      console.log($scope.userName)
       chat = {
         message: $scope.message,
         messagetype: "text",
