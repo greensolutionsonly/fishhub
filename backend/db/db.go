@@ -2,11 +2,10 @@ package db
 
 import (
 	"fmt"
-	"io"
-	"os"
-
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
+	"io"
+	"mime/multipart"
 )
 
 func Connect(host string) (*DB, error) {
@@ -140,7 +139,7 @@ func (db *DB) RemoveFile(col, path string) error {
 	return gridfs.Remove(path)
 }
 
-func (db *DB) UpsertFile(col, path string, file *os.File) (id bson.ObjectId, err error) {
+func (db *DB) UpsertFile(col, path string, file multipart.File) (id bson.ObjectId, err error) {
 	gridfs := db.DB().GridFS(col)
 	err = gridfs.Remove(path)
 	if err != nil {

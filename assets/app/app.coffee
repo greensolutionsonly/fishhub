@@ -3,6 +3,7 @@ angular.module('fishHubApp',[
   'fh.user'
   'fh.login'
   'fh.i18n'
+  'lr.upload'
   'ngMaterial'
   'ngCookies'
   'fh.templates'

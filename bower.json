@@ -23,7 +23,8 @@
     "angular-translate": "*",
     "angular-material-icons": "*",
     "countries": "~1.0.3",
-    "angular-cookies": "*"
+    "angular-cookies": "*",
+    "angular-upload": "~1.0.12"
   },
   "overrides": {
     "angular": {
@@ -119,6 +120,16 @@
         "production": [
           "angular-material-icons.min.css",
           "angular-material-icons.min.js"
+        ]
+      }
+    },
+    "angular-upload": {
+      "main": {
+        "development": [
+          "angular-upload.js"
+        ],
+        "production": [
+          "angular-upload.min.js"
         ]
       }
     },

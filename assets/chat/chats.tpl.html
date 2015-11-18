@@ -38,25 +38,56 @@
   </div>
 
   <div class="sticky">
-    <div layout="row" layout-wrap>
-      <div flex="80">
-        <md-input-container class="md-block">
-          <input ng-model="message" placeholder="Type a message">
-        </md-input-container>
+    <div layout="row" layout-wrap style="height:20px">
+      <div flex="10">
+        <div class="file-input-wrapper" upload-button url="/chats" param="mime" on-upload="onUpload(files)" on-success="onSuccess(response)" on-error="onError(response)" on-complete="onComplete(response)">
+          <ng-md-icon icon="photo_camera" size="25" style="fill:orange"></ng-md-icon>
+        </div>
       </div>
-      <div flex="20">
-        <md-button class="md-raised" ng-keypress="keyPress($event)" ng-click="sendText()">Send</md-button>
+      <div flex="80">
+        <input ng-model="message" class="message_box" type="text" placeholder="Type a message">
+      </div>
+      <div flex="10">
+        <ng-md-icon icon="send" size="25" style="fill:orange" ng-click="sendText()"></ng-md-icon>
       </div>
     </div>
   </div>
-
 </div>
 <style type="text/css">
   .sticky {
-    top:calc( 100% - 50px );
+    top:calc( 100% - 45px );
     position:fixed;
-    height:50px;
+    height:30px;
     width: 100%;
+    padding: 5px;
     background-color: rgb(224,224,224);
+  }
+  .message_box {
+    width: 90%;
+    height:20px;
+    border: 1px solid white;
+  }
+
+  .file-input-wrapper {
+    margin: 2px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+  .file-input-wrapper > input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .file-input-wrapper > .btn-file-input {
+    background-color: #494949;
+    border-radius: 4px;
+    color: #fff;
+    display: inline-block;
+    margin: 0 0 0 -1px;
+    padding-left: 0;
+    cursor: pointer;
   }
 </style>

@@ -5,6 +5,7 @@ import (
 	"github.com/greensolutionsonly/fishhub/backend/fishhub"
 	"gopkg.in/mgo.v2/bson"
 	"mime/multipart"
+	"path/filepath"
 	"time"
 )
 
@@ -15,18 +16,38 @@ type Chat struct {
 	Message     string                `json:"message" form:"message"`
 	MessageType string                `json:"messagetype" form:"message_type"`
 	MimeUrl     string                `json:"mimeurl" form:"-"`
-	MimeFile    *multipart.FileHeader `json:"-" form:"mime_file"`
+	MimeFile    *multipart.FileHeader `json:"-" bson:"-" form:"mime"`
 	SendAt      time.Time             `json:"sendat" form:"-"`
 	ReceivedAt  time.Time             `json:"receivedat" form:"-"`
 	IsRead      bool                  `json:"isread" form:"-"`
 	IsDelivered bool                  `json:isdelivered form:"-"`
 	ReadAt      time.Time             `json:"readat"`
-	Db          *fishhub.DBService    `json:"-" form:"-"`
+	Db          *fishhub.DBService    `json:"-" bson:"-" form:"-"`
 }
 
 func (c *Chat) InsertMime() error {
+	mimeFile, err := c.MimeFile.Open()
+	if err != nil {
+		return err
+	}
 
-	return nil
+	defer mimeFile.Close()
+
+	fileExtension := filepath.Ext(c.MimeFile.Filename)
+	filePath := fmt.Sprintf("tmp/%s%s", bson.NewObjectId().Hex(), fileExtension)
+
+	id, err := c.Db.DB.UpsertFile("chats", filePath, mimeFile)
+	if err != nil {
+		return err
+	}
+
+	c.MimeUrl = fmt.Sprintf("chats/content/%s", id.String())
+	db := c.Db.DB.Copy()
+	defer db.Close()
+
+	err = db.Insert("chats", c)
+
+	return err
 }
 
 func (c Chat) Update() {
@@ -37,11 +58,11 @@ func (c *Chat) Insert() error {
 	db := c.Db.DB.Copy()
 	defer db.Close()
 	c.SendAt = time.Now()
-	fmt.Println(c)
 	if c.MessageType == "text" {
 		err := db.Insert("chats", c)
 		return err
 	}
+	c.MessageType = "mime"
 
 	return c.InsertMime()
 }

@@ -356,28 +356,60 @@ module.run(['$templateCache', function($templateCache) {
     '  </div>\n' +
     '\n' +
     '  <div class="sticky">\n' +
-    '    <div layout="row" layout-wrap>\n' +
-    '      <div flex="80">\n' +
-    '        <md-input-container class="md-block">\n' +
-    '          <input ng-model="message" placeholder="Type a message">\n' +
-    '        </md-input-container>\n' +
+    '    <div layout="row" layout-wrap style="height:20px">\n' +
+    '      <div flex="10">\n' +
+    '        <div class="file-input-wrapper" upload-button url="/chats" param="mime" on-upload="onUpload(files)" on-success="onSuccess(response)" on-error="onError(response)" on-complete="onComplete(response)">\n' +
+    '          <ng-md-icon icon="photo_camera" size="25" style="fill:orange"></ng-md-icon>\n' +
+    '        </div>\n' +
     '      </div>\n' +
-    '      <div flex="20">\n' +
-    '        <md-button class="md-raised" ng-keypress="keyPress($event)" ng-click="sendText()">Send</md-button>\n' +
+    '      <div flex="80">\n' +
+    '        <input ng-model="message" class="message_box" type="text" placeholder="Type a message">\n' +
+    '      </div>\n' +
+    '      <div flex="10">\n' +
+    '        <ng-md-icon icon="send" size="25" style="fill:orange" ng-click="sendText()"></ng-md-icon>\n' +
     '      </div>\n' +
     '    </div>\n' +
     '  </div>\n' +
-    '\n' +
     '</div>\n' +
     '<style type="text/css">\n' +
     '  .sticky {\n' +
-    '    top:calc( 100% - 50px );\n' +
+    '    top:calc( 100% - 45px );\n' +
     '    position:fixed;\n' +
-    '    height:50px;\n' +
+    '    height:30px;\n' +
     '    width: 100%;\n' +
+    '    padding: 5px;\n' +
     '    background-color: rgb(224,224,224);\n' +
     '  }\n' +
-    '</style>');
+    '  .message_box {\n' +
+    '    width: 90%;\n' +
+    '    height:20px;\n' +
+    '    border: 1px solid white;\n' +
+    '  }\n' +
+    '\n' +
+    '  .file-input-wrapper {\n' +
+    '    margin: 2px;\n' +
+    '    overflow: hidden;\n' +
+    '    position: relative;\n' +
+    '    cursor: pointer;\n' +
+    '  }\n' +
+    '  .file-input-wrapper > input[type="file"] {\n' +
+    '    position: absolute;\n' +
+    '    top: 0;\n' +
+    '    right: 0;\n' +
+    '    opacity: 0;\n' +
+    '    cursor: pointer;\n' +
+    '  }\n' +
+    '  .file-input-wrapper > .btn-file-input {\n' +
+    '    background-color: #494949;\n' +
+    '    border-radius: 4px;\n' +
+    '    color: #fff;\n' +
+    '    display: inline-block;\n' +
+    '    margin: 0 0 0 -1px;\n' +
+    '    padding-left: 0;\n' +
+    '    cursor: pointer;\n' +
+    '  }\n' +
+    '</style>\n' +
+    '');
 }]);
 })();
 

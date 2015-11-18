@@ -15,7 +15,8 @@ angular.module('fh.chat').controller('ChatCtrl', (
     $scope.keyPress = (event) ->
       alert(1)
       console.log(event)
-
+    $scope.onUpload = (content) ->
+      console.log(content)
     $scope.sendText = ->
       console.log($scope.userName)
       chat = {

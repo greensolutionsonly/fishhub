@@ -6,6 +6,9 @@ angular.module('fh.chat').controller('ChatCtrl', function($rootScope, $scope, $l
     alert(1);
     return console.log(event);
   };
+  $scope.onUpload = function(content) {
+    return console.log(content);
+  };
   $scope.sendText = function() {
     var chat;
     console.log($scope.userName);
