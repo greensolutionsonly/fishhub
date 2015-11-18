@@ -78,7 +78,8 @@ func main() {
 	}, Auth)
 
 	m.Group("/chats", func(r martini.Router) {
-		r.Get("", getChats)
+		r.Get("", binding.Bind(chat.Chat{}), getChats)
+		r.Get("/content/:id", getChatFile)
 		r.Post("", binding.Bind(chat.Chat{}), newChat)
 		r.Delete("/:id", clearChat)
 		r.Delete("/", clearChats)

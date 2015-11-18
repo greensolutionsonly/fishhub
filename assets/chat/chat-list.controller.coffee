@@ -13,23 +13,41 @@ angular.module('fh.chat').controller('ChatCtrl', (
     $scope.chats = []
     $scope.userName = SessionService.UserName
     $scope.keyPress = (event) ->
-      alert(1)
       console.log(event)
     $scope.onUpload = (content) ->
       console.log(content)
-    $scope.sendText = ->
-      console.log($scope.userName)
+
+    $scope.getChatObject = (type) ->
       chat = {
         message: $scope.message,
-        messagetype: "text",
-        fromuid: SessionService.Id
+        messagetype: type,
+        fromuid: SessionService.Id,
+        touid: "admin"
       }
+
+    $scope.mimeChat = $scope.getChatObject('mime')
+
+    $scope.getChats = ->
+      chat = $scope.getChatObject("mime")
+      $http(
+        method: 'GET'
+        params: {fromuid: chat.fromuid, messagetype: "mime", touid: "admin" },
+        url: 'chats').then ((response) ->
+          $scope.chats = response.data
+          return
+      ), (response) ->
+        console.log(response)
+        return
+
+    $scope.sendText = ->
+      chat = $scope.getChatObject("text")
       $http
         method: 'POST'
         url: 'chats'
         data: $httpParamSerializer(chat)
         headers: 'Content-Type': 'application/x-www-form-urlencoded'
       $scope.chats.push(chat)
+
     $scope.onSwipeRight = (path) ->
       $location.path(path)
     $scope.go = (path) ->

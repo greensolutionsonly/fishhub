@@ -11,10 +11,10 @@ import (
 
 type Chat struct {
 	Id          bson.ObjectId         `json:"_id" bson:"_id,omitempty" form:"-"`
-	FromUid     string                `json:"fromuid" form:"from_uid"`
-	ToUid       string                `json:"touid" form:"to_uid"`
+	FromUid     string                `json:"fromuid" form:"fromuid"`
+	ToUid       string                `json:"touid" form:"touid"`
 	Message     string                `json:"message" form:"message"`
-	MessageType string                `json:"messagetype" form:"message_type"`
+	MessageType string                `json:"messagetype" form:"messagetype"`
 	MimeUrl     string                `json:"mimeurl" form:"-"`
 	MimeFile    *multipart.FileHeader `json:"-" bson:"-" form:"mime"`
 	SendAt      time.Time             `json:"sendat" form:"-"`
@@ -34,14 +34,14 @@ func (c *Chat) InsertMime() error {
 	defer mimeFile.Close()
 
 	fileExtension := filepath.Ext(c.MimeFile.Filename)
-	filePath := fmt.Sprintf("tmp/%s%s", bson.NewObjectId().Hex(), fileExtension)
+	filePath := fmt.Sprintf("%s%s", bson.NewObjectId().Hex(), fileExtension)
 
-	id, err := c.Db.DB.UpsertFile("chats", filePath, mimeFile)
+	_, err = c.Db.DB.UpsertFile("chats", filePath, mimeFile)
 	if err != nil {
 		return err
 	}
 
-	c.MimeUrl = fmt.Sprintf("chats/content/%s", id.String())
+	c.MimeUrl = fmt.Sprintf("chats/content/%s", filePath)
 	db := c.Db.DB.Copy()
 	defer db.Close()
 
@@ -62,6 +62,7 @@ func (c *Chat) Insert() error {
 		err := db.Insert("chats", c)
 		return err
 	}
+
 	c.MessageType = "mime"
 
 	return c.InsertMime()
@@ -90,9 +91,10 @@ func (c Chat) GetChats() ([]Chat, error) {
 	db := c.Db.DB.Copy()
 	defer db.Close()
 
-	q := bson.M{"from_uid": c.FromUid, "touid": c.ToUid}
+	q := bson.M{"fromuid": c.FromUid, "touid": c.ToUid}
 	sortFields := []string{"-send_at"}
 	chats := []Chat{}
+	fmt.Println(q)
 	err := db.FindAll("chats", q, sortFields, &chats)
 	if err != nil {
 		return chats, err

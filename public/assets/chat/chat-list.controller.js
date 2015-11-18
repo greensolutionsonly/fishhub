@@ -3,20 +3,41 @@ angular.module('fh.chat').controller('ChatCtrl', function($rootScope, $scope, $l
   $scope.chats = [];
   $scope.userName = SessionService.UserName;
   $scope.keyPress = function(event) {
-    alert(1);
     return console.log(event);
   };
   $scope.onUpload = function(content) {
     return console.log(content);
   };
+  $scope.getChatObject = function(type) {
+    var chat;
+    return chat = {
+      message: $scope.message,
+      messagetype: type,
+      fromuid: SessionService.Id,
+      touid: "admin"
+    };
+  };
+  $scope.mimeChat = $scope.getChatObject('mime');
+  $scope.getChats = function() {
+    var chat;
+    chat = $scope.getChatObject("mime");
+    return $http({
+      method: 'GET',
+      params: {
+        fromuid: chat.fromuid,
+        messagetype: "mime",
+        touid: "admin"
+      },
+      url: 'chats'
+    }).then((function(response) {
+      $scope.chats = response.data;
+    }), function(response) {
+      console.log(response);
+    });
+  };
   $scope.sendText = function() {
     var chat;
-    console.log($scope.userName);
-    chat = {
-      message: $scope.message,
-      messagetype: "text",
-      fromuid: SessionService.Id
-    };
+    chat = $scope.getChatObject("text");
     $http({
       method: 'POST',
       url: 'chats',

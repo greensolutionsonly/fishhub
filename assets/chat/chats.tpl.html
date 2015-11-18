@@ -7,7 +7,7 @@
             <ng-md-icon icon="clear_all" size="25" style="fill:#161521"></ng-md-icon>
           </div>
           <div flex>
-            <ng-md-icon icon="refresh" size="25" style="fill:#161521"></ng-md-icon>
+            <ng-md-icon ng-click="getChats()" icon="refresh" size="25" style="fill:#161521"></ng-md-icon>
           </div>
           <div flex>
             <ng-md-icon icon="thumb_up" size="25" style="fill:#161521"></ng-md-icon>
@@ -28,7 +28,10 @@
             <img ng-src="http://icons.iconarchive.com/icons/designbolts/free-male-avatars/128/Male-Avatar-icon.png" class="md-avatar" alt="" />
             <div md-swipe-right="" class="md-list-item-text" layout="column">
               <h5> {{ userName }} </h5>
-              <p>{{chat.message }}</p>
+              <p ng-show="chat.messagetype != 'mime'">{{chat.message }}</p>
+              <p ng-show="chat.messagetype == 'mime'">
+                <img src="{{chat.mimeurl}}" class="">
+              </p>
             </div>
             <md-divider></md-divider>
           </md-list-item>
@@ -40,7 +43,7 @@
   <div class="sticky">
     <div layout="row" layout-wrap style="height:20px">
       <div flex="10">
-        <div class="file-input-wrapper" upload-button url="/chats" param="mime" on-upload="onUpload(files)" on-success="onSuccess(response)" on-error="onError(response)" on-complete="onComplete(response)">
+        <div class="file-input-wrapper" upload-button url="/chats" data="mimeChat" param="mime" on-upload="onUpload(files)" on-success="onSuccess(response)" on-error="onError(response)" on-complete="onComplete(response)">
           <ng-md-icon icon="photo_camera" size="25" style="fill:orange"></ng-md-icon>
         </div>
       </div>

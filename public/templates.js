@@ -325,7 +325,7 @@ module.run(['$templateCache', function($templateCache) {
     '            <ng-md-icon icon="clear_all" size="25" style="fill:#161521"></ng-md-icon>\n' +
     '          </div>\n' +
     '          <div flex>\n' +
-    '            <ng-md-icon icon="refresh" size="25" style="fill:#161521"></ng-md-icon>\n' +
+    '            <ng-md-icon ng-click="getChats()" icon="refresh" size="25" style="fill:#161521"></ng-md-icon>\n' +
     '          </div>\n' +
     '          <div flex>\n' +
     '            <ng-md-icon icon="thumb_up" size="25" style="fill:#161521"></ng-md-icon>\n' +
@@ -346,7 +346,10 @@ module.run(['$templateCache', function($templateCache) {
     '            <img ng-src="http://icons.iconarchive.com/icons/designbolts/free-male-avatars/128/Male-Avatar-icon.png" class="md-avatar" alt="" />\n' +
     '            <div md-swipe-right="" class="md-list-item-text" layout="column">\n' +
     '              <h5> {{ userName }} </h5>\n' +
-    '              <p>{{chat.message }}</p>\n' +
+    '              <p ng-show="chat.messagetype != \'mime\'">{{chat.message }}</p>\n' +
+    '              <p ng-show="chat.messagetype == \'mime\'">\n' +
+    '                <img src="{{chat.mimeurl}}">\n' +
+    '              </p>\n' +
     '            </div>\n' +
     '            <md-divider></md-divider>\n' +
     '          </md-list-item>\n' +
@@ -358,7 +361,7 @@ module.run(['$templateCache', function($templateCache) {
     '  <div class="sticky">\n' +
     '    <div layout="row" layout-wrap style="height:20px">\n' +
     '      <div flex="10">\n' +
-    '        <div class="file-input-wrapper" upload-button url="/chats" param="mime" on-upload="onUpload(files)" on-success="onSuccess(response)" on-error="onError(response)" on-complete="onComplete(response)">\n' +
+    '        <div class="file-input-wrapper" upload-button url="/chats" data="mimeChat" param="mime" on-upload="onUpload(files)" on-success="onSuccess(response)" on-error="onError(response)" on-complete="onComplete(response)">\n' +
     '          <ng-md-icon icon="photo_camera" size="25" style="fill:orange"></ng-md-icon>\n' +
     '        </div>\n' +
     '      </div>\n' +
