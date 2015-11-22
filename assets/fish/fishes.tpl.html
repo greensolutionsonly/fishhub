@@ -1,8 +1,33 @@
 <md-content layout-padding="" class="autoScroll">
-  <div style="margin-top:2px;text-align: center">
-    <ng-md-icon icon="my_library_add" ng-click="go('fishes/new')" size="40" style="fill:#5B5BC5"></ng-md-icon>
-  </div>
-
+    <md-menu>
+      <md-button aria-label="Open items sort menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+        <ng-md-icon icon="sort" size="24" style="fill:gray"></ng-md-icon>
+      </md-button>
+      <md-menu-content width="4">
+        <md-menu-item>
+          <md-button ng-click="sortItems('sortCreated')">
+            <ng-md-icon icon="sort" size="24" style="fill:gray"></ng-md-icon>
+            <span ng-bind="'sort by created date' | translate">sort by created date</span>
+          </md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button  ng-click="sortItems('sortPrice')">
+              <ng-md-icon icon="sort" size="24" style="fill:gray"></ng-md-icon>
+              <span ng-bind="'sort by price' | translate">sort by price</span>
+          </md-button>
+        </md-menu-item>
+        <md-menu-divider></md-menu-divider>
+        <md-menu-item>
+          <md-button  ng-click="sortItems('sortQuantity')">
+            <ng-md-icon icon="sort" size="24" style="fill:gray"></ng-md-icon>
+            <span ng-bind="'sort by quantity' | translate">sort by quantity</span>
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
+    <md-button aria-label="Open items sort menu" class="md-icon-button">
+      <ng-md-icon icon="my_library_add" ng-click="go('fishes/new')" size="25" style="fill:gray"></ng-md-icon>
+    </md-button>
   <div style="margin-top:5px;margin-bottom:5px">
     <label ng-bind="'Total Items' | translate">Total Items : {{ fishes.length }}</label>
   </div>
