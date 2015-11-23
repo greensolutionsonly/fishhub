@@ -5,22 +5,31 @@
       </md-button>
       <md-menu-content width="4">
         <md-menu-item>
-          <md-button ng-click="sortItems('sortCreated')">
+          <md-button ng-click="sortByCaughtDate()">
             <ng-md-icon icon="sort" size="24" style="fill:gray"></ng-md-icon>
-            <span ng-bind="'sort by created date' | translate">sort by created date</span>
+            <span ng-bind="'sort by caught date' | translate">sort by caught date</span>
+
+            <ng-md-icon ng-show="sortByCaughtDateClass == '+caughtdate'" icon="keyboard_arrow_up" size="24" style="fill:orange"></ng-md-icon>
+            <ng-md-icon ng-show="sortByCaughtDateClass == '-caughtdate'" icon="keyboard_arrow_down" size="24" style="fill:orange"></ng-md-icon>
           </md-button>
         </md-menu-item>
         <md-menu-item>
-          <md-button  ng-click="sortItems('sortPrice')">
+          <md-button  ng-click="sortByPrice()">
               <ng-md-icon icon="sort" size="24" style="fill:gray"></ng-md-icon>
               <span ng-bind="'sort by price' | translate">sort by price</span>
+              <ng-md-icon ng-show="sortByPriceClass == '+pricing'" icon="keyboard_arrow_up" size="24" style="fill:orange"></ng-md-icon>
+            <ng-md-icon ng-show="sortByPriceClass == '-pricing'" icon="keyboard_arrow_down" size="24" style="fill:orange"></ng-md-icon>
+
           </md-button>
         </md-menu-item>
         <md-menu-divider></md-menu-divider>
         <md-menu-item>
-          <md-button  ng-click="sortItems('sortQuantity')">
+          <md-button  ng-click="sortByQuantity()">
             <ng-md-icon icon="sort" size="24" style="fill:gray"></ng-md-icon>
             <span ng-bind="'sort by quantity' | translate">sort by quantity</span>
+            <ng-md-icon ng-show="sortByQuantityClass == '+quantity'" icon="keyboard_arrow_up" size="24" style="fill:orange"></ng-md-icon>
+            <ng-md-icon ng-show="sortByQuantityClass == '-quantity'" icon="keyboard_arrow_down" size="24" style="fill:orange"></ng-md-icon>
+
           </md-button>
         </md-menu-item>
       </md-menu-content>
@@ -39,7 +48,7 @@
     <input type="text"  ng-model="searchText.$">
   </md-input-container>
   <md-list>
-    <md-list-item class="md-3-line" ng-repeat="fish in fishes | filter:searchText">
+    <md-list-item class="md-3-line" ng-repeat="fish in fishes | filter:searchText | orderBy: sortField">
       <ng-md-icon ng-click="go('fishes/'+fish._id+'/view')" icon="info" size="30" style="fill:green"></ng-md-icon>
       <div md-swipe-right="onSwipeRight('fishes/'+fish._id+'/view')" class="md-list-item-text" layout="column">
         <h3>{{fish.name }}</h3>

@@ -5,491 +5,6 @@ try {
   module = angular.module('fh.templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('home/home.tpl.html',
-    '<div  layout="column" class="inputdemoIcons" id="homeContainer">\n' +
-    '  <md-content layout-padding="">\n' +
-    '        <md-list>\n' +
-    '  <md-list-item class="md-2-line">\n' +
-    '    <div class="md-list-item-text">\n' +
-    '      <h3><a href="#/fishes/new">Add fish</a></h3>\n' +
-    '      <p>You can add fishes to your gallery</p>\n' +
-    '    </div>\n' +
-    '  </md-list-item>\n' +
-    '    <md-list-item class="md-2-line">\n' +
-    '    <div class="md-list-item-text">\n' +
-    '      <h3><a href="#/fishes">View fish history</a> </h3>\n' +
-    '      <p>You can add edit and delete the fishes that you hvae added.</p>\n' +
-    '    </div>\n' +
-    '  </md-list-item>\n' +
-    '</md-list>\n' +
-    '  </md-content>\n' +
-    '</div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('fh.templates');
-} catch (e) {
-  module = angular.module('fh.templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('login/login-error.tpl.html',
-    '<md-dialog aria-label="Login Error">\n' +
-    '  <md-toolbar>\n' +
-    '    <div class="md-toolbar-tools">\n' +
-    '      <h2 ng-bind="\'Login Error\' | translate"></h2>\n' +
-    '      <span flex></span>\n' +
-    '      <md-button class="md-icon-button" ng-click="hide()">\n' +
-    '        <ng-md-icon icon="close" size="30" style="fill:white" aria-label="Close dialog"></ng-md-icon>\n' +
-    '      </md-button>\n' +
-    '    </div>\n' +
-    '  </md-toolbar>\n' +
-    '  <md-dialog-content style="max-width:800px;max-height:810px;">\n' +
-    '    <div>\n' +
-    '      <h4>Your user id or password is not correct, try again.</h4>\n' +
-    '    </div>\n' +
-    '  </md-dialog-content>\n' +
-    '</md-dialog>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('fh.templates');
-} catch (e) {
-  module = angular.module('fh.templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('login/login.tpl.html',
-    '<div  layout="column"  id="loginContainer">\n' +
-    '  <br>\n' +
-    '  <md-content layout-padding="" class="autoScroll">\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <!-- Use floating label instead of placeholder -->\n' +
-    '      <label ng-bind="\'User Id\' | translate">User Id</label>\n' +
-    '      <ng-md-icon icon="person" size="24" style="fill:rgb(255,64,129)"></ng-md-icon>\n' +
-    '      <input ng-model="user.userid" type="text" ng-required="true">\n' +
-    '    </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <!-- Use floating label instead of placeholder -->\n' +
-    '      <label ng-bind="\'Password\' | translate">Password</label>\n' +
-    '      <ng-md-icon icon="security" size="24" style="fill:rgb(255,64,129)"></ng-md-icon>\n' +
-    '      <input ng-model="user.password" type="password" ng-required="true">\n' +
-    '    </md-input-container>\n' +
-    '  </md-content>\n' +
-    '</div>\n' +
-    '\n' +
-    '<md-button md-no-ink="" class="md-raised md-primary md-button md-default-theme" ng-click="checkCredential()">\n' +
-    '  Submit\n' +
-    '</md-button>\n' +
-    '\n' +
-    '<div class="container" ng-show="loading" style="padding: 5px;">\n' +
-    '  <md-progress-linear></md-progress-linear>\n' +
-    '  <div class="bottom-block">\n' +
-    '    <span g-bind="\'Please wait while we check your account\' | translate">Please wait while we check your account</span>\n' +
-    '  </div>\n' +
-    '</div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('fh.templates');
-} catch (e) {
-  module = angular.module('fh.templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('fish/fish-add.tpl.html',
-    '<div  layout="column"  id="fishContainer"  ng-cloak>\n' +
-    '  <br/>\n' +
-    '  <div style="padding:8px;">\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <label ng-bind="\'Name\' | translate">Name</label>\n' +
-    '      <ng-md-icon icon="input" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input ng-model="fish.name" type="text" ng-required="true">\n' +
-    '    </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <!-- Use floating label instead of placeholder -->\n' +
-    '      <label ng-bind="\'Species\' | translate">Species</label>\n' +
-    '      <ng-md-icon icon="subtitles" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input ng-model="fish.species" type="text" ng-required="true">\n' +
-    '    </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <!-- Use floating label instead of placeholder -->\n' +
-    '      <label ng-bind="\'Grade\' | translate">Grade</label>\n' +
-    '      <ng-md-icon icon="grade" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input ng-model="fish.grade" type="text" ng-required="true">\n' +
-    '      </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <!-- Use floating label instead of placeholder -->\n' +
-    '      <label ng-bind="\'Size\' | translate">Size</label>\n' +
-    '      <ng-md-icon icon="add_circle" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input ng-model="fish.size" type="text" ng-required="true">\n' +
-    '    </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '    <!-- Use floating label instead of placeholder -->\n' +
-    '      <label ng-bind="\'Quantity\' | translate">Quantity</label>\n' +
-    '      <ng-md-icon icon="unfold_more" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input  type="number" ng-model="fish.quantity" ng-required="true">\n' +
-    '    </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <!-- Use floating label instead of placeholder -->\n' +
-    '      <label ng-bind="\'Location\' | translate">Location</label>\n' +
-    '      <ng-md-icon icon="my_location" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input ng-model="fish.location" type="text" ng-required="true">\n' +
-    '    </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <!-- Use floating label instead of placeholder -->\n' +
-    '      <label ng-bind="\'Pricing\' | translate">Pricing</label>\n' +
-    '      <ng-md-icon icon="attach_money" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input type="number"  ng-model="fish.pricing" ng-required="true">\n' +
-    '    </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <label ng-bind="\'Currency Type\' | translate">Currency Type</label>\n' +
-    '      <md-select ng-model="fish.currencytype">\n' +
-    '        <md-option ng-repeat="currency in currencies" value="{{currency.country}}">{{currency.name}}</md-option>\n' +
-    '      </md-select>\n' +
-    '    </md-input-container>\n' +
-    '  </div>\n' +
-    '  <div>\n' +
-    '    <md-datepicker ng-model="fish.caughtdate" md-placeholder="{{ \'Enter Caught Date\' | translate }}">\n' +
-    '    </md-datepicker>\n' +
-    '  </div>\n' +
-    '\n' +
-    '  <md-button md-no-ink="" ng-bind="\'Submit\' | translate" class="md-raised md-primary md-button md-default-theme" ng-click="addFish()">\n' +
-    '      Submit\n' +
-    '  </md-button>\n' +
-    '\n' +
-    '  <div class="container" ng-show="loading" style="margin-top: 5px;margin-bottom:20px;padding: 5px;">\n' +
-    '    <md-progress-linear></md-progress-linear>\n' +
-    '    <div class="bottom-block">\n' +
-    '      <span g-bind="\'Please wait while we update your data\' | translate">Please wait while we update your data</span>\n' +
-    '    </div>\n' +
-    '  </div>\n' +
-    '</div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('fh.templates');
-} catch (e) {
-  module = angular.module('fh.templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('fish/fish-edit.tpl.html',
-    '<div  layout="column"  id="fishContainer"  ng-cloak>\n' +
-    '  <br/>\n' +
-    '  <div style="padding:8px;">\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <label ng-bind="\'Name\' | translate">Name</label>\n' +
-    '      <ng-md-icon icon="input" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input ng-model="fish.name" type="text" ng-required="true">\n' +
-    '    </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <!-- Use floating label instead of placeholder -->\n' +
-    '      <label ng-bind="\'Species\' | translate">Species</label>\n' +
-    '      <ng-md-icon icon="subtitles" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input ng-model="fish.species" type="text" ng-required="true">\n' +
-    '    </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <!-- Use floating label instead of placeholder -->\n' +
-    '      <label ng-bind="\'Grade\' | translate">Grade</label>\n' +
-    '      <ng-md-icon icon="grade" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input ng-model="fish.grade" type="text" ng-required="true">\n' +
-    '      </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <!-- Use floating label instead of placeholder -->\n' +
-    '      <label ng-bind="\'Size\' | translate">Size</label>\n' +
-    '      <ng-md-icon icon="add_circle" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input ng-model="fish.size" type="text" ng-required="true">\n' +
-    '    </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '    <!-- Use floating label instead of placeholder -->\n' +
-    '      <label ng-bind="\'Quantity\' | translate">Quantity</label>\n' +
-    '      <ng-md-icon icon="unfold_more" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input  type="number" ng-model="fish.quantity" ng-required="true">\n' +
-    '    </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <!-- Use floating label instead of placeholder -->\n' +
-    '      <label ng-bind="\'Location\' | translate">Location</label>\n' +
-    '      <ng-md-icon icon="my_location" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input ng-model="fish.location" type="text" ng-required="true">\n' +
-    '    </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <!-- Use floating label instead of placeholder -->\n' +
-    '      <label ng-bind="\'Pricing\' | translate">Pricing</label>\n' +
-    '      <ng-md-icon icon="attach_money" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input type="number"  ng-model="fish.pricing" ng-required="true">\n' +
-    '    </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <label ng-bind="\'Currency Type\' | translate">Currency Type</label>\n' +
-    '      <md-select ng-model="fish.currencytype">\n' +
-    '        <md-option ng-repeat="currency in currencies" value="{{currency.cc}}">{{currency.name}}</md-option>\n' +
-    '      </md-select>\n' +
-    '    </md-input-container>\n' +
-    '  </div>\n' +
-    '  <div>\n' +
-    '    <md-datepicker ng-model="fish.caughtdate" md-placeholder="Enter Caught Date"></md-datepicker>\n' +
-    '  </div>\n' +
-    '\n' +
-    '  <md-button md-no-ink="" ng-bind="\'Update\' | translate" class="md-raised md-primary md-button md-default-theme" ng-click="updateFish()">\n' +
-    '      Update\n' +
-    '  </md-button>\n' +
-    '\n' +
-    '  <div class="container" ng-show="loading" style="margin-top: 5px;margin-bottom:20px;padding: 5px;">\n' +
-    '    <md-progress-linear></md-progress-linear>\n' +
-    '    <div class="bottom-block">\n' +
-    '      <span g-bind="\'Please wait while we update the data\' | translate">Please wait while we update the data</span>\n' +
-    '    </div>\n' +
-    '  </div>\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('fh.templates');
-} catch (e) {
-  module = angular.module('fh.templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('fish/fish-upsert-error.tpl.html',
-    '<md-dialog aria-label="Errors">\n' +
-    '  <md-toolbar class="md-warn">\n' +
-    '    <div class="md-toolbar-tools">\n' +
-    '      <h2 ng-bind="\'Errors\' | translate"></h2>\n' +
-    '      <span flex></span>\n' +
-    '      <md-button class="md-icon-button" ng-click="hide()">\n' +
-    '        <ng-md-icon icon="close" size="30" style="fill:white" aria-label="Close dialog"></ng-md-icon>\n' +
-    '      </md-button>\n' +
-    '    </div>\n' +
-    '  </md-toolbar>\n' +
-    '  <md-dialog-content style="max-width:800px;max-height:810px;">\n' +
-    '    <div ng-repeat="error in errors">\n' +
-    '      <div style="margin-top: 10px; text-align: center; padding: 10px;">\n' +
-    '        <label ng-bind="\'{{ error.fieldNames[0] + error.message }}\' | translate"></label>\n' +
-    '      </div>\n' +
-    '    </div>\n' +
-    '  </md-dialog-content>\n' +
-    '</md-dialog>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('fh.templates');
-} catch (e) {
-  module = angular.module('fh.templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('fish/fish-upsert-success.tpl.html',
-    '<md-dialog aria-label="Successful">\n' +
-    '  <md-toolbar>\n' +
-    '    <div class="md-toolbar-tools">\n' +
-    '      <h2 ng-bind="\'Successful Update\' | translate"></h2>\n' +
-    '      <span flex></span>\n' +
-    '      <md-button class="md-icon-button" ng-click="hide()">\n' +
-    '        <ng-md-icon icon="close" size="30" style="fill:white" aria-label="Close dialog"></ng-md-icon>\n' +
-    '      </md-button>\n' +
-    '    </div>\n' +
-    '  </md-toolbar>\n' +
-    '  <md-dialog-content style="max-width:800px;max-height:810px;">\n' +
-    '    <div style="margin-top: 10px; text-align: center; padding: 10px;">\n' +
-    '      <div ng-bind="\'Item is updated.\' | translate">Item is updated.</div>\n' +
-    '    </div>\n' +
-    '  </md-dialog-content>\n' +
-    '</md-dialog>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('fh.templates');
-} catch (e) {
-  module = angular.module('fh.templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('fish/fish-view.tpl.html',
-    '<div  layout="column"  id="fishContainer"  ng-cloak>\n' +
-    '  <br/>\n' +
-    '  <div style="padding:8px;">\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <label ng-bind="\'Name\' | translate">Name</label>\n' +
-    '      <ng-md-icon icon="input" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input ng-model="fish.name" type="text" readonly="readonly">\n' +
-    '    </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <!-- Use floating label instead of placeholder -->\n' +
-    '      <label ng-bind="\'Species\' | translate">Species</label>\n' +
-    '      <ng-md-icon icon="subtitles" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input ng-model="fish.species" type="text"  readonly="readonly">\n' +
-    '    </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <!-- Use floating label instead of placeholder -->\n' +
-    '      <label ng-bind="\'Grade\' | translate">Grade</label>\n' +
-    '      <ng-md-icon icon="grade" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input ng-model="fish.grade" type="text"  readonly="readonly">\n' +
-    '      </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <!-- Use floating label instead of placeholder -->\n' +
-    '      <label ng-bind="\'Size\' | translate">Size</label>\n' +
-    '      <ng-md-icon icon="add_circle" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input ng-model="fish.size" type="text"  readonly="readonly">\n' +
-    '    </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '    <!-- Use floating label instead of placeholder -->\n' +
-    '      <label ng-bind="\'Quantity\' | translate">Quantity</label>\n' +
-    '      <ng-md-icon icon="unfold_more" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input  type="number" ng-model="fish.quantity"  readonly="readonly">\n' +
-    '    </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <!-- Use floating label instead of placeholder -->\n' +
-    '      <label ng-bind="\'Location\' | translate">Location</label>\n' +
-    '      <ng-md-icon icon="my_location" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input ng-model="fish.location" type="text"  readonly="readonly">\n' +
-    '    </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <!-- Use floating label instead of placeholder -->\n' +
-    '      <label ng-bind="\'Pricing\' | translate">Pricing</label>\n' +
-    '      <ng-md-icon icon="attach_money" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input type="number"  ng-model="fish.pricing"  readonly="readonly">\n' +
-    '    </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <!-- Use floating label instead of placeholder -->\n' +
-    '      <label ng-bind="\'Currency Type\' | translate">Currency Type</label>\n' +
-    '      <ng-md-icon icon="attach_money" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input type="text"  ng-model="fish.currencytype"  readonly="readonly">\n' +
-    '    </md-input-container>\n' +
-    '\n' +
-    '    <md-input-container class="md-block">\n' +
-    '      <!-- Use floating label instead of placeholder -->\n' +
-    '      <label ng-bind="\'Caught Date\' | translate">Caught Date</label>\n' +
-    '      <ng-md-icon icon="attach_money" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
-    '      <input type="text"  ng-model="fish.caughtdate"  readonly="readonly">\n' +
-    '    </md-input-container>\n' +
-    '\n' +
-    '\n' +
-    '  </div>\n' +
-    '  <md-button class="md-raised md-warn" ng-click="bid(fish._id)" ng-show="isAdmin">Bid</md-button>\n' +
-    '  <md-button ng-bind="\'View Bids\' | translate" class="md-raised md-warn" ng-click="bid(fish._id)">View Bids</md-button>\n' +
-    '</div>\n' +
-    '\n' +
-    '<md-content style="text-align: center">\n' +
-    '  <div layout="row" style="height:30px;margin-bottom: 30px">\n' +
-    '    <div flex>\n' +
-    '       <ng-md-icon icon="remove-circle" ng-click="delete()" size="30" style="fill:red" aria-label="Add"></ng-md-icon>\n' +
-    '    </div>\n' +
-    '    <div flex>\n' +
-    '        <ng-md-icon icon="add_circle" size="30" ng-click="add()" style="fill:gray" aria-label="Off"></ng-md-icon>\n' +
-    '    </div>\n' +
-    '    <div flex>\n' +
-    '       <ng-md-icon icon="border_color" size="30" ng-click="view()" style="fill:orange" aria-label="Cake"></ng-md-icon>\n' +
-    '    </div>\n' +
-    '  </div>\n' +
-    '</md-content>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('fh.templates');
-} catch (e) {
-  module = angular.module('fh.templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('fish/fishes.tpl.html',
-    '<md-content layout-padding="" class="autoScroll">\n' +
-    '    <md-menu>\n' +
-    '      <md-button aria-label="Open items sort menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">\n' +
-    '        <ng-md-icon icon="sort" size="24" style="fill:gray"></ng-md-icon>\n' +
-    '      </md-button>\n' +
-    '      <md-menu-content width="4">\n' +
-    '        <md-menu-item>\n' +
-    '          <md-button ng-click="sortItems(\'sortCreated\')">\n' +
-    '            <ng-md-icon icon="sort" size="24" style="fill:gray"></ng-md-icon>\n' +
-    '            <span ng-bind="\'sort by created date\' | translate">sort by created date</span>\n' +
-    '          </md-button>\n' +
-    '        </md-menu-item>\n' +
-    '        <md-menu-item>\n' +
-    '          <md-button  ng-click="sortItems(\'sortPrice\')">\n' +
-    '              <ng-md-icon icon="sort" size="24" style="fill:gray"></ng-md-icon>\n' +
-    '              <span ng-bind="\'sort by price\' | translate">sort by price</span>\n' +
-    '          </md-button>\n' +
-    '        </md-menu-item>\n' +
-    '        <md-menu-divider></md-menu-divider>\n' +
-    '        <md-menu-item>\n' +
-    '          <md-button  ng-click="sortItems(\'sortQuantity\')">\n' +
-    '            <ng-md-icon icon="sort" size="24" style="fill:gray"></ng-md-icon>\n' +
-    '            <span ng-bind="\'sort by quantity\' | translate">sort by quantity</span>\n' +
-    '          </md-button>\n' +
-    '        </md-menu-item>\n' +
-    '      </md-menu-content>\n' +
-    '    </md-menu>\n' +
-    '    <md-button aria-label="Open items sort menu" class="md-icon-button">\n' +
-    '      <ng-md-icon icon="my_library_add" ng-click="go(\'fishes/new\')" size="25" style="fill:gray"></ng-md-icon>\n' +
-    '    </md-button>\n' +
-    '  <div style="margin-top:5px;margin-bottom:5px">\n' +
-    '    <label ng-bind="\'Total Items\' | translate">Total Items : {{ fishes.length }}</label>\n' +
-    '  </div>\n' +
-    '\n' +
-    '  <md-input-container class="md-icon-float">\n' +
-    '      <!-- Use floating label instead of placeholder -->\n' +
-    '    <label ng-bind="\'Search\' | translate">Search</label>\n' +
-    '    <ng-md-icon icon="search" size="24" style="fill:green"></ng-md-icon>\n' +
-    '    <input type="text"  ng-model="searchText.$">\n' +
-    '  </md-input-container>\n' +
-    '  <md-list>\n' +
-    '    <md-list-item class="md-3-line" ng-repeat="fish in fishes | filter:searchText">\n' +
-    '      <ng-md-icon ng-click="go(\'fishes/\'+fish._id+\'/view\')" icon="info" size="30" style="fill:green"></ng-md-icon>\n' +
-    '      <div md-swipe-right="onSwipeRight(\'fishes/\'+fish._id+\'/view\')" class="md-list-item-text" layout="column">\n' +
-    '        <h3>{{fish.name }}</h3>\n' +
-    '        <h4> {{ fish.pricing  }} : {{ fish.currencytype  }}</h4>\n' +
-    '        <p><span ng-bind="\'Caught Date\' | translate">Caught Date</span> : {{ fish.caughtdate}}</p>\n' +
-    '      </div>\n' +
-    '      <md-divider></md-divider>\n' +
-    '  </md-list-item>\n' +
-    ' </md-list>\n' +
-    '</md-content>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('fh.templates');
-} catch (e) {
-  module = angular.module('fh.templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('bid/bid-add.tpl.html',
     '<div  layout="column"  id="bidContainer"  ng-cloak>\n' +
     '  <br/>\n' +
@@ -898,6 +413,500 @@ module.run(['$templateCache', function($templateCache) {
     '  }\n' +
     '</style>\n' +
     '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('fh.templates');
+} catch (e) {
+  module = angular.module('fh.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('fish/fish-add.tpl.html',
+    '<div  layout="column"  id="fishContainer"  ng-cloak>\n' +
+    '  <br/>\n' +
+    '  <div style="padding:8px;">\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <label ng-bind="\'Name\' | translate">Name</label>\n' +
+    '      <ng-md-icon icon="input" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input ng-model="fish.name" type="text" ng-required="true">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Species\' | translate">Species</label>\n' +
+    '      <ng-md-icon icon="subtitles" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input ng-model="fish.species" type="text" ng-required="true">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Grade\' | translate">Grade</label>\n' +
+    '      <ng-md-icon icon="grade" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input ng-model="fish.grade" type="text" ng-required="true">\n' +
+    '      </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Size\' | translate">Size</label>\n' +
+    '      <ng-md-icon icon="add_circle" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input ng-model="fish.size" type="text" ng-required="true">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '    <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Quantity\' | translate">Quantity</label>\n' +
+    '      <ng-md-icon icon="unfold_more" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input  type="number" ng-model="fish.quantity" ng-required="true">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Location\' | translate">Location</label>\n' +
+    '      <ng-md-icon icon="my_location" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input ng-model="fish.location" type="text" ng-required="true">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Pricing\' | translate">Pricing</label>\n' +
+    '      <ng-md-icon icon="attach_money" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input type="number"  ng-model="fish.pricing" ng-required="true">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <label ng-bind="\'Currency Type\' | translate">Currency Type</label>\n' +
+    '      <md-select ng-model="fish.currencytype">\n' +
+    '        <md-option ng-repeat="currency in currencies" value="{{currency.country}}">{{currency.name}}</md-option>\n' +
+    '      </md-select>\n' +
+    '    </md-input-container>\n' +
+    '  </div>\n' +
+    '  <div>\n' +
+    '    <md-datepicker ng-model="fish.caughtdate" md-placeholder="{{ \'Enter Caught Date\' | translate }}">\n' +
+    '    </md-datepicker>\n' +
+    '  </div>\n' +
+    '\n' +
+    '  <md-button md-no-ink="" ng-bind="\'Submit\' | translate" class="md-raised md-primary md-button md-default-theme" ng-click="addFish()">\n' +
+    '      Submit\n' +
+    '  </md-button>\n' +
+    '\n' +
+    '  <div class="container" ng-show="loading" style="margin-top: 5px;margin-bottom:20px;padding: 5px;">\n' +
+    '    <md-progress-linear></md-progress-linear>\n' +
+    '    <div class="bottom-block">\n' +
+    '      <span g-bind="\'Please wait while we update your data\' | translate">Please wait while we update your data</span>\n' +
+    '    </div>\n' +
+    '  </div>\n' +
+    '</div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('fh.templates');
+} catch (e) {
+  module = angular.module('fh.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('fish/fish-edit.tpl.html',
+    '<div  layout="column"  id="fishContainer"  ng-cloak>\n' +
+    '  <br/>\n' +
+    '  <div style="padding:8px;">\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <label ng-bind="\'Name\' | translate">Name</label>\n' +
+    '      <ng-md-icon icon="input" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input ng-model="fish.name" type="text" ng-required="true">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Species\' | translate">Species</label>\n' +
+    '      <ng-md-icon icon="subtitles" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input ng-model="fish.species" type="text" ng-required="true">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Grade\' | translate">Grade</label>\n' +
+    '      <ng-md-icon icon="grade" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input ng-model="fish.grade" type="text" ng-required="true">\n' +
+    '      </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Size\' | translate">Size</label>\n' +
+    '      <ng-md-icon icon="add_circle" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input ng-model="fish.size" type="text" ng-required="true">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '    <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Quantity\' | translate">Quantity</label>\n' +
+    '      <ng-md-icon icon="unfold_more" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input  type="number" ng-model="fish.quantity" ng-required="true">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Location\' | translate">Location</label>\n' +
+    '      <ng-md-icon icon="my_location" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input ng-model="fish.location" type="text" ng-required="true">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Pricing\' | translate">Pricing</label>\n' +
+    '      <ng-md-icon icon="attach_money" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input type="number"  ng-model="fish.pricing" ng-required="true">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <label ng-bind="\'Currency Type\' | translate">Currency Type</label>\n' +
+    '      <md-select ng-model="fish.currencytype">\n' +
+    '        <md-option ng-repeat="currency in currencies" value="{{currency.cc}}">{{currency.name}}</md-option>\n' +
+    '      </md-select>\n' +
+    '    </md-input-container>\n' +
+    '  </div>\n' +
+    '  <div>\n' +
+    '    <md-datepicker ng-model="fish.caughtdate" md-placeholder="Enter Caught Date"></md-datepicker>\n' +
+    '  </div>\n' +
+    '\n' +
+    '  <md-button md-no-ink="" ng-bind="\'Update\' | translate" class="md-raised md-primary md-button md-default-theme" ng-click="updateFish()">\n' +
+    '      Update\n' +
+    '  </md-button>\n' +
+    '\n' +
+    '  <div class="container" ng-show="loading" style="margin-top: 5px;margin-bottom:20px;padding: 5px;">\n' +
+    '    <md-progress-linear></md-progress-linear>\n' +
+    '    <div class="bottom-block">\n' +
+    '      <span g-bind="\'Please wait while we update the data\' | translate">Please wait while we update the data</span>\n' +
+    '    </div>\n' +
+    '  </div>\n' +
+    '</div>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('fh.templates');
+} catch (e) {
+  module = angular.module('fh.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('fish/fish-upsert-error.tpl.html',
+    '<md-dialog aria-label="Errors">\n' +
+    '  <md-toolbar class="md-warn">\n' +
+    '    <div class="md-toolbar-tools">\n' +
+    '      <h2 ng-bind="\'Errors\' | translate"></h2>\n' +
+    '      <span flex></span>\n' +
+    '      <md-button class="md-icon-button" ng-click="hide()">\n' +
+    '        <ng-md-icon icon="close" size="30" style="fill:white" aria-label="Close dialog"></ng-md-icon>\n' +
+    '      </md-button>\n' +
+    '    </div>\n' +
+    '  </md-toolbar>\n' +
+    '  <md-dialog-content style="max-width:800px;max-height:810px;">\n' +
+    '    <div ng-repeat="error in errors">\n' +
+    '      <div style="margin-top: 10px; text-align: center; padding: 10px;">\n' +
+    '        <label ng-bind="\'{{ error.fieldNames[0] + error.message }}\' | translate"></label>\n' +
+    '      </div>\n' +
+    '    </div>\n' +
+    '  </md-dialog-content>\n' +
+    '</md-dialog>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('fh.templates');
+} catch (e) {
+  module = angular.module('fh.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('fish/fish-upsert-success.tpl.html',
+    '<md-dialog aria-label="Successful">\n' +
+    '  <md-toolbar>\n' +
+    '    <div class="md-toolbar-tools">\n' +
+    '      <h2 ng-bind="\'Successful Update\' | translate"></h2>\n' +
+    '      <span flex></span>\n' +
+    '      <md-button class="md-icon-button" ng-click="hide()">\n' +
+    '        <ng-md-icon icon="close" size="30" style="fill:white" aria-label="Close dialog"></ng-md-icon>\n' +
+    '      </md-button>\n' +
+    '    </div>\n' +
+    '  </md-toolbar>\n' +
+    '  <md-dialog-content style="max-width:800px;max-height:810px;">\n' +
+    '    <div style="margin-top: 10px; text-align: center; padding: 10px;">\n' +
+    '      <div ng-bind="\'Item is updated.\' | translate">Item is updated.</div>\n' +
+    '    </div>\n' +
+    '  </md-dialog-content>\n' +
+    '</md-dialog>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('fh.templates');
+} catch (e) {
+  module = angular.module('fh.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('fish/fish-view.tpl.html',
+    '<div  layout="column"  id="fishContainer"  ng-cloak>\n' +
+    '  <br/>\n' +
+    '  <div style="padding:8px;">\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <label ng-bind="\'Name\' | translate">Name</label>\n' +
+    '      <ng-md-icon icon="input" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input ng-model="fish.name" type="text" readonly="readonly">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Species\' | translate">Species</label>\n' +
+    '      <ng-md-icon icon="subtitles" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input ng-model="fish.species" type="text"  readonly="readonly">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Grade\' | translate">Grade</label>\n' +
+    '      <ng-md-icon icon="grade" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input ng-model="fish.grade" type="text"  readonly="readonly">\n' +
+    '      </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Size\' | translate">Size</label>\n' +
+    '      <ng-md-icon icon="add_circle" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input ng-model="fish.size" type="text"  readonly="readonly">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '    <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Quantity\' | translate">Quantity</label>\n' +
+    '      <ng-md-icon icon="unfold_more" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input  type="number" ng-model="fish.quantity"  readonly="readonly">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Location\' | translate">Location</label>\n' +
+    '      <ng-md-icon icon="my_location" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input ng-model="fish.location" type="text"  readonly="readonly">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Pricing\' | translate">Pricing</label>\n' +
+    '      <ng-md-icon icon="attach_money" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input type="number"  ng-model="fish.pricing"  readonly="readonly">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Currency Type\' | translate">Currency Type</label>\n' +
+    '      <ng-md-icon icon="attach_money" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input type="text"  ng-model="fish.currencytype"  readonly="readonly">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Caught Date\' | translate">Caught Date</label>\n' +
+    '      <ng-md-icon icon="attach_money" size="24" style="fill:dodgerblue"></ng-md-icon>\n' +
+    '      <input type="text"  ng-model="fish.caughtdate"  readonly="readonly">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '\n' +
+    '  </div>\n' +
+    '  <md-button class="md-raised md-warn" ng-click="bid(fish._id)" ng-show="isAdmin">Bid</md-button>\n' +
+    '  <md-button ng-bind="\'View Bids\' | translate" class="md-raised md-warn" ng-click="bid(fish._id)">View Bids</md-button>\n' +
+    '</div>\n' +
+    '\n' +
+    '<md-content style="text-align: center">\n' +
+    '  <div layout="row" style="height:30px;margin-bottom: 30px">\n' +
+    '    <div flex>\n' +
+    '       <ng-md-icon icon="remove-circle" ng-click="delete()" size="30" style="fill:red" aria-label="Add"></ng-md-icon>\n' +
+    '    </div>\n' +
+    '    <div flex>\n' +
+    '        <ng-md-icon icon="add_circle" size="30" ng-click="add()" style="fill:gray" aria-label="Off"></ng-md-icon>\n' +
+    '    </div>\n' +
+    '    <div flex>\n' +
+    '       <ng-md-icon icon="border_color" size="30" ng-click="view()" style="fill:orange" aria-label="Cake"></ng-md-icon>\n' +
+    '    </div>\n' +
+    '  </div>\n' +
+    '</md-content>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('fh.templates');
+} catch (e) {
+  module = angular.module('fh.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('fish/fishes.tpl.html',
+    '<md-content layout-padding="" class="autoScroll">\n' +
+    '    <md-menu>\n' +
+    '      <md-button aria-label="Open items sort menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">\n' +
+    '        <ng-md-icon icon="sort" size="24" style="fill:gray"></ng-md-icon>\n' +
+    '      </md-button>\n' +
+    '      <md-menu-content width="4">\n' +
+    '        <md-menu-item>\n' +
+    '          <md-button ng-click="sortByCaughtDate()">\n' +
+    '            <ng-md-icon icon="sort" size="24" style="fill:gray"></ng-md-icon>\n' +
+    '            <span ng-bind="\'sort by caught date\' | translate">sort by caught date</span>\n' +
+    '\n' +
+    '            <ng-md-icon ng-show="sortByCaughtDateClass == \'+caughtdate\'" icon="keyboard_arrow_up" size="24" style="fill:orange"></ng-md-icon>\n' +
+    '            <ng-md-icon ng-show="sortByCaughtDateClass == \'-caughtdate\'" icon="keyboard_arrow_down" size="24" style="fill:orange"></ng-md-icon>\n' +
+    '          </md-button>\n' +
+    '        </md-menu-item>\n' +
+    '        <md-menu-item>\n' +
+    '          <md-button  ng-click="sortByPrice()">\n' +
+    '              <ng-md-icon icon="sort" size="24" style="fill:gray"></ng-md-icon>\n' +
+    '              <span ng-bind="\'sort by price\' | translate">sort by price</span>\n' +
+    '              <ng-md-icon ng-show="sortByPriceClass == \'+pricing\'" icon="keyboard_arrow_up" size="24" style="fill:orange"></ng-md-icon>\n' +
+    '            <ng-md-icon ng-show="sortByPriceClass == \'-pricing\'" icon="keyboard_arrow_down" size="24" style="fill:orange"></ng-md-icon>\n' +
+    '\n' +
+    '          </md-button>\n' +
+    '        </md-menu-item>\n' +
+    '        <md-menu-divider></md-menu-divider>\n' +
+    '        <md-menu-item>\n' +
+    '          <md-button  ng-click="sortByQuantity()">\n' +
+    '            <ng-md-icon icon="sort" size="24" style="fill:gray"></ng-md-icon>\n' +
+    '            <span ng-bind="\'sort by quantity\' | translate">sort by quantity</span>\n' +
+    '            <ng-md-icon ng-show="sortByQuantityClass == \'+quantity\'" icon="keyboard_arrow_up" size="24" style="fill:orange"></ng-md-icon>\n' +
+    '            <ng-md-icon ng-show="sortByQuantityClass == \'-quantity\'" icon="keyboard_arrow_down" size="24" style="fill:orange"></ng-md-icon>\n' +
+    '\n' +
+    '          </md-button>\n' +
+    '        </md-menu-item>\n' +
+    '      </md-menu-content>\n' +
+    '    </md-menu>\n' +
+    '    <md-button aria-label="Open items sort menu" class="md-icon-button">\n' +
+    '      <ng-md-icon icon="my_library_add" ng-click="go(\'fishes/new\')" size="25" style="fill:gray"></ng-md-icon>\n' +
+    '    </md-button>\n' +
+    '  <div style="margin-top:5px;margin-bottom:5px">\n' +
+    '    <label ng-bind="\'Total Items\' | translate">Total Items : {{ fishes.length }}</label>\n' +
+    '  </div>\n' +
+    '\n' +
+    '  <md-input-container class="md-icon-float">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '    <label ng-bind="\'Search\' | translate">Search</label>\n' +
+    '    <ng-md-icon icon="search" size="24" style="fill:green"></ng-md-icon>\n' +
+    '    <input type="text"  ng-model="searchText.$">\n' +
+    '  </md-input-container>\n' +
+    '  <md-list>\n' +
+    '    <md-list-item class="md-3-line" ng-repeat="fish in fishes | filter:searchText | orderBy: sortField">\n' +
+    '      <ng-md-icon ng-click="go(\'fishes/\'+fish._id+\'/view\')" icon="info" size="30" style="fill:green"></ng-md-icon>\n' +
+    '      <div md-swipe-right="onSwipeRight(\'fishes/\'+fish._id+\'/view\')" class="md-list-item-text" layout="column">\n' +
+    '        <h3>{{fish.name }}</h3>\n' +
+    '        <h4> {{ fish.pricing  }} : {{ fish.currencytype  }}</h4>\n' +
+    '        <p><span ng-bind="\'Caught Date\' | translate">Caught Date</span> : {{ fish.caughtdate}}</p>\n' +
+    '      </div>\n' +
+    '      <md-divider></md-divider>\n' +
+    '  </md-list-item>\n' +
+    ' </md-list>\n' +
+    '</md-content>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('fh.templates');
+} catch (e) {
+  module = angular.module('fh.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('home/home.tpl.html',
+    '<div  layout="column" class="inputdemoIcons" id="homeContainer">\n' +
+    '  <md-content layout-padding="">\n' +
+    '        <md-list>\n' +
+    '  <md-list-item class="md-2-line">\n' +
+    '    <div class="md-list-item-text">\n' +
+    '      <h3><a href="#/fishes/new">Add fish</a></h3>\n' +
+    '      <p>You can add fishes to your gallery</p>\n' +
+    '    </div>\n' +
+    '  </md-list-item>\n' +
+    '    <md-list-item class="md-2-line">\n' +
+    '    <div class="md-list-item-text">\n' +
+    '      <h3><a href="#/fishes">View fish history</a> </h3>\n' +
+    '      <p>You can add edit and delete the fishes that you hvae added.</p>\n' +
+    '    </div>\n' +
+    '  </md-list-item>\n' +
+    '</md-list>\n' +
+    '  </md-content>\n' +
+    '</div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('fh.templates');
+} catch (e) {
+  module = angular.module('fh.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('login/login-error.tpl.html',
+    '<md-dialog aria-label="Login Error">\n' +
+    '  <md-toolbar>\n' +
+    '    <div class="md-toolbar-tools">\n' +
+    '      <h2 ng-bind="\'Login Error\' | translate"></h2>\n' +
+    '      <span flex></span>\n' +
+    '      <md-button class="md-icon-button" ng-click="hide()">\n' +
+    '        <ng-md-icon icon="close" size="30" style="fill:white" aria-label="Close dialog"></ng-md-icon>\n' +
+    '      </md-button>\n' +
+    '    </div>\n' +
+    '  </md-toolbar>\n' +
+    '  <md-dialog-content style="max-width:800px;max-height:810px;">\n' +
+    '    <div>\n' +
+    '      <h4>Your user id or password is not correct, try again.</h4>\n' +
+    '    </div>\n' +
+    '  </md-dialog-content>\n' +
+    '</md-dialog>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('fh.templates');
+} catch (e) {
+  module = angular.module('fh.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('login/login.tpl.html',
+    '<div  layout="column"  id="loginContainer">\n' +
+    '  <br>\n' +
+    '  <md-content layout-padding="" class="autoScroll">\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'User Id\' | translate">User Id</label>\n' +
+    '      <ng-md-icon icon="person" size="24" style="fill:rgb(255,64,129)"></ng-md-icon>\n' +
+    '      <input ng-model="user.userid" type="text" ng-required="true">\n' +
+    '    </md-input-container>\n' +
+    '\n' +
+    '    <md-input-container class="md-block">\n' +
+    '      <!-- Use floating label instead of placeholder -->\n' +
+    '      <label ng-bind="\'Password\' | translate">Password</label>\n' +
+    '      <ng-md-icon icon="security" size="24" style="fill:rgb(255,64,129)"></ng-md-icon>\n' +
+    '      <input ng-model="user.password" type="password" ng-required="true">\n' +
+    '    </md-input-container>\n' +
+    '  </md-content>\n' +
+    '</div>\n' +
+    '\n' +
+    '<md-button md-no-ink="" class="md-raised md-primary md-button md-default-theme" ng-click="checkCredential()">\n' +
+    '  Submit\n' +
+    '</md-button>\n' +
+    '\n' +
+    '<div class="container" ng-show="loading" style="padding: 5px;">\n' +
+    '  <md-progress-linear></md-progress-linear>\n' +
+    '  <div class="bottom-block">\n' +
+    '    <span g-bind="\'Please wait while we check your account\' | translate">Please wait while we check your account</span>\n' +
+    '  </div>\n' +
+    '</div>');
 }]);
 })();
 
